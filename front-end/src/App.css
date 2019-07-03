@@ -1,3 +1,6 @@
+@import '~antd/dist/antd.css';
+/* @import '~@fortawesome/fontawesome-free/css/all.min.css'; */
+/* @import '~bootstrap-css-only/css/bootstrap.min.css'; */
 .App {
   text-align: center;
 }
@@ -30,4 +33,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.inline {
+  display: inline-block;
 }
