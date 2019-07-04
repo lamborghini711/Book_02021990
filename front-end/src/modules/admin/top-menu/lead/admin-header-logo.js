@@ -8,8 +8,8 @@ class AdminHeaderLogo extends Component {
   render() {
     return (
       <div className='top-menu-lead'>
-        <img className='logo' src='/image/wp-logo-orange.png' alt='logo' />
-      </div>
+        {/* <img className='logo' src='/image/wp-logo-orange.png' alt='logo' /> */}
+        </div>
     );
   }
 }
