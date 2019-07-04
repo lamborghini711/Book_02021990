@@ -25,10 +25,9 @@ class AdminBody extends Component {
         {/* Content Header (Page header) */}
         <section className="content-header">
           <FilterHomePage/>
-      
         </section>
         {/* Main content */}
-        <section className="content">
+        <section className="content pd-top-20">
           <ListBook/>
         </section>
         <section className="content-footer">
