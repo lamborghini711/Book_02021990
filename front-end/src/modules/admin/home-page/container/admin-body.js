@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Pagination } from 'antd';
+import { Pagination, BackTop } from 'antd';
 import FilterHomePage from './filter-home-page/filter-home-page';
 import ListBook from './list-book/list-book';
 
@@ -32,7 +32,7 @@ class AdminBody extends Component {
           <ListBook/>
         </section>
         <section className="content-footer">
-          <div className="text-center pd-top-50">
+          <div className="text-center pd-tb-50">
             <Pagination
               total={1500}
               showTotal={total => `Tất cả ${total} items`}
@@ -45,6 +45,10 @@ class AdminBody extends Component {
           </div>
         </section>
         {/* /.content */}
+        <div>
+          <BackTop />
+          <strong style={{ color: '#000' }}></strong>
+        </div>
       </div>
     )
   }
