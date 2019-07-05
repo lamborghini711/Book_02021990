@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Card, Badge } from 'antd';
-
 const { Meta } = Card;
 
 class ListBook extends Component {

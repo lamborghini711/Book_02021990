@@ -1,38 +1,45 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  withRouter
-} from "react-router-dom";
-import { Icon } from 'antd';
+import { Modal } from 'antd';
+import WrappedNormalLoginForm from './form-login'
 
 class Login extends Component {
+  constructor(props){
+    super(props)
+    this.state = {}
+  }
+
+  state = { visible: false };
+
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
+
   render() {
     return (
-      <div>
-        <div className='menu-items'>
-          <Router>
-            <div>
-              <ul>
-                <li>
-                  <Link to="/public">Public Page</Link>
-                </li>
-                <li>
-                  <Link to="/protected">Protected Page</Link>
-                </li>
-              </ul>
-          
-            </div>
-          </Router>
+      <div className="login" >
+         <div type="primary" onClick={this.showModal} style={{height: '51px', padding: '15px 8px'}}>
+         <img src="/img/icon-web/user2-160x160.jpg" className="user-image" alt="User" />
+              <span className="hidden-xs">Đăng nhập</span>
         </div>
-        <div className='login'>
-          <Icon type="user"  style={{ fontSize: '16px', display: 'inline-grid', paddingRight: '10px',}} /> 
-          <span>Đăng nhập</span>
+        <Modal
+          title="Đăng nhập"
+          visible={this.state.visible}
+          onCancel={this.handleCancel}
+          width={350}
+          footer={null}
+        >
+          <WrappedNormalLoginForm/>
+        </Modal>
         </div>
-       
-      </div>
     );
   }
 }
