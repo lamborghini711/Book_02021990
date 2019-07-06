@@ -40,6 +40,9 @@ label {
   background: rgb(0,0,0);
   background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7553396358543417) 22%, rgba(0,0,0,0) 100%);
 }
+.bg-white {
+  background-color: #fff!important;
+}
 .pd-bottom-10 {
   padding-bottom: 10px;
 }
@@ -202,6 +205,11 @@ label {
 }
 .me2 {
   z-index: 2;
+}
+.fb_iframe_widget span {
+  min-width: 532px;
+  width: 532px;
+
 }
 
 
