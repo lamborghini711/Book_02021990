@@ -1,31 +1,121 @@
 @import '~antd/dist/antd.css';
-/* @import '~@fortawesome/fontawesome-free/css/all.min.css'; */
-/* @import '~bootstrap-css-only/css/bootstrap.min.css'; */
-.App {
-  text-align: center;
-}
+@import '~font-awesome/css/font-awesome.min.css';
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+h1, h2, h3, h4, h5, h6 {
+  color: #cdcdcd !important;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+p {
+  color: #cdcdcd !important;
 }
-
-.App-link {
-  color: #61dafb;
+label {
+  font-weight: 400!important;
 }
-
+.block {
+  display: block!important;
+}
+.pd-left-0 {
+  padding-left: 0px!important
+}
+.pd-left-10 {
+  padding-left: 10px
+}
+.pd-right-10 {
+  padding-right: 10px
+}
+.pd-lr-20 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.pd-top-10 {
+  padding-top: 10px;
+}
+.width-720 {
+  width: 720px!important;
+  max-width: 720px!important;
+  min-width: 720px!important;
+}
+.bg-radient {
+  height: 100px;
+  margin: 0 auto;
+  background: rgb(0,0,0);
+  background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7553396358543417) 22%, rgba(0,0,0,0) 100%);
+}
+.bg-white {
+  background-color: #fff!important;
+}
+.pd-bottom-10 {
+  padding-bottom: 10px;
+}
+.pd-bottom-20 {
+  padding-bottom: 20px;
+}
+.pd-top-20 {
+  padding-top: 20px;
+}
+.pd-top-40 {
+  padding-top: 40px;
+}
+.pd-top-50 {
+  padding-top: 50px;
+}
+.pd-tb-20 {
+  padding: 20px 0;
+}
+.pd-tb-50 {
+  padding: 50px 0;
+}
+.pd-top-30 {
+  padding-top : 30px
+}
+.pd-right-20{
+  padding-right: 20px;
+}
+.pd-lr-40 {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.padding-right-10 {
+  padding-right: 10px
+}
+.padding-top-15 {
+  padding-top: 15px
+}
+.mg-top-20 {
+  margin-top: 20px
+}
+.mg-bottom-15 {
+  margin-bottom: 15px!important;
+}
+.mg-right-10 {
+  margin-right: 10px!important
+}
+.border-radius-50 {
+  border-radius: 50px!important;
+}
+.mg-all-0 {
+  margin: 0px!important
+}
+.pd-left-5 {
+  padding-left: 5px;
+}
+.text-color-grey {
+  color: #4c4b53;
+}
+.text-color-primary {
+  color:#dd4b39!important;
+}
+.font-11 {
+  font-size: 11px
+}
+.opa-5 {
+  opacity: 0.5;
+}
+.text-center {
+  text-align: center
+}
+.text-color-light {
+  color: #cdcdcd!important;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -34,7 +124,279 @@
     transform: rotate(360deg);
   }
 }
-
 .inline {
   display: inline-block;
+}
+.font-400 {
+  font-weight : 400 !important;
+}
+.font-600 {
+  font-weight: 600!important;
+}
+.font-700 {
+  font-weight: 700!important;
+}
+.col-card {
+  width: 200px;
+  max-width: 200px;
+  min-width: 200px;
+  margin-bottom: 50px;
+  cursor: pointer;
+  padding-right: 20px;
+  padding-left: 15px;
+}
+.thumb-cover {
+  height: 240px;
+  min-height: 240px;
+  max-height: 240px;
+  width: 167px;
+  min-width: 167px;
+  max-width: 167px;
+
+}
+.font-13 {
+  font-size: 13px!important;
+}
+.border-radius-10 {
+  border-radius: 10px!important;
+}
+.text-right {
+  text-align: right
+}
+.float-right {
+  float: right;
+}
+.login {
+  /* padding: 0px 5px; */
+  cursor: pointer;
+  color: #fff!important;
+}
+.login:hover {
+  background: #00000014;
+}
+.img-reading {
+  width: 40px;
+  height: 40px;
+  padding-right: 5px;
+}
+.book-title {
+  font-size: 25px;
+  font-weight: 600
+}
+.mg-0-auto {
+  margin: 0 auto!important
+}
+
+/* ===============STYLE================== */
+.main-footer {
+  border-top: 1px solid #272727!important;
+}
+.sidebar-menu > li > a {
+  padding: 8px 3px 8px 10px!important;
+}
+.skin-red .wrapper, .skin-red .main-sidebar, .skin-red .left-side {
+  background-color: #122120!important;
+}
+.me1, .me2 {
+  position: absolute;
+}
+.me1 {
+  z-index: 2;
+}
+.me2 {
+  z-index: 2;
+}
+.fb_iframe_widget span {
+  min-width: 532px;
+  width: 532px;
+
+}
+
+
+
+/* ============ ANT================== */
+.react-multi-carousel-list {
+  height: 330px;
+  /* align-items: flex-start!important; */
+}
+.react-multiple-carousel__arrow {
+  top: 110px!important;
+}
+.react-multi-carousel-dot button{
+  width: 10px!important;
+  height: 10px!important;
+}
+.react-multi-carousel-track {
+  align-items: center!important;
+  top: -10px!important;
+}
+.react-multi-carousel-dot-list {
+  opacity: 0.7;
+}
+.ant-breadcrumb {
+  color: #777777 !important;
+}
+.ant-breadcrumb-link {
+  color: #777777 !important;
+}
+.ant-breadcrumb-separator {
+  color: #777777 !important;
+}
+.ant-select-selection{
+  background-color : #dd4b39!important;
+  border: none!important;
+  border-radius: 50px!important;
+}
+.ant-card {
+  border: none!important;
+  background: #121212!important;
+  color: #cdcdcd!important;
+}
+.ant-card-meta-title {
+  color: #cdcdcd!important;
+  margin: 0px!important;
+}
+.ant-card-meta-description {
+  color: #cdcdcd!important;
+  opacity: 0.5;
+  font-weight: 300!important;
+  font-size: 13px!important;
+}
+.ant-card-body {
+  padding: 10px 0 0 0!important;
+}
+.ant-pagination {
+  color: #4b646f!important;
+}
+.ant-pagination-item-link {
+  border-color: transparent!important;
+  background-color: #122020!important;
+  opacity: 0.4;
+  border-radius: 50px!important;
+}
+.ant-pagination-item-link:hover {
+  opacity: 0.9;
+}
+.ant-pagination-item {
+  background-color: #122020!important;
+  border-color: transparent!important;
+  opacity: 0.4;
+  border-radius: 50px!important;
+}
+.ant-pagination-item:hover {
+  opacity: 0.9;
+}
+.ant-pagination-item-active {
+  background: #202a2f!important;
+  opacity: 0.9;
+  border-color: transparent!important;
+}
+.ant-pagination-options .ant-select .ant-select-selection {
+  background-color: #1a2226!important;
+  border-color: transparent!important;
+  opacity: 0.4;
+  color: #fff!important;
+}
+.ant-pagination-item-ellipsis{
+  color: #4b646f!important;
+}
+.ant-back-top-content {
+  background-color:#dd4b39!important;
+  box-shadow: 0 4px 6px 0 rgba(32,33,36,0.28)!important;
+}
+.ant-back-top-content:hover {
+  background-color:#9c221d!important;
+}
+.ant-badge-count {
+  font-size: 13px!important;
+  right: 22px;
+  top: 15px;
+  background-color: #000!important;
+  opacity: 0.7;
+  border: none!important;
+  border-radius: 5px!important;
+  box-shadow: 0 0 0 0.5px #000!important;
+  -webkit-box-shadow: 0 0 0 0.5px #000!important;
+}
+.ant-input{
+  background-color: #a001011c!important;
+  border: none!important;
+  border-radius: 50px!important; 
+  color: #fff!important;
+}
+.ant-input:hover {
+  border-right-width: 0px!important;
+}
+.ant-input:focus {
+  border-right-width: 0px!important;
+  -webkit-box-shadow: none!important;
+  box-shadow: none!important;
+}
+.ant-input-search-icon {
+  color: #fff!important;
+}
+.login-form-forgot {
+  float: right;
+}
+.login-form-button {
+  width: 100%;
+}
+.skin-red .sidebar-menu > li.header{
+  border-bottom: 1px solid darkslategray;
+  background: transparent!important;
+  padding: 5px 0px!important;
+  margin: 5px 10px!important;
+}
+.ant-pagination-item a {
+  color: #fff!important;
+}
+.ant-pagination-prev a {
+  color: #fff!important;
+}
+.ant-pagination-next a {
+  color: #fff!important;
+}
+.me .ant-select .ant-select-selection {
+  background-color: #122020!important
+}
+.light .ant-select .ant-select-selection {
+  background-color: #fff!important;
+  color: #000!important;
+}
+.ant-select {
+  color: #cdcdcd!important
+}
+.ant-select-arrow-icon {
+  color: #cdcdcd!important
+}
+.ant-btn-primary {
+  background-color:#dd4b39!important;
+  border-color : #dd4b39!important;
+  border-radius: 50px!important;
+}
+.ant-btn-primary:hover {
+  background-color:#9c221d!important;
+  border-color : #9c221d!important
+}
+.ant-btn-default {
+  background-color:#122020!important;
+  border-color : #122020!important;
+  color: #cdcdcd!important;
+  border-radius: 50px!important;
+}
+.ant-btn-default:hover {
+  background-color:#4c4b53!important;
+  border-color : #4c4b53!important;
+  color: #cdcdcd!important;
+}
+.ant-card-actions {
+  background: transparent!important;
+  border-top: 0px solid transparent!important;
+}
+.ant-card-actions > li:not(:last-child){
+  border-right: 0px solid transparent!important;
+}
+.ant-card-actions > li {
+  color: #4c4b53!important;
+  text-align: left!important;
 }
