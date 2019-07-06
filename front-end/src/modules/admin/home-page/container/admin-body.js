@@ -53,7 +53,7 @@ class AdminBody extends Component {
               defaultCurrent={1}
               showSizeChanger
               onShowSizeChange={onShowSizeChange}
-              pageSizeOptions={[50, 100, 150, 200]}
+              pageSizeOptions={['50', '100', '150', '200']}
             />
           </div>
         </section>

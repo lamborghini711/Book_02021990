@@ -4,21 +4,51 @@ import 'react-multi-carousel/lib/styles.css';
 import { Card, Badge, Icon } from 'antd';
 const { Meta } = Card;
 
+const listHot = [];
+let limit = 10;
+for(let i=0 ; i<=limit; i++) {
+  listHot.push(
+    <div className="col-md-2 col-card mg-all-0" key={i}>
+          <Badge count={'99'}>
+            <Card
+              cover={<img className="border-radius-10 thumb-cover"  alt="example" src="/img/thumb/poster_01.jpg" />}
+            >
+              <Meta title="Chí Tôn Võ Đế" description="Europe Street beat" />
+            </Card>
+          </Badge>
+        </div>
+  )
+}
 class HotBook extends Component {
   render() {
     const responsive = {
-      desktop: {
-        breakpoint: { max: 3000, min: 1024 },
+      desktop2k: {
+        breakpoint: { max: 3000, min: 1900 },
+        items: 8,
+      },
+      desktop1080: {
+        breakpoint: { max: 1900, min: 1600 },
         items: 7,
-        
+      },
+      desktophd1: {
+        breakpoint: { max: 1600, min: 1336 },
+        items: 6,
+      },
+      desktophd2: {
+        breakpoint: { max: 1336, min: 1200 },
+        items: 5,
+      },
+      desktophd3: {
+        breakpoint: { max: 1200, min: 1024 },
+        items: 4,
       },
       tablet: {
         breakpoint: { max: 1024, min: 464 },
-        items: 2,
+        items: 3,
       },
       mobile: {
         breakpoint: { max: 464, min: 0 },
-        items: 1,
+        items: 2,
       },
     };
     return (
@@ -26,6 +56,7 @@ class HotBook extends Component {
         <h4 className="font-600 pd-top-20 text-color-light">
         <Icon type="rise" style={{ paddingRight: '3px', fontSize: '22px', fontWeight: 'bold' }} /> Đang Hot 
         </h4>
+        <div className="row justify-content-md-center">
         <Carousel
           ssr={true} // means to render carousel on server-side.
           additionalTransfrom={0}
@@ -47,93 +78,11 @@ class HotBook extends Component {
           slidesToSlide={1}
           swipeable
           responsive={responsive}
-          // customTransition="all .5"
         >
-          {/* <WithStyles
-            description="React Carousel with Server Side Rendering Support – Part 1"
-            headline="w3js.com - web front-end studio"
-            image="https://images.unsplash.com/photo-1549989476-69a92fa57c36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-          /> */}
-         
-          <div>
-            <Badge count={'99'}>
-              <Card
-                cover={<img className="border-radius-10 thumb-cover"  alt="example" src="https://image.xemphim.plus/w342/slGZ8miznmAZAaDHEz6BKo7f1N5.jpg" />}
-              >
-                <Meta title="Chí Tôn Võ Đế" description="Europe Street beat" />
-              </Card>
-            </Badge>
-          </div>
-          <div>
-            <Badge count={'99'}>
-              <Card
-                cover={<img className="border-radius-10 thumb-cover"  alt="example" src="https://img.khoai.tv/images/movies/21908/poster_01_ise85870.jpg" />}
-              >
-                <Meta title="Chí Tôn Võ Đế" description="Europe Street beat" />
-              </Card>
-            </Badge>
-          </div>
-          <div>
-            <Card
-              cover={<img className="border-radius-10 thumb-cover"  alt="example" src="https://img.khoai.tv/images/movies/22084/poster_01_qgn20152.jpg" />}
-            >
-              <Meta title="Sát Nhân Bí Ẩn" description="Murder Mystery" />
-            </Card>
-          </div>
-          <div>
-            <Card
-              cover={<img className="border-radius-10 thumb-cover"  alt="example" src="https://img.khoai.tv/images/movies/21908/poster_01_ise85870.jpg" />}
-            >
-              <Meta title="Bông hồng chết người" description="The Poison Rose" />
-            </Card>
-          </div>
-          <div>
-            <Card
-              cover={<img className="border-radius-10 thumb-cover"  alt="example" src="https://img.khoai.tv/images/movies/22118/poster_01_ong18314.jpg" />}
-            >
-              <Meta title="Sau thế chiến" description="The Aftermath" />
-            </Card>
-          </div>
-          <div>
-            <Card
-              cover={<img className="border-radius-10 thumb-cover"  alt="example" src="https://img.khoai.tv/images/movies/22141/poster_01_tim37584.jpg" />}
-            >
-              <Meta title="Dumbo: Chú voi biết bay" description="Dumbo" />
-            </Card>
-          </div>      
-          <div>
-            <Badge count={'99'}>
-              <Card
-                cover={<img className="border-radius-10 thumb-cover"  alt="example" src="https://image.xemphim.plus/w342/slGZ8miznmAZAaDHEz6BKo7f1N5.jpg" />}
-              >
-                <Meta title="Chí Tôn Võ Đế" description="Europe Street beat" />
-              </Card>
-            </Badge>
-          </div>
-          <div>
-            <Badge count={'99'}>
-              <Card
-                cover={<img className="border-radius-10 thumb-cover"  alt="example" src="https://img.khoai.tv/images/movies/21908/poster_01_ise85870.jpg" />}
-              >
-                <Meta title="Chí Tôn Võ Đế" description="Europe Street beat" />
-              </Card>
-            </Badge>
-          </div>
-          <div>
-            <Card
-              cover={<img className="border-radius-10 thumb-cover"  alt="example" src="https://img.khoai.tv/images/movies/22084/poster_01_qgn20152.jpg" />}
-            >
-              <Meta title="Sát Nhân Bí Ẩn" description="Murder Mystery" />
-            </Card>
-          </div>      
-          <div>
-            <Card
-              cover={<img className="border-radius-10 thumb-cover"  alt="example" src="https://img.khoai.tv/images/movies/22118/poster_01_ong18314.jpg" />}
-            >
-              <Meta title="Sau thế chiến" description="The Aftermath" />
-            </Card>
-          </div>
+            {listHot}
         </Carousel>
+        </div>
+
       </div>
     );
   }

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Select } from 'antd';
 
 const { Option } = Select;
-
 const children = [];
 
 for (let i = 2019; i >= 2000; i--) {
@@ -60,8 +59,6 @@ class FilterHomePage extends Component {
             <Option value="lucy">z-a</Option>
           </Select>
         </div>
-        
-         
       </div>
     )
   }
