@@ -7,9 +7,9 @@ class DetailHeader extends Component {
     return (
       <div>
         <div>
-           <span className='book-title'>Tôi thăng cấp một mình | </span>
-        <span>Chapter 0</span>
-        <span className="text-color-grey float-right">Cập nhật lúc: 13:35 10/07/1019</span>
+          <span className='book-title'>Tôi thăng cấp một mình | </span>
+          <span>Chapter 0</span>
+          <span className="text-color-grey float-right">Cập nhật lúc: 13:35 10/07/1019</span>
         </div>
         <div className="text-center pd-top-30">
           <div>
@@ -29,8 +29,6 @@ class DetailHeader extends Component {
           </div>
         </div>
         <hr/>
-      
-        
       </div>
     );
   }

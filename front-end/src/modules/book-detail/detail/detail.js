@@ -4,9 +4,7 @@ import DetailFooter from '../detail-footer/detail.footer';
 import DetailBody from '../detail-body/detail-body';
 import { BackTop } from 'antd';
 
-
-
-class BookDetail extends Component {
+class BookDetailBody extends Component {
   render() {
     return (
       <div className="content-wrapper body-bg pd-top-20 pd-lr-40" style={{ minHeight : '1300px'}}>
@@ -24,4 +22,4 @@ class BookDetail extends Component {
   }
 }
 
-export default BookDetail;
+export default BookDetailBody;

@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import BookDetail from './book-detail/detail/detail';
-import AdminBody from './admin/home-page/container/admin-body';
+import Home from './home/Home';
+import BookSelect from './book-select/book-select';
+import BookDetail from './book-detail/book-detail';
 
 class RouterUrl extends Component {
   render() {
     return (
       <Router>
         <div>
-          <Route exact path="/home" component={AdminBody} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/select" component={BookSelect} />
           <Route exact path="/detail" component={BookDetail} />
         </div>
       </Router>
-      
     );
   }
 }
