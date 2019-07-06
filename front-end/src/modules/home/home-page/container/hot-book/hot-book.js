@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Card, Badge, Icon } from 'antd';
@@ -9,6 +10,7 @@ let limit = 10;
 for(let i=0 ; i<=limit; i++) {
   listHot.push(
     <div className="col-md-2 col-card mg-all-0" key={i}>
+      <Link to="/select">
           <Badge count={'99'}>
             <Card
               cover={<img className="border-radius-10 thumb-cover"  alt="example" src="/img/thumb/poster_01.jpg" />}
@@ -16,7 +18,8 @@ for(let i=0 ; i<=limit; i++) {
               <Meta title="Chí Tôn Võ Đế" description="Europe Street beat" />
             </Card>
           </Badge>
-        </div>
+      </Link>
+    </div>
   )
 }
 class HotBook extends Component {
