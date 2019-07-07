@@ -34,11 +34,11 @@ class HotBook extends Component {
         items: 7,
       },
       desktophd1: {
-        breakpoint: { max: 1600, min: 1336 },
+        breakpoint: { max: 1600, min: 1370 },
         items: 6,
       },
       desktophd2: {
-        breakpoint: { max: 1336, min: 1200 },
+        breakpoint: { max: 1370, min: 1200 },
         items: 5,
       },
       desktophd3: {

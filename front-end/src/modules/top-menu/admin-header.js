@@ -8,9 +8,6 @@ class AdminHeader extends Component {
       <div>
         <header className="main-header">
           <Link to="/" className="logo">
-            {/* mini logo for sidebar mini 50x50 pixels */}
-            <span className="logo-mini"><b>A</b>LT</span>
-            {/* logo for regular state and mobile devices */}
             <span className="logo-lg"><b>Admin</b>LTE</span>
           </Link>
           {/* Header Navbar: style can be found in header.less */}

@@ -10,7 +10,7 @@ class BookInfo extends Component {
           <img className="img-info" src="/img/thumb/aHR0cHM6Ly9pbWcuYmxvZ3RydXllbi5jb20vbWFuZ2EvMjAvMjA3MTIvYXZhci5qcGc.jpeg" alt="a"/>
         </div>
         <div className="text-center pd-top-30">
-          <Link to="/detail" style={{paddingRight:'20px'}}>
+          <Link to="/detail" style={{paddingRight:'20px'} >
             <Button type='primary' style={{width:'150px', fontSize:'16px'}}>Xem từ đầu</Button>
           </Link>
           <Link to="/detail">
