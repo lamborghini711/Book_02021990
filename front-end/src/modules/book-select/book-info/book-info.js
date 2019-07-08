@@ -31,19 +31,19 @@ class BookInfo extends Component {
         <div className=''>
         <div className="row pd-tb-5">
             <div className="col-md-2 info-left"><Icon type="share-alt" style={{paddingRight:'10px'}}  />Tên khác:</div>
-              <div className="col-md-9 name-orther">Phế Tài Nghịch Thiên: Đặc Công Thần Y</div>
+              <div className="col-md-10 name-orther">Phế Tài Nghịch Thiên: Đặc Công Thần Y</div>
             </div>
             <div className="row pd-tb-5">
               <div className="col-md-2 info-left"><i className="fa fa-user pd-right-10" aria-hidden="true"></i>Tác giả:</div>
-              <div className="col-md-9">Từ Anh Tuấn</div>
+              <div className="col-md-10">Từ Anh Tuấn</div>
             </div>
             <div className="row pd-tb-5">
               <div className="col-md-2 info-left"><Icon type="alipay" style={{paddingRight:'10px'}} />Nhóm dịch:</div>
-              <div className="col-md-9">Anime - Manga TV</div>
+              <div className="col-md-10">Anime - Manga TV</div>
             </div>
             <div className="row pd-tb-5">
               <div className="col-md-2 info-left"><Icon type="tag" style={{paddingRight:'10px'}} />Thể loại:</div>
-              <div className="col-md-9">
+              <div className="col-md-10">
                 <Tag color="#2db7f5">#2db7f5</Tag>
                 <Tag color="#87d068">#87d068</Tag>
                 <Tag color="#108ee9">#108ee9</Tag>
@@ -63,15 +63,15 @@ class BookInfo extends Component {
             </div>
             <div className="row pd-tb-5">
               <div className="col-md-2 info-left"><i className="fa fa-hourglass-start pd-right-10" aria-hidden="true"></i>Trạng thái:</div>
-              <div className="col-md-9">Đang tiến hành</div>
+              <div className="col-md-10">Đang tiến hành</div>
             </div>
             <div className="row pd-tb-5">
               <div className="col-md-2 info-left"><i className="fa fa-eye pd-right-10" aria-hidden="true"></i>Số lượt xem:</div>
-              <div className="col-md-9">1230</div>
+              <div className="col-md-10">1230</div>
             </div>
             <div className="row pd-tb-5">
               <div className="col-md-2 info-left"><i className="fa fa-rss pd-right-10" aria-hidden="true"></i>Theo dõi:</div>
-              <div className="col-md-9">69</div>
+              <div className="col-md-10">69</div>
             </div>
         </div>
         <hr/>

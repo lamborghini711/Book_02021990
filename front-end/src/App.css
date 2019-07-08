@@ -159,8 +159,8 @@ label {
 .col-card {
   display: inline-block;
   width: 200px;
-  max-width: 200px;
-  min-width: 200px;
+  /* max-width: 200px;
+  min-width: 200px; */
   margin-bottom: 50px;
   cursor: pointer;
   padding-right: 20px;
@@ -286,10 +286,16 @@ hr {
   color: #777777 !important;
 }
 .ant-breadcrumb-link {
-  color: #777777 !important;
+  color: #cdcdcd !important;
 }
 .ant-breadcrumb-separator {
   color: #777777 !important;
+}
+.ant-breadcrumb a {
+  color: #777777 !important;
+}
+.ant-breadcrumb a:hover {
+  color: #cdcdcd !important;
 }
 .ant-select-selection{
   background-color : #dd4b39!important;
@@ -367,17 +373,180 @@ hr {
   box-shadow: 0 0 0 0.5px #000!important;
   -webkit-box-shadow: 0 0 0 0.5px #121212!important;
 }
-.ant-input{
-  background-color: #000!important;
-  border: none!important;
-  border-radius: 50px!important; 
-  color: #fff!important;
-  /* max-width: 640px;
-  width: 640px; */
-
+.me .ant-input-search .ant-input{
+  background-color: #000;
+  border: none;
+  border-radius: 50px; 
+  color: #fff;
+}
+.me {
+  margin-left: 105px
 }
 
-.ant-input:hover {
+/*======================================= responsive =======================*/
+@media (max-width: 767px) {
+  .me {
+    margin-left: 0px
+  }
+}
+@media (max-width: 767px) {
+  .me .ant-input-search{
+    width: 100%;
+  }
+}
+@media (max-width: 767px) {
+  .navbar .me .col-md-4{
+    width: 33.3%;
+    display: inline-block;
+    margin: 0px!important;
+    padding: 0px!important
+  }
+}
+@media (max-width: 767px) {
+  .main-header .logo .logo-lg {
+    font-size: 15px;
+  }
+}
+@media (max-width: 767px) {
+  .main-header .logo {
+    width: 100px;
+    padding: 0px!important;
+  }
+}
+@media (max-width: 767px) {
+  .top-right {
+   display: none!important;
+  }
+}
+@media (max-width: 767px) {
+  .navbar .row {
+    display: flex;
+  }
+}
+@media (max-width: 767px) {
+  .pd-lr-40 {
+    padding: 0px
+  }
+}
+@media (max-width: 767px) {
+  .width-720 {
+    width: 100%!important;
+    max-width: 100%!important;
+    min-width: 100%!important;
+  }
+}
+@media (max-width: 767px) {
+  .content-header {
+    padding: 15px 10px 15px 10px;
+  }
+}
+@media (max-width: 767px) {
+  .response .content-header {
+    padding: 15px 10px 0px 10px;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .img-info {
+    width: 100%!important;
+  }
+}
+@media (max-width: 767px) {
+  .content .row {
+    margin: 0px!important
+  }
+}
+@media (max-width: 767px) {
+  .col-md-2 {
+    display: inline-block;
+    padding: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .col-md-8 {
+    display: inline-block;
+    padding: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .col-md-10 {
+    display: inline-block;
+    padding: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .col-card {
+    /* transform: scale(0.7); */
+    width: 167px;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-bottom: 0px;
+    margin: 0 7px
+  
+  }
+}
+/* @media (max-width: 767px) {
+  .width-list-book .pd-top-10 .row {
+    margin: 0 -25px!important
+  }
+} */
+
+@media (max-width: 767px) {
+  .response h4, .h4 {
+    font-size: 14px;
+  }
+}
+@media (max-width: 767px) {
+  .response .col-md-3 {
+    display: inline-block;
+    padding: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .response .col-md-9 {
+    display: inline-block;
+    float: right;
+    padding: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .response .content {
+    padding: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .response .pd-right-20 {
+    padding-right: 5px;
+  }
+}
+@media (max-width: 767px) {
+  .response .pd-top-20 {
+    padding-top: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .react-multi-carousel-list {
+    height: 320px;
+  }
+}
+@media (max-width: 767px) {
+  .justify-content-md-center {
+    text-align: center
+  }
+}
+@media (max-width: 767px) {
+  .content .response {
+    padding-left: 10px!important;
+    padding-right: 10px!important;
+
+  }
+}
+
+
+
+
+.me .ant-input:hover {
   border-right-width: 0px!important;
 }
 .ant-input:focus {
@@ -385,7 +554,7 @@ hr {
   -webkit-box-shadow: none!important;
   box-shadow: none!important;
 }
-.ant-input-search-icon {
+.me .ant-input-search-icon {
   color: #747474!important;
 }
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -445,7 +614,7 @@ hr {
   border-color : #9c221d!important
 }
 .ant-btn-default {
-  background-color:#122020!important;
+  background-color:#272727!important;
   border-color : #122020!important;
   color: #cdcdcd!important;
   border-radius: 50px!important;

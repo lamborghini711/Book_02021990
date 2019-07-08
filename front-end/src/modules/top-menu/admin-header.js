@@ -27,15 +27,14 @@ class AdminHeader extends Component {
                   </Link>
                 </div>
                 <div className="col-md-4 text-center">
-                  <span>
+                  <span className="me" style={{ lineHeight: '51px' }}>
                     <Search
                       placeholder="Tìm kiếm"
                       onSearch={value => console.log(value)}
-                      style={{ width: 640, lineHeight: '51px', paddingRight: '5px' }}
                     />
                   </span>
                 </div>
-                <div className="col-md-4 text-right">
+                <div className="col-md-4 text-right top-right">
                   <TopMenuRight/>
                 </div>
              </div>

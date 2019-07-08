@@ -1,15 +1,4 @@
-/*!
- * AdminLTE v2.4.11
- * 
- *   Author:  Colorlib
- *   Support: <https://github.com/ColorlibHQ/AdminLTE/issues>
- *   Repository: git://github.com/ColorlibHQ/AdminLTE.git
- *   License: MIT <http://opensource.org/licenses/MIT>
- */
-/*
- * Core: General Layout Style
- * -------------------------
- */
+
 html,
 body {
   height: 100%;
@@ -118,7 +107,7 @@ body {
 @media (max-width: 767px) {
   .fixed .content-wrapper,
   .fixed .right-side {
-    padding-top: 100px;
+    /* padding-top: 100px; */
   }
 }
 .fixed.layout-boxed .wrapper {
@@ -387,7 +376,7 @@ a:focus {
   }
   .main-header .logo,
   .main-header .navbar {
-    width: 100%;
+    /* width: 100%; */
     float: none;
   }
   .main-header .navbar {

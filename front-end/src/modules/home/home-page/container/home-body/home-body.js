@@ -17,17 +17,21 @@ class HomeBody extends Component {
       console.log(current, pageSize);
     }
     return (
-      <div className="content-wrapper body-bg pd-top-20 pd-lr-40 min-height-page ">
+      <div className="content-wrapper body-bg pd-top-20 pd-lr-40 min-height-page response">
         <section className="content-header width-list-book mg-0-auto">
           <HotBook/>
         </section>
         {/* Main content */}
         <section className="content width-list-book mg-0-auto">
-          <div className="row pd-bottom-20">
-            <div className="col-md-2" style={{ width: '170px'}}>
+          <div className="row pd-bottom-20 response">
+            <div className="col-md-3 response" >
               <h4 className="mg-all-0 font-600 text-color-light">
                 <Icon type="book" style={{  paddingRight: '3px', fontSize: '22px', fontWeight: 'bold' }} /> Truyện mới 
               </h4>
+              
+            </div>
+            <div className="col-md-9 text-right">
+            <a href='123'>Xem tất cả</a>
             </div>
           </div>
           <FilterHomePage/>

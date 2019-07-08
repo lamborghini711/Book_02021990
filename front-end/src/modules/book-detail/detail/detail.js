@@ -7,7 +7,7 @@ import { BackTop } from 'antd';
 class BookDetailBody extends Component {
   render() {
     return (
-      <div className="content-wrapper body-bg pd-top-20 pd-lr-40" style={{ minHeight : '1300px'}}>
+      <div className="content-wrapper body-bg pd-tb-20 pd-lr-40" style={{ minHeight : '1300px'}}>
         <section className="content-header">
           <DeatailHeader/>
           <DetailBody/>

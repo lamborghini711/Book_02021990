@@ -68,8 +68,13 @@
   color: #fff;
 }
 .skin-blue .sidebar-menu > li.header {
-  color: #4b646f;
-  background: #1a2226;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  border-bottom: 1px solid #272727; 
+  margin: 0 13px;
+  padding: 10px 0 10px 0!important;
+  /* background: #1a2226; */
 }
 .skin-blue .sidebar-menu > li > a {
   border-left: 3px solid transparent;

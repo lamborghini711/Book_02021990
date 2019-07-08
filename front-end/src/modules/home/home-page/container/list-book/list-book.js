@@ -17,7 +17,7 @@ for(let i=0 ; i<=limit; i++) {
           </Card>
         </Badge>
       </Link>
-      <div className="row pd-top-10">
+      <div className="row pd-top-10 response">
         <div className="col-md-2 text-color-primary">
           <Icon type="heart" theme="filled" />
         </div>

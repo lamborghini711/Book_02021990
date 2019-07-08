@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-let bookchema = new mongoose.Schema(
+let BookSchema = new mongoose.Schema(
     {
         text: String,
         title: String,
@@ -21,6 +21,10 @@ let bookchema = new mongoose.Schema(
         ]
     }
 );
-const book =mongoose.model('book', bookSchema)
+BookSchema.methods.addAuthor = function (author_id) {
+    this.author = author_id
+    return this.save()
+}
+// const book =mongoose.model('book', BookSchema)
 
-module.exports = mongoose.model('Article', ArticleSchema)
+module.exports = mongoose.model('book', BookSchema)

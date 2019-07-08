@@ -14,9 +14,9 @@ class FilterHomePage extends Component {
   
   render() {
     return (
-      <div className="">
+      <div className="response">
         <div className="form-group inline pd-right-20">
-          <Select defaultValue="Xếp hạng" onChange={handleChange} style={{ width: 200 }}>
+          <Select defaultValue="Xếp hạng" onChange={handleChange} >
             <Option value="jack">Top All</Option>
             <Option value="jack">Top tháng</Option>
             <Option value="jack">Mới nhất</Option>
@@ -27,12 +27,12 @@ class FilterHomePage extends Component {
           </Select>
         </div>
         <div className="me form-group inline pd-right-20">
-          <Select defaultValue="Thể loại" onChange={handleChange} style={{ width: 200 }}>
+          <Select defaultValue="Thể loại" onChange={handleChange} >
             <Option value="jack">Trinh thám</Option>
           </Select>
         </div>
         <div className="me form-group inline pd-right-20">
-          <Select defaultValue="Quốc gia" onChange={handleChange} style={{ width: 200 }}>
+          <Select defaultValue="Quốc gia" onChange={handleChange} >
             <Option value="jack">Nhật bản</Option>
             <Option value="jack">Hàn quốc</Option>
             <Option value="jack">Việt nam</Option>
@@ -40,12 +40,12 @@ class FilterHomePage extends Component {
           </Select>
         </div>
         <div className="me form-group inline pd-right-20">
-          <Select  defaultValue="Năm" onChange={handleChange} style={{ width: 80 }}>
+          <Select  defaultValue="Năm" onChange={handleChange} >
             {children}
           </Select>
         </div>
         <div className="me form-group inline pd-right-20">
-          <Select defaultValue="xắp sếp" onChange={handleChange} style={{ width: 120 }}>
+          <Select defaultValue="xắp sếp" onChange={handleChange} >
             <Option value="jack">a-z</Option>
             <Option value="lucy">z-a</Option>
           </Select>

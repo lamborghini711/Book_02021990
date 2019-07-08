@@ -10,7 +10,7 @@ for (let i = 10; i < 36; i++) {
 const listImg = [];
 
 let body = [
-  'img/items/1.jpg','img/items/2.jpg','img/items/3.jpg'
+  'img/items/1.jpg','img/items/2.jpg','img/items/3.jpg', 'img/items/4.jpg'
 ]
 for (let i = 0; i< body.length; i++) {
   let item = body[i];
@@ -28,7 +28,7 @@ function handleChange(value) {
 class DetailBody extends Component {
   render() {
     return (
-      <div className='width-720 mg-0-auto'>
+      <div className='width-720 mg-0-auto pd-top-30'>
         <div className="">
           <Affix offsetTop={50}>
             <div className='text-center light bg-radient pd-top-30 me1 width-720'>

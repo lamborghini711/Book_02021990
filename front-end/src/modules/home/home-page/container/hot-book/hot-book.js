@@ -43,16 +43,16 @@ class HotBook extends Component {
         items: 4,
       },
       tablet: {
-        breakpoint: { max: 1024, min: 464 },
-        items: 3,
-      },
-      mobile: {
-        breakpoint: { max: 464, min: 0 },
+        breakpoint: { max: 1024, min: 0 },
         items: 2,
       },
+      // mobile: {
+      //   breakpoint: { max: 464, min: 0 },
+      //   items: 2,
+      // },
     };
     return (
-      <div>
+      <div className="response">
         <h4 className="font-600 pd-top-20 text-color-light">
         <Icon type="rise" style={{ paddingRight: '3px', fontSize: '22px', fontWeight: 'bold' }} /> Đang Hot 
         </h4>
@@ -82,7 +82,7 @@ class HotBook extends Component {
             {listHot}
         </Carousel>
         </div>
-
+        <hr/>
       </div>
     );
   }
