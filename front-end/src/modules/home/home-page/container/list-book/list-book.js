@@ -7,7 +7,7 @@ let limit = 50;
 
 for(let i=0 ; i<=limit; i++) {
   listBook.push(
-    <div className="col-md-2 col-card" key={i}>
+    <div className="col-card" key={i}>
       <Link to="/select">
         <Badge count={'99'}>
           <Card

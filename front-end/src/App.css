@@ -10,6 +10,11 @@ p {
 label {
   font-weight: 400!important;
 }
+@media (min-width: 768px) {
+  .navbar-nav{
+    float: right!important
+}
+}
 .block {
   display: block!important;
 }
@@ -152,6 +157,7 @@ label {
   font-weight: 700!important;
 }
 .col-card {
+  display: inline-block;
   width: 200px;
   max-width: 200px;
   min-width: 200px;
@@ -210,6 +216,9 @@ label {
 }
 hr {
   border-top: 1px solid #272727!important;
+}
+.width-list-book {
+  max-width: 1400px
 }
 
 /* ===============STYLE================== */
@@ -356,14 +365,18 @@ hr {
   border: none!important;
   border-radius: 5px!important;
   box-shadow: 0 0 0 0.5px #000!important;
-  -webkit-box-shadow: 0 0 0 0.5px #000!important;
+  -webkit-box-shadow: 0 0 0 0.5px #121212!important;
 }
 .ant-input{
-  background-color: #a001011c!important;
+  background-color: #000!important;
   border: none!important;
   border-radius: 50px!important; 
   color: #fff!important;
+  /* max-width: 640px;
+  width: 640px; */
+
 }
+
 .ant-input:hover {
   border-right-width: 0px!important;
 }
@@ -373,7 +386,20 @@ hr {
   box-shadow: none!important;
 }
 .ant-input-search-icon {
-  color: #fff!important;
+  color: #747474!important;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #747474!important;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #747474!important;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #747474!important;
+  
 }
 .login-form-forgot {
   float: right;

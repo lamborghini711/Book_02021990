@@ -18,11 +18,11 @@ class HomeBody extends Component {
     }
     return (
       <div className="content-wrapper body-bg pd-top-20 pd-lr-40 min-height-page ">
-        <section className="content-header">
+        <section className="content-header width-list-book mg-0-auto">
           <HotBook/>
         </section>
         {/* Main content */}
-        <section className="content">
+        <section className="content width-list-book mg-0-auto">
           <div className="row pd-bottom-20">
             <div className="col-md-2" style={{ width: '170px'}}>
               <h4 className="mg-all-0 font-600 text-color-light">
@@ -35,7 +35,7 @@ class HomeBody extends Component {
             <ListBook/>
           </div>
         </section>
-        <section className="content-footer">
+        <section className="content-footer width-list-book mg-0-auto">
           <div className="text-center pd-tb-50">
             <Pagination
               total={1500}

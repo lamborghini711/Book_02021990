@@ -25,20 +25,17 @@ for(let i=0 ; i<=limit; i++) {
 class HotBook extends Component {
   render() {
     const responsive = {
-      desktop2k: {
-        breakpoint: { max: 3000, min: 1900 },
-        items: 8,
-      },
+    
       desktop1080: {
-        breakpoint: { max: 1900, min: 1600 },
+        breakpoint: { max: 3000, min: 1600 },
         items: 7,
       },
       desktophd1: {
-        breakpoint: { max: 1600, min: 1336 },
+        breakpoint: { max: 1600, min: 1367 },
         items: 6,
       },
       desktophd2: {
-        breakpoint: { max: 1336, min: 1200 },
+        breakpoint: { max: 1367, min: 1200 },
         items: 5,
       },
       desktophd3: {
