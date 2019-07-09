@@ -1,38 +1,22 @@
 {
-  "name": "server",
+  "name": "rest-api-workshop",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec node bin/www.js",
+    "start": "PORT=3001 node src/index.js",
+    "start-watch": "PORT=3001 nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "eslint": "^6.0.1",
-    "eslint-config-airbnb-base": "^13.2.0",
-    "eslint-plugin-import": "^2.18.0",
-    "@babel/core": "^7.5.0",
-    "@babel/node": "^7.5.0",
-    "@babel/preset-env": "^7.5.0",
-    "babel-eslint": "^10.0.2",
-    "nodemon": "^1.19.1"
-  },
   "dependencies": {
     "body-parser": "^1.19.0",
-    "cloudinary": "^1.14.0",
-    "compression": "^1.7.4",
-    "connect-multiparty": "^2.2.0",
-    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "helmet": "^3.18.0",
-    "dotenv": "^8.0.0",
-    "lodash": "4.17.11",
-    "moment": "2.24.0",
-    "mongodb": "3.2.7",
-    "connect-mongo": "3.0.0",
-    "mongoose": "^5.6.3"
+    "mongoose": "^5.6.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
   }
 }
