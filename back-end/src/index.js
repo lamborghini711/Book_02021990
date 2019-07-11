@@ -5,6 +5,10 @@ let customerRoute = require('./routes/customer')
 let bookRouter = require('./routes/list-book')
 let path = require('path')
 let bodyParser = require('body-parser')
+let mongoose = require('mongoose')
+
+mongoose.connect(`mongodb://localhost/truyen_comic`, {'useNewUrlParser': true})
+mongoose.set('useCreateIndex', true);
 
 app.use(bodyParser.json())
 
@@ -29,5 +33,5 @@ app.use((err, req, res, next) => {
   res.sendFile(path.join(__dirname, '../public/500.html'))
 })
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3000
 app.listen(PORT, () => console.info(`Server has started on ${PORT}`))

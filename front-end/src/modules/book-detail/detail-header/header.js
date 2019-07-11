@@ -29,7 +29,7 @@ class DetailHeader extends Component {
  
   render() {
     return (
-      <div>
+      <div className="resonse-content-header">
        <div className="row">
         <div className="col-md-9">
           <Breadcrumb itemRender={itemRender} routes={routes} />

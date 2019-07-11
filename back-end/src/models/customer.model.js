@@ -8,7 +8,7 @@ const password = 'fZsMGZXQMx8FCTgkBwgFtEvwD7ML'
 // mongoose.connect(`mongodb://${user}:${passwd}@${server}:${port}/${db}`, {'useNewUrlParser': true})
 // mongoose.connect(`mongodb://localhost/truyen_comic`, {'useNewUrlParser': true})
 
-mongoose.set('useCreateIndex', true);
+// mongoose.set('useCreateIndex', true);
 
 let CustomerSchema = new mongoose.Schema({
   name: String,

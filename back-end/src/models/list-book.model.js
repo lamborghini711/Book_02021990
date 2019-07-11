@@ -1,9 +1,5 @@
 let mongoose = require('mongoose')
 
-mongoose.connect(`mongodb://localhost/truyen_comic`, {'useNewUrlParser': true})
-
-mongoose.set('useCreateIndex', true);
-
 let ListBookSchema = new mongoose.Schema(
   {
     book_id: {

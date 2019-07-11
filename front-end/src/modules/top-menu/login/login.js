@@ -26,7 +26,7 @@ class Login extends Component {
   render() {
     return (
       <div className="login" >
-         <div type="primary" onClick={this.showModal} style={{height: '51px', padding: '15px 8px'}}>
+         <div className="avatar-menu" type="primary" onClick={this.showModal}>
          <img src="/img/icon-web/user2-160x160.jpg" className="user-image" alt="User" />
               <span className="hidden-xs">Đăng nhập</span>
         </div>

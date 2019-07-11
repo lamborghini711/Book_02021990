@@ -6,6 +6,16 @@ import { Input } from 'antd';
 const { Search } = Input;
 
 class AdminHeader extends Component {
+  _onFocus(value) {
+    console.log(value)
+    // var element = document.getElementById("tuan");
+    // element.classList.add("scroll-down");
+    // if (!this.state.focus) {
+    //     this.setState({
+    //         focus: true,
+    //     });
+    // }
+}
   render() {
     return (
       <div>
@@ -26,11 +36,14 @@ class AdminHeader extends Component {
                     <span className="logo-lg"><b>Truyện</b> COMIC</span>
                   </Link>
                 </div>
+                
                 <div className="col-md-4 text-center">
                   <span className="me" style={{ lineHeight: '51px' }}>
                     <Search
                       placeholder="Tìm kiếm"
-                      onSearch={value => console.log(value)}
+                      onSearch={value => this._onFocus(value)}
+                      id = "response-search"
+                     
                     />
                   </span>
                 </div>

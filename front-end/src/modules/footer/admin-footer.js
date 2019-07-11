@@ -12,6 +12,7 @@ class AdminFooter extends Component {
         <strong>Copyright © 2014-2016.</strong> All rights
         reserved.
       </footer>
+      <div id="tuan"></div>
      </div>
     );
   }
