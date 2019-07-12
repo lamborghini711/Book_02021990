@@ -23,7 +23,22 @@ let ListBookSchema = new mongoose.Schema(
     author: { type: String, default: null },
     status: { type: Number, default: 0 },
     folow: { type: Number, default: 0 },
-    chapter: [
+    data_SV1: [
+      {
+        created_at: {type: Date, default: null},
+        id_chapter: {type: Number, default: 0},
+        chapter_number: {type: Number, default: 0},
+        chapter_name: {type: String, default: null},
+        image: [
+          {
+            src: {type: String, default: ""},
+            position: {type: Number, default: 0},
+            id_image: {type: Number, default: 0}
+          }
+        ]
+      }
+    ],
+    data_SV2: [
       {
         created_at: {type: Date, default: null},
         id_chapter: {type: Number, default: 0},

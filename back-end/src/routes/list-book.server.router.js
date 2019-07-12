@@ -1,4 +1,4 @@
-let ListBookModel = require('../models/list-book.model')
+let ListBookModel = require('../models/list-book.model.server')
 let express = require('express')
 let router = express.Router()
 

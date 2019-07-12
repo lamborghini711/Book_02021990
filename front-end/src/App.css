@@ -168,11 +168,11 @@ label {
 }
 .thumb-cover {
   height: 240px;
-  min-height: 240px;
-  max-height: 240px;
+  /* min-height: 240px;
+  max-height: 240px; */
   width: 167px;
-  min-width: 167px;
-  max-width: 167px;
+  /* min-width: 167px;
+  max-width: 167px; */
 }
 .font-13 {
   font-size: 13px!important;
@@ -218,7 +218,7 @@ hr {
   border-top: 1px solid #272727!important;
 }
 .width-list-book {
-  max-width: 1400px
+  max-width: 1300px
 }
 
 /* ===============STYLE================== */
@@ -257,7 +257,16 @@ hr {
 .img-cover-book {
   background-image: url("/img/icon-web/cover-book-01.png");
 }
-
+.text-footer {
+  color: #777777;
+  font-size: 13px;
+  font-weight: 400;
+  padding: 15px 15px;
+}
+.avatar-uploader > .ant-upload {
+  width: 128px;
+  height: 128px;
+}
 
 
 

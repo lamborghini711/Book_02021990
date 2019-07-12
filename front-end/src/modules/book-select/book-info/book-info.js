@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { Icon, Tag, Button } from 'antd';
 import { Link } from "react-router-dom";
+// const data = "https://www.dropbox.com/s/tpv4ng3wyfku7qh/003.jpg?raw=1";
+// const Example = ({ data }) => <img src={`${data}`} alt="a"/>
 
 class BookInfo extends Component {
   render() {
     return (
       <div className="row">
         <div className="">
+        {/* <Example data={data} /> */}
           <img className="img-info" src="/img/thumb/aHR0cHM6Ly9pbWcuYmxvZ3RydXllbi5jb20vbWFuZ2EvMjAvMjA3MTIvYXZhci5qcGc.jpeg" alt="a"/>
         </div>
         <div className="text-center pd-top-30">

@@ -54,11 +54,15 @@ class LeftMenu extends Component {
                   <div style={{paddingTop:'8px'}} ><Icon type="close" style={{fontSize:'10px'}} /></div>
                 </a>
               </li>
+              <li className="header"></li>
+              <li>
+                <div className="text-footer">
+                  Copyright © 2019. Comic
+                </div>
+              </li>
             </ul>
           </section>
-          {/* /.sidebar */}
         </aside>
-
       </div>
     );
   }
