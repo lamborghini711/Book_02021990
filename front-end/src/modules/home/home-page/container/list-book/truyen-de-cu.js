@@ -7,7 +7,7 @@ const { Meta } = Card;
 
 const listHot = [];
 let limit = 10;
-for(let i=0 ; i<=limit; i++) {
+for(let i=1 ; i<=limit; i++) {
   listHot.push(
     <div className="col-md-2 col-card mg-all-0" key={i}>
       <Link to="/select">
@@ -22,10 +22,9 @@ for(let i=0 ; i<=limit; i++) {
     </div>
   )
 }
-class HotBook extends Component {
+class TruyenDeCu extends Component {
   render() {
     const responsive = {
-    
       desktop1080: {
         breakpoint: { max: 3000, min: 1600 },
         items: 8,
@@ -51,17 +50,14 @@ class HotBook extends Component {
     return (
       <div className="response">
         <h4 className="font-600 pd-top-10 pd-bottom-10 text-color-light">
-        <Icon type="rise" style={{ paddingRight: '3px', fontSize: '22px', fontWeight: 'bold' }} /> Đang Hot 
+        <Icon type="rise" style={{ paddingRight: '3px', fontSize: '22px', fontWeight: 'bold' }} /> Truyện đề cử
         </h4>
-        <div className="row justify-content-md-center mg-bottom-10">
+        <div className="row justify-content-md-center">
         <Carousel
-          ssr={true} // means to render carousel on server-side.
           additionalTransfrom={0}
           arrows
-          autoPlaySpeed={1500}
           centerMode={false}
           containerClass=""
-          autoPlay={this.props.deviceType !== "mobile" ? true : false}
           deviceType={this.props.deviceType}
           dotListClass=""
           draggable
@@ -78,10 +74,10 @@ class HotBook extends Component {
             {listHot}
         </Carousel>
         </div>
-        <hr className="mg-all-0"/>
+        <hr/>
       </div>
     );
   }
 }
 
-export default HotBook;
+export default TruyenDeCu;

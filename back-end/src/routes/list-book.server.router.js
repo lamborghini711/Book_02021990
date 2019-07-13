@@ -3,8 +3,8 @@ let express = require('express')
 let router = express.Router()
 
 // Create a new customer
-// POST localhost:3001/create-book
-router.post('/create-book', (req, res) => {
+// POST localhost:5000/api/create-book
+router.post('/api/create-book', (req, res) => {
   if(!req.body) {
     return res.status(400).send('Request body is missing')
   }
@@ -25,8 +25,8 @@ router.post('/create-book', (req, res) => {
     })
 })
 
-// GET
-router.get('/list-book', (req, res) => {
+// GET DETAILS
+router.get('/api/book-details', (req, res) => {
   if(!req.query.book_id) {
     return res.status(400).send('Missing URL parameter: book_id')
   }
@@ -41,8 +41,19 @@ router.get('/list-book', (req, res) => {
     })
 })
 
+// GET LIST
+router.get('/api/list-book', (req, res) => {
+  ListBookModel.find()
+    .then(doc => {
+      res.json(doc)
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
+})
+
 // UPDATE
-router.put('/update-book', (req, res) => {
+router.put('/api/update-book', (req, res) => {
   if(!req.query.book_id) {
     return res.status(400).send('Missing URL parameter: book_id')
   }
@@ -60,7 +71,7 @@ router.put('/update-book', (req, res) => {
 })
 
 // DELETE
-router.delete('/delete-book', (req, res) => {
+router.delete('/api/delete-book', (req, res) => {
   if(!req.query.book_id) {
     return res.status(400).send('Missing URL parameter: book_id')
   }

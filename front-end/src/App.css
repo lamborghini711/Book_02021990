@@ -13,11 +13,12 @@ label {
 @media (min-width: 768px) {
   .navbar-nav{
     float: right!important
-}
+  }
 }
 .block {
   display: block!important;
 }
+
 .pd-left-0 {
   padding-left: 0px!important
 }
@@ -112,6 +113,12 @@ label {
 .mg-all-0 {
   margin: 0px!important
 }
+.pd-all-0 {
+  padding: 0px!important
+}
+.mg-bottom-10{
+  margin-bottom: 10px
+}
 .mg-bottom-50 {
   margin-bottom: 50px
 }
@@ -158,27 +165,20 @@ label {
 }
 .col-card {
   display: inline-block;
-  width: 200px;
-  /* max-width: 200px;
-  min-width: 200px; */
-  margin-bottom: 50px;
+  width: 175px;
+  margin-bottom: 30px;
   cursor: pointer;
   padding-right: 20px;
   padding-left: 15px;
 }
 .thumb-cover {
-  height: 240px;
-  /* min-height: 240px;
-  max-height: 240px; */
-  width: 167px;
-  /* min-width: 167px;
-  max-width: 167px; */
+  width: 140px;
 }
 .font-13 {
   font-size: 13px!important;
 }
 .border-radius-10 {
-  border-radius: 10px!important;
+  /* border-radius: 10px!important; */
 }
 .text-right {
   text-align: right
@@ -216,9 +216,11 @@ label {
 }
 hr {
   border-top: 1px solid #272727!important;
+  margin-top: 10px!important;
+  margin-bottom: 10px!important
 }
 .width-list-book {
-  max-width: 1300px
+  max-width: 1400px
 }
 
 /* ===============STYLE================== */
@@ -267,16 +269,42 @@ hr {
   width: 128px;
   height: 128px;
 }
+.social-media {
+  text-align: right;
+  right: -119px;
+  position: fixed;
+}
+.social-media:hover {
+  right: -12px;
+  transition: all 0.8s ease,
+}
+.social-media-2 {
+  text-align: right;
+  right: -64px;
+  top:415px;
+  position: fixed;
+}
+.social-media-2:hover {
+  right: -12px;
+  transition: all 0.8s ease,
+}
+.ant-btn-round {
+  font-size: 13px!important;
+
+}
 
 
 
 /* ============ ANT================== */
 .react-multi-carousel-list {
-  height: 330px;
+  /* height: 330px; */
   /* align-items: flex-start!important; */
 }
 .react-multiple-carousel__arrow {
-  top: 110px!important;
+  top: 75px!important;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3), 0 0 4px rgba(0, 0, 0, 0.2)!important;
+  background-color: #272727!important;
+
 }
 .react-multi-carousel-dot button{
   width: 10px!important;
@@ -284,7 +312,7 @@ hr {
 }
 .react-multi-carousel-track {
   align-items: center!important;
-  top: -10px!important;
+  /* top: -10px!important; */
 }
 .react-multi-carousel-dot-list {
   opacity: 0.7;
@@ -315,8 +343,10 @@ hr {
   color: #cdcdcd!important;
 }
 .ant-card-meta-title {
-  color: #cdcdcd!important;
+  color: #fff!important;
   margin: 0px!important;
+  font-size: 14px;
+  font-weight: 700
 }
 .ant-card-meta-description {
   color: #cdcdcd!important;

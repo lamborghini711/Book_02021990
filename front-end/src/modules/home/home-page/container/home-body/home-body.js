@@ -1,54 +1,44 @@
 import React, { Component } from 'react';
-import { Pagination, BackTop, Icon } from 'antd';
-import FilterHomePage from './../filter-home-page/filter-home-page';
+import { Pagination, BackTop } from 'antd';
 import ListBook from './../list-book/list-book';
 import HotBook from './../hot-book/hot-book';
-
+import TruyenDeCu from '../list-book/truyen-de-cu';
+// const IconFont = Icon.createFromIconfontCN({
+//   scriptUrl: '//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js',
+// });
 class HomeBody extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      height : '',
-    }
-  }
-  
   render() {
-    function onShowSizeChange(current, pageSize) {
-      console.log(current, pageSize);
-    }
     return (
-      <div className="content-wrapper body-bg pd-top-20 pd-lr-40 min-height-page response">
+      <div className="content-wrapper body-bg pd-top-20 min-height-page response">
         <section className="content-header width-list-book mg-0-auto">
           <HotBook/>
         </section>
+        {/* social media */}
+        {/* <div className='social-media'>
+          <Button type="danger" shape="round" style={{paddingRight:'15px', backgroundColor:'#4267b2', borderColor: '#4267b2', color:'white'}}>
+          <IconFont type="icon-facebook"  style={{paddingRight:'5px'}}/> Share FaceBook
+          </Button>
+        </div>
+        <div className='social-media-2'>
+          <Button type="primary" shape="round" style={{paddingRight:'15px'}}>
+          <Icon type="mail"  style={{paddingRight:'5px'}} /> Liên hệ
+          </Button>
+        </div> */}
         {/* Main content */}
-        <section className="content width-list-book mg-0-auto">
-          <div className="row pd-bottom-20 response">
-            <div className="col-md-3 response" >
-              <h4 className="mg-all-0 font-600 text-color-light">
-                <Icon type="book" style={{  paddingRight: '3px', fontSize: '22px', fontWeight: 'bold' }} /> Truyện mới 
-              </h4>
-              
-            </div>
-            <div className="col-md-9 text-right">
-            <a href='123'>Xem tất cả</a>
-            </div>
-          </div>
-          <FilterHomePage/>
-          <div className="pd-top-10">
+        <section className="content width-list-book mg-0-auto" style={{paddingTop: '0px'}}>
+            <TruyenDeCu/>
             <ListBook/>
-          </div>
         </section>
         <section className="content-footer width-list-book mg-0-auto">
-          <div className="text-center pd-tb-50">
+          <div className="text-center" style={{padding:'10px 0 70px 0'}}>
             <Pagination
               total={1500}
-              showTotal={total => `Tất cả ${total} items`}
+              // showTotal={total => `Tất cả ${total} items`}
               pageSize={50}
               defaultCurrent={1}
-              showSizeChanger
-              onShowSizeChange={onShowSizeChange}
-              pageSizeOptions={['50', '100', '150', '200']}
+              // showSizeChanger
+              // onShowSizeChange={onShowSizeChange}
+              // pageSizeOptions={['50', '100', '150', '200']}
             />
           </div>
         </section>
