@@ -1,88 +1,66 @@
 import React, { Component } from 'react';
 import { Icon, Table } from 'antd';
-
-const columns = [
-  {
-    title: 'Tên chương',
-    dataIndex: 'chapter',
-    render: text => <a href="a">{text}</a>,
-  },
-  {
-    title: 'Ngày đăng',
-    className: 'column-date',
-    dataIndex: 'date',
-  }
-];
-
-const data = [
-  {
-    key: '1',
-    chapter: 'John Brown',
-    date: '20/07/2019',
-  },
-  {
-    key: '2',
-    chapter: 'Jim Green',
-    date: '10/07/2019',
-  },
-  {
-    key: '3',
-    chapter: 'Joe Black',
-    date: '20/07/2019',
-  },
-  {
-    key: '4',
-    chapter: 'John Brown',
-    date: '20/07/2019',
-  },
-  {
-    key: '5',
-    chapter: 'Jim Green',
-    date: '10/07/2019',
-  },
-  {
-    key: '6',
-    chapter: 'Joe Black',
-    date: '20/07/2019',
-  },
-  {
-    key: '7',
-    chapter: 'John Brown',
-    date: '20/07/2019',
-  },
-  {
-    key: '8',
-    chapter: 'Jim Green',
-    date: '10/07/2019',
-  },
-  {
-    key: '9',
-    chapter: 'Joe Black',
-    date: '20/07/2019',
-  },
-  {
-    key: '10',
-    chapter: 'John Brown',
-    date: '20/07/2019',
-  },
-  {
-    key: '12',
-    chapter: 'Jim Green',
-    date: '10/07/2019',
-  },
-  {
-    key: '13',
-    chapter: 'Joe Black',
-    date: '20/07/2019',
-  },
-];
+import {Link} from 'react-router-dom'
+const moment = require('moment');
 
 class BookInfoFooter extends Component {
   render() {
+  let data = [];
+  let columns = [
+    {
+      title: 'Chương',
+      dataIndex: 'chapter',
+      className: 'column-chapter',
+      render: chapter => <Link to={ "/chuong-"+ chapter + "-" + to_slug(book.name) + "." + book.book_id }>Chương {chapter}</Link> ,
+    },
+    {
+      title: 'Tên chương',
+      dataIndex: 'name',
+    },
+    {
+      title: 'Ngày đăng',
+      className: 'column-date',
+      dataIndex: 'date',
+    }
+  ];
+  if (this.props.data) {
+    var book = this.props.data
+    let item = this.props.data.data_SV1;
+    for(let i=0 ; i < item.length; i++) {
+      var chapter = item[i].chapter_number;
+      var name = item[i].chapter_name;
+      var date = moment(item[i].created_at).format('hh:mm DD-MM-YYYY');
+      data.push(
+        {
+          key: i,
+          chapter: chapter,
+          name: name,
+          date: date,
+        }
+      )
+    }
+  }
+
+  function to_slug(str){
+    str = str.toLowerCase();     
+    str = str.replace(/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/g, 'a');
+    str = str.replace(/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/g, 'e');
+    str = str.replace(/(ì|í|ị|ỉ|ĩ)/g, 'i');
+    str = str.replace(/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/g, 'o');
+    str = str.replace(/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/g, 'u');
+    str = str.replace(/(ỳ|ý|ỵ|ỷ|ỹ)/g, 'y');
+    str = str.replace(/(đ)/g, 'd');
+    str = str.replace(/([^0-9a-z-\s])/g, '');
+    str = str.replace(/(\s+)/g, '-');
+    str = str.replace(/^-+/g, '');
+    str = str.replace(/-+$/g, '');
+    return str;
+  }
+  
     return (
-      <div className="row">
+      <div className="row pd-top-10">
         <h3 className="text-600 pd-bottom-10">
-          <Icon type="security-scan" style={{paddingRight:'10px'}} />Danh sách: <span>32 chương</span>
+          <Icon type="security-scan" style={{paddingRight:'10px'}} />Danh sách chương
         </h3>
         <div style={{backgroundColor:"#fff"}}>
           <Table

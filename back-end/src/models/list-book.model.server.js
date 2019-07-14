@@ -7,6 +7,8 @@ let ListBookSchema = new mongoose.Schema(
       required: true,
       unique: true
     },
+    book_appoint: {type: Boolean, default: false},
+    book_hot: {type: Boolean, default: false},
     name: { type: String, default: null },
     another_name: { type: String, default: null },
     thumb : { type: String, default: null },

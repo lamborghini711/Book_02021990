@@ -3,29 +3,62 @@ import { Link } from "react-router-dom";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Card, Badge, Icon } from 'antd';
+import {GET_LIST_BOOKS_HOT} from '../../../../../redux/action/admin/book-actions';
+import {connect} from 'react-redux';
+
 const { Meta } = Card;
 
-const listHot = [];
-let limit = 10;
-for(let i=0 ; i<=limit; i++) {
-  listHot.push(
-    <div className="col-md-2 col-card mg-all-0" key={i}>
-      <Link to="/select">
-          <Badge count={'99'}>
-            <Card
-              cover={<img className="border-radius-10 thumb-cover"  alt="example" src="/img/thumb/poster_01.jpg" />}
-            >
-              <Meta title="Chí Tôn Võ Đế" description="Europe Street beat" />
-            </Card>
-          </Badge>
-      </Link>
-    </div>
-  )
-}
 class HotBook extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      book_appoint : true
+    }
+  }
+
+  componentWillMount() {
+    this.props.listBookStore() // su dung reducer trong store, // dispatch 'LIST_BOOKS'
+  }
+  
   render() {
-    const responsive = {
+    var listHot = [];
+    if (this.props.bookData) {
+      var itemsHot = this.props.bookData.items;
+      var limit = itemsHot.length;
+      for(let i=0 ; i<limit; i++) {
+        listHot.push(
+          <div className="col-md-2 col-card mg-all-0" key={i}>
+            <Link to="/select">
+                <Badge count={itemsHot[i].last_chapter}>
+                  <Card
+                    cover={<img className="border-radius-10 thumb-cover" alt="example" src={itemsHot[i].thumb} />}
+                  >
+                     <Meta title={itemsHot[i].name} />
+                  </Card>
+                </Badge>
+            </Link>
+            <div className="row response mg-all-0">
+              <div className="col-md-2 text-color-primary pd-all-0">
+                <Icon type="heart" theme="filled" />
+              </div>
+              <div className="col-md-2 text-color-grey pd-all-0" >
+                <Icon type="star" theme="filled" />
+              </div>
+              <div className="col-md-8 text-right text-color-grey pd-all-0" >
+                <Icon type="eye" theme="filled" />
+              <span className="font-11 pd-left-5">{itemsHot[i].read}</span>
+              </div>
+            </div>
+          </div>
+        )
+    }
+
+    }
     
+
+   
+    const responsive = {
       desktop1080: {
         breakpoint: { max: 3000, min: 1600 },
         items: 8,
@@ -38,7 +71,6 @@ class HotBook extends Component {
         breakpoint: { max: 1440, min: 1200 },
         items: 6,
       },
-     
       desktophd3: {
         breakpoint: { max: 1200, min: 1024 },
         items: 5,
@@ -84,4 +116,19 @@ class HotBook extends Component {
   }
 }
 
-export default HotBook;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    bookData: state.listBooks.bookHotData.data
+  }
+}
+// this.props.bookData
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    listBookStore: (book_hot) => {
+      dispatch({ type : GET_LIST_BOOKS_HOT, book_hot:true })
+    }
+  }
+}
+// this.props.listBookStore()
+export default connect(mapStateToProps, mapDispatchToProps)(HotBook);

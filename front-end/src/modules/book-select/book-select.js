@@ -5,11 +5,12 @@ import BookSelectBody from './book-body/book-select-body';
 
 class BookSelect extends Component {
   render() {
+    let id = this.props.match.params.id;
     return (
       <div>
         <AdminHeader/>
         <LeftMenu/>
-        <BookSelectBody/>
+        <BookSelectBody id = {id}/>
         <div id="tuan"></div>
       </div>
     );

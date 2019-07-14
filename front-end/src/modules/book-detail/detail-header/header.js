@@ -1,33 +1,42 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { Button, Breadcrumb, Icon } from 'antd';
-
-const routes = [
-  {
-    path: '/',
-    breadcrumbName: <Icon type="home" />,
-  },
-  {
-    path: 'select',
-    breadcrumbName: 'Tôi thăng cấp một mình',
-  },
-  {
-    path: 'detail',
-    breadcrumbName: 'Chapter 0',
-  },
-];
-function itemRender(route, params, routes, paths) {
-  const last = routes.indexOf(route) === routes.length - 1;
-  return last ? (
-    <span>{route.breadcrumbName}</span>
-  ) : (
-    <Link to={paths.join('>')}>{route.breadcrumbName}</Link>
-  );
-}
+import moment from 'moment'
 
 class DetailHeader extends Component {
- 
   render() {
+  var item = this.props.data
+  var chapter = this.props.param.chapter;
+  var slug = this.props.param.slug
+  var routes = [];
+  var name = "";
+  var time = ""
+  if(item) {
+    routes = [
+      {
+        path: '/',
+        breadcrumbName: <Icon type="home" />,
+      },
+      {
+        path: "truyen-" + slug + "." + item.book_id,
+        breadcrumbName: item.name,
+      },
+      {
+        path: 'detail',
+        breadcrumbName: 'Chương ' + chapter,
+      },
+    ];
+    name = item.name
+    time = moment(item.updated_at).format('hh:mm DD/MM/YYYY')
+  }
+  function itemRender(route, params, routes, paths) {
+    const last = routes.indexOf(route) === routes.length - 1;
+    return last ? (
+      <span>{route.breadcrumbName}</span>
+    ) : (
+      <Link to={paths.join('>')}>{route.breadcrumbName}</Link>
+    );
+  }
     return (
       <div className="resonse-content-header">
        <div className="row">
@@ -35,13 +44,13 @@ class DetailHeader extends Component {
           <Breadcrumb itemRender={itemRender} routes={routes} />
         </div>
         <div className="col-md-3">
-          <span className="text-color-grey float-right">Cập nhật lúc: 13:35 10/07/1019</span>
+          <span className="text-color-grey float-right">Cập nhật lúc: {time}</span>
         </div>
        </div>
        <hr/>
         <div className="text-center">
-          <span className='book-title text-color-primary' >Tôi thăng cấp một mình | </span>
-          <span>Chapter 0</span>
+          <span className='book-title text-color-primary' >{name} | </span>
+          <span>Chương {chapter}</span>
         </div>
         <div className="text-center pd-top-10">
           <div>
@@ -60,7 +69,6 @@ class DetailHeader extends Component {
             <a href="a"> Báo lỗi </a>
           </div>
         </div>
-        {/* <hr/> */}
       </div>
     );
   }

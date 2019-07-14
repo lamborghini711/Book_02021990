@@ -26,13 +26,35 @@ router.post('/api/create-book', (req, res) => {
 })
 
 // GET DETAILS
-router.get('/api/book-details', (req, res) => {
-  if(!req.query.book_id) {
-    return res.status(400).send('Missing URL parameter: book_id')
+router.get('/api/book-detail', (req, res) => {
+  let select = {
+    // data_SV1 : 0,
+    // data_SV2 : 0,
+    book_appoint: 0,
+    book_hot: 0,
+    thumb : 0,
   }
-  ListBookModel.findOne({
-    book_id: req.query.book_id
-  })
+  let filter = {
+    book_id: parseInt(req.query.filter)
+  }
+  ListBookModel.findOne(filter, select)
+    .then(doc => {
+      res.json(doc)
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
+})
+
+// GET CHAPTER
+router.get('/api/get-chapter', (req, res) => {
+  let select = {
+    data_SV1 : 1
+  }
+  let filter = {
+    book_id: parseInt(req.query.filter)
+  }
+  ListBookModel.findOne(filter, select)
     .then(doc => {
       res.json(doc)
     })
@@ -43,9 +65,32 @@ router.get('/api/book-details', (req, res) => {
 
 // GET LIST
 router.get('/api/list-book', (req, res) => {
-  ListBookModel.find()
+  let filter = {}
+  if(req.query.book_hot) {
+    filter.book_hot = true;
+  }
+  if(req.query.book_appoint) {
+    filter.book_appoint = true;
+  }
+  let select = {
+    name : 1, thumb: 1, read: 1, last_chapter: 1, folow: 1, book_id: 1
+  }
+  let limit = 32;
+  let page = 0;
+  if(req.query.page) {
+    page = req.query.page
+  }
+  let respon = {};
+  
+  ListBookModel.count()
+      .then(count => {
+        respon['total'] = count
+      })
+
+  ListBookModel.find(filter,select).limit(limit).skip(page)
     .then(doc => {
-      res.json(doc)
+      respon['items'] = doc
+      res.json(respon)
     })
     .catch(err => {
       res.status(500).json(err)

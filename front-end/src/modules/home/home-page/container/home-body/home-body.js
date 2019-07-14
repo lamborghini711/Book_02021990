@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Pagination, BackTop } from 'antd';
+import { BackTop } from 'antd';
 import ListBook from './../list-book/list-book';
 import HotBook from './../hot-book/hot-book';
 import TruyenDeCu from '../list-book/truyen-de-cu';
@@ -28,19 +28,6 @@ class HomeBody extends Component {
         <section className="content width-list-book mg-0-auto" style={{paddingTop: '0px'}}>
             <TruyenDeCu/>
             <ListBook/>
-        </section>
-        <section className="content-footer width-list-book mg-0-auto">
-          <div className="text-center" style={{padding:'10px 0 70px 0'}}>
-            <Pagination
-              total={1500}
-              // showTotal={total => `Tất cả ${total} items`}
-              pageSize={50}
-              defaultCurrent={1}
-              // showSizeChanger
-              // onShowSizeChange={onShowSizeChange}
-              // pageSizeOptions={['50', '100', '150', '200']}
-            />
-          </div>
         </section>
         <div>
           <BackTop />

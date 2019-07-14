@@ -11,8 +11,8 @@ class RouterUrl extends Component {
       <Router>
         <div>
           <Route exact path="/" component={Home} />
-          <Route exact path="/select" component={BookSelect} />
-          <Route exact path="/detail" component={BookDetail} />
+          <Route exact path="/truyen-:slug.:id" component={BookSelect} />
+          <Route exact path="/chuong-:chapter-:slug.:id" component={BookDetail} />
           <Route exact path="/create" component={CreateBook} />
         </div>
       </Router>

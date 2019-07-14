@@ -1,52 +1,93 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import { Card, Badge, Icon } from 'antd';
+import { Card, Badge, Icon, Pagination } from 'antd';
 import FilterHomePage from '../filter-home-page/filter-home-page';
 import {connect} from 'react-redux';
 import {GET_LIST_BOOKS} from '../../../../../redux/action/admin/book-actions'
 const { Meta } = Card;
 
-let item = '/img/thumb/poster_02.jpg'
-
-
-const listBook = [];
-let limit = 24;
-for(let i=1 ; i<=limit; i++) {
-  listBook.push(
-    <div className="col-card" key={i}>
-      <Link to="/select">
-        <Badge count={'99'}>
-          <Card
-            cover={<img className="border-radius-10 thumb-cover"  alt="example" src={item} />}
-          >
-            <Meta title="Chí Tôn Võ Đế" description="Europe Street beat" />
-          </Card>
-        </Badge>
-      </Link>
-      <div className="row response mg-all-0">
-        <div className="col-md-2 text-color-primary pd-all-0">
-          <Icon type="heart" theme="filled" />
-        </div>
-        <div className="col-md-2 text-color-grey pd-all-0" >
-          <Icon type="star" theme="filled" />
-        </div>
-        <div className="col-md-8 text-right text-color-grey pd-all-0" >
-          <Icon type="eye" theme="filled" />
-        <span className="font-11 pd-left-5">1.9M</span>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 class ListBook extends Component {
-  componentDidMount() {
+  state = {
+    page : 1
+  }
+  componentWillMount() {
     this.props.listBookStore() // su dung reducer trong store, // dispatch 'LIST_BOOKS'
   }
 
   render() {
-    let items = this.props.bookData;
-    console.log(items)
+    var listBook = [];
+    var total = 0;
+    if (this.props.bookData) {
+      total = this.props.bookData.total;
+      var items = this.props.bookData.items;
+      var limit = items.length;
+      for(let i=0 ; i<limit; i++) {
+        listBook.push(
+          <div className="col-card" key={i}>
+            <Link to={"/truyen-" + to_slug(items[i].name) + "." + items[i].book_id}>
+              <Badge count={items[i].last_chapter}>
+                <Card
+                  cover={
+                    <img className="border-radius-10 thumb-cover"  alt={items[i].name} src={items[i].thumb} />
+                  }
+                >
+                  <Meta title={items[i].name} />
+                </Card>
+              </Badge>
+            </Link>
+            <div className="row response mg-all-0">
+              <div className="col-md-2 text-color-primary pd-all-0">
+                <Icon type="heart" theme="filled" />
+              </div>
+              <div className="col-md-2 text-color-grey pd-all-0" >
+                <Icon type="star" theme="filled" />
+              </div>
+              <div className="col-md-8 text-right text-color-grey pd-all-0" >
+                <Icon type="eye" theme="filled" />
+              <span className="font-11 pd-left-5">{items[i].read}</span>
+              </div>
+            </div>
+          </div>
+        )
+      }
+      function to_slug(str){
+        // Chuyển hết sang chữ thường
+        str = str.toLowerCase();     
+    
+        // xóa dấu
+        str = str.replace(/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/g, 'a');
+        str = str.replace(/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/g, 'e');
+        str = str.replace(/(ì|í|ị|ỉ|ĩ)/g, 'i');
+        str = str.replace(/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/g, 'o');
+        str = str.replace(/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/g, 'u');
+        str = str.replace(/(ỳ|ý|ỵ|ỷ|ỹ)/g, 'y');
+        str = str.replace(/(đ)/g, 'd');
+    
+        // Xóa ký tự đặc biệt
+        str = str.replace(/([^0-9a-z-\s])/g, '');
+    
+        // Xóa khoảng trắng thay bằng ký tự -
+        str = str.replace(/(\s+)/g, '-');
+    
+        // xóa phần dự - ở đầu
+        str = str.replace(/^-+/g, '');
+    
+        // xóa phần dư - ở cuối
+        str = str.replace(/-+$/g, '');
+    
+        // return
+        return str;
+      }
+    }
+
+    function onChange(pageNumber) {
+      var filter = { 'Page': pageNumber};
+      if (pageNumber) {
+        debugger
+        this.props.listBookStore(filter)
+      }
+    }
+   
     return (
       <div>
         <div className="row pd-bottom-20 pd-top-10 response">
@@ -63,6 +104,17 @@ class ListBook extends Component {
           <div className="row justify-content-md-center pd-top-10">
             {listBook}
           </div>
+          <section className="content-footer width-list-book mg-0-auto">
+          <div className="text-center" style={{padding:'10px 0 70px 0'}}>
+            <Pagination
+              total={total}
+              // showTotal={total => `Tất cả ${total} items`}
+              pageSize={32}
+              defaultCurrent={1}
+              onChange = {onChange}
+            />
+          </div>
+        </section>
       </div>
     );
   }
@@ -73,15 +125,13 @@ const mapStateToProps = (state, ownProps) => {
     bookData: state.listBooks.bookData.data
   }
 }
-// this.props.bookData
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    listBookStore: () => {
-      dispatch({ type : GET_LIST_BOOKS })
+    listBookStore: (filter) => {
+      dispatch({ type : GET_LIST_BOOKS, filter})
     }
   }
 }
-// this.props.listBookStore()
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListBook);
