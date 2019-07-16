@@ -3,30 +3,21 @@ import { BackTop } from 'antd';
 import ListBook from './../list-book/list-book';
 import HotBook from './../hot-book/hot-book';
 import TruyenDeCu from '../list-book/truyen-de-cu';
-// const IconFont = Icon.createFromIconfontCN({
-//   scriptUrl: '//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js',
-// });
+import {GET_LIST_BOOKS_HOT} from '../../../../../redux/action/admin/book-actions';
+import {connect} from 'react-redux';
+
 class HomeBody extends Component {
+  componentDidMount() {
+    this.props.hotBookStore() // su dung reducer trong store, // dispatch 'LIST_BOOKS'
+  }
   render() {
     return (
       <div className="content-wrapper body-bg pd-top-20 min-height-page response">
         <section className="content-header width-list-book mg-0-auto">
-          <HotBook/>
+          <HotBook bookData={this.props.bookData}/>
         </section>
-        {/* social media */}
-        {/* <div className='social-media'>
-          <Button type="danger" shape="round" style={{paddingRight:'15px', backgroundColor:'#4267b2', borderColor: '#4267b2', color:'white'}}>
-          <IconFont type="icon-facebook"  style={{paddingRight:'5px'}}/> Share FaceBook
-          </Button>
-        </div>
-        <div className='social-media-2'>
-          <Button type="primary" shape="round" style={{paddingRight:'15px'}}>
-          <Icon type="mail"  style={{paddingRight:'5px'}} /> Liên hệ
-          </Button>
-        </div> */}
-        {/* Main content */}
         <section className="content width-list-book mg-0-auto" style={{paddingTop: '0px'}}>
-            <TruyenDeCu/>
+            <TruyenDeCu bookData={this.props.bookData}/>
             <ListBook/>
         </section>
         <div>
@@ -37,5 +28,17 @@ class HomeBody extends Component {
     )
   }
 }
+const mapStateToProps = (state, ownProps) => {
+  return {
+    bookData: state.listBooks.bookHotData.data
+  }
+}
 
-export default HomeBody;
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    hotBookStore: (book_hot) => {
+      dispatch({ type : GET_LIST_BOOKS_HOT, book_hot:true })
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(HomeBody);

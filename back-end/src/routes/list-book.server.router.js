@@ -32,7 +32,6 @@ router.get('/api/book-detail', (req, res) => {
     // data_SV2 : 0,
     book_appoint: 0,
     book_hot: 0,
-    thumb : 0,
   }
   let filter = {
     book_id: parseInt(req.query.filter)
@@ -67,13 +66,15 @@ router.get('/api/get-chapter', (req, res) => {
 router.get('/api/list-book', (req, res) => {
   let filter = {}
   if(req.query.book_hot) {
-    filter.book_hot = true;
-  }
-  if(req.query.book_appoint) {
-    filter.book_appoint = true;
+    filter = {
+        $or:[
+          {book_appoint : true},
+          {book_hot : true}
+        ]
+      }
   }
   let select = {
-    name : 1, cover: 1, read: 1, last_chapter: 1, folow: 1, book_id: 1
+    name : 1, cover: 1, read: 1, last_chapter: 1, folow: 1, book_id: 1, book_appoint: 1, book_hot: 1,
   }
   let limit = 32;
   let page = 0;
@@ -81,12 +82,10 @@ router.get('/api/list-book', (req, res) => {
     page = req.query.page
   }
   let respon = {};
-  
   ListBookModel.count()
       .then(count => {
         respon['total'] = count
       })
-
   ListBookModel.find(filter,select).limit(limit).skip(page).sort({book_id : -1})
     .then(doc => {
       respon['items'] = doc

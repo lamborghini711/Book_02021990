@@ -3,33 +3,32 @@ import { Link } from "react-router-dom";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Card, Badge, Icon } from 'antd';
-import {GET_LIST_BOOKS_HOT} from '../../../../../redux/action/admin/book-actions';
-import {connect} from 'react-redux';
 
 const { Meta } = Card;
 
 class HotBook extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       book_appoint : true
     }
   }
-
-  componentDidMount() {
-    this.props.hotBookStore() // su dung reducer trong store, // dispatch 'LIST_BOOKS'
-  }
   
   render() {
     var listHot = [];
     if (this.props.bookData) {
-      var itemsHot = this.props.bookData.items;
+      var itemsHot = []
+      for(let j in this.props.bookData.items){
+        if(this.props.bookData.items[j].book_hot === true) {
+          itemsHot.push(this.props.bookData.items[j])
+        }
+      }
+     
       var limit = itemsHot.length;
       for(let i=0 ; i<limit; i++) {
         listHot.push(
           <div className="col-md-2 col-card mg-all-0" key={i}>
-            <Link to="/select">
+            <Link to={"/truyen-" + to_slug(itemsHot[i].name) + "." + itemsHot[i].book_id}>
                 <Badge count={itemsHot[i].last_chapter}>
                   <Card
                     cover={<img className="border-radius-10 thumb-cover" alt="example" src={itemsHot[i].cover} />}
@@ -52,7 +51,7 @@ class HotBook extends Component {
             </div>
           </div>
         )
-    }
+      }
     }
     
     const responsive = {
@@ -77,6 +76,23 @@ class HotBook extends Component {
         items: 2,
       },
     };
+
+    function to_slug(str){
+      str = str.toLowerCase();     
+      str = str.replace(/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/g, 'a');
+      str = str.replace(/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/g, 'e');
+      str = str.replace(/(ì|í|ị|ỉ|ĩ)/g, 'i');
+      str = str.replace(/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/g, 'o');
+      str = str.replace(/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/g, 'u');
+      str = str.replace(/(ỳ|ý|ỵ|ỷ|ỹ)/g, 'y');
+      str = str.replace(/(đ)/g, 'd');
+      str = str.replace(/([^0-9a-z-\s])/g, '');
+      str = str.replace(/(\s+)/g, '-');
+      str = str.replace(/^-+/g, '');
+      str = str.replace(/-+$/g, '');
+      return str;
+    }
+
     return (
       <div className="response">
         <h4 className="font-600 pd-top-10 pd-bottom-10 text-color-light">
@@ -89,17 +105,13 @@ class HotBook extends Component {
           arrows
           autoPlaySpeed={1500}
           centerMode={false}
-          containerClass=""
           autoPlay={this.props.deviceType !== "mobile" ? true : false}
           deviceType={this.props.deviceType}
-          dotListClass=""
           draggable
           focusOnSelect={false}
           infinite
-          itemClass=""
           keyBoardControl
           minimumTouchDrag={80}
-          sliderClass=""
           slidesToSlide={1}
           swipeable
           responsive={responsive}
@@ -113,17 +125,4 @@ class HotBook extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    bookData: state.listBooks.bookHotData.data
-  }
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    hotBookStore: (book_hot) => {
-      dispatch({ type : GET_LIST_BOOKS_HOT, book_hot:true })
-    }
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(HotBook);
+export default HotBook;

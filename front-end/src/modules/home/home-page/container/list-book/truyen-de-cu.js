@@ -3,23 +3,23 @@ import { Link } from "react-router-dom";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Card, Badge, Icon } from 'antd';
-import {GET_LIST_BOOKS_APPOINT} from '../../../../../redux/action/admin/book-actions';
-import {connect} from 'react-redux';
 const { Meta } = Card;
 
 class TruyenDeCu extends Component {
-  componentDidMount() {
-    this.props.appenBookStore() // su dung reducer trong store, // dispatch 'LIST_BOOKS'
-  }
   render() {
     var listDeCu = [];
     if (this.props.bookData) {
-      var itemsDeCu = this.props.bookData.items;
+      var itemsDeCu = []
+      for(let j in this.props.bookData.items){
+        if(this.props.bookData.items[j].book_appoint === true) {
+          itemsDeCu.push(this.props.bookData.items[j])
+        }
+      }
       var limit = itemsDeCu.length;
       for(let i=0 ; i<limit; i++) {
         listDeCu.push(
           <div className="col-md-2 col-card mg-all-0" key={i}>
-            <Link to="/select">
+            <Link to={"/truyen-" + to_slug(itemsDeCu[i].name) + "." + itemsDeCu[i].book_id}>
                 <Badge count={itemsDeCu[i].last_chapter}>
                   <Card
                     cover={<img className="border-radius-10 thumb-cover" alt="example" src={itemsDeCu[i].cover} />}
@@ -42,7 +42,7 @@ class TruyenDeCu extends Component {
             </div>
           </div>
         )
-    }
+      }
     }
     const responsive = {
       desktop1080: {
@@ -67,6 +67,22 @@ class TruyenDeCu extends Component {
         items: 2,
       },
     };
+    function to_slug(str){
+      str = str.toLowerCase();     
+      str = str.replace(/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/g, 'a');
+      str = str.replace(/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/g, 'e');
+      str = str.replace(/(ì|í|ị|ỉ|ĩ)/g, 'i');
+      str = str.replace(/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/g, 'o');
+      str = str.replace(/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/g, 'u');
+      str = str.replace(/(ỳ|ý|ỵ|ỷ|ỹ)/g, 'y');
+      str = str.replace(/(đ)/g, 'd');
+      str = str.replace(/([^0-9a-z-\s])/g, '');
+      str = str.replace(/(\s+)/g, '-');
+      str = str.replace(/^-+/g, '');
+      str = str.replace(/-+$/g, '');
+      return str;
+    }
+
     return (
       <div className="response">
         <h4 className="font-600 pd-top-10 pd-bottom-10 text-color-light">
@@ -99,19 +115,5 @@ class TruyenDeCu extends Component {
     );
   }
 }
-const mapStateToProps = (state, ownProps) => {
-  return {
-    bookData: state.listBooks.bookAppointData.data
-  }
-}
-// this.props.bookData
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    appenBookStore: (book_appoint) => {
-      dispatch({ type : GET_LIST_BOOKS_APPOINT, book_appoint:true })
-    }
-  }
-}
-// this.props.appenBookStore()
-export default connect(mapStateToProps, mapDispatchToProps)(TruyenDeCu);
+export default TruyenDeCu;

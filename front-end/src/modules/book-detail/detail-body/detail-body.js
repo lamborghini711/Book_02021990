@@ -48,9 +48,9 @@ class DetailBody extends Component {
     
   return (
       <div className='width-720 mg-0-auto '>
-        <div style={{marginTop:'20px'}}>
+        <div style={{marginTop:'20px'}} id="tuan">
           <Affix offsetTop={50}>
-              <div className='text-center light scroll-to-fixed-fixed width-720' id="tuan" >
+              <div className='text-center light scroll-to-fixed-fixed width-720'  >
                 <Link to="/">
                 <Icon className='mg-right-10 text-left' style={{fontSize:'20px', color:'#121212'}} type="home" theme="filled" />
                 </Link>

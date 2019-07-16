@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import ReactUploadImage from './upload-image';
-import { Tag, Input, Icon, Button } from 'antd';
+import { Tag, Input, Icon, Button, notification } from 'antd';
 import { TweenOneGroup } from 'rc-tween-one';
 import {connect} from 'react-redux';
-import {CREATE_BOOK} from './../../../redux/action/admin/create-book-action'
+import {CREATE_BOOK} from './../../../redux/action/admin/create-book-action';
+import _ from 'lodash'
 
 const { TextArea } = Input;
-
+let origin_state = {}
 class CreateBookBody extends Component {
   //=========================== start tag =================================//
   state = {
@@ -136,20 +137,38 @@ class CreateBookBody extends Component {
       }],
       created_at: new Date(),
     }
-    console.log(obj)
-    this.props.createBook(obj)
+    this.props.createBook(obj);
+    this.setState(origin_state) 
+  }
+
+  componentDidMount(){
+    origin_state = _.cloneDeep(this.state)
+  }
+  componentWillReceiveProps(){
+    debugger
+    if(this.props.response.status === 201) {
+      notification.open({
+        message: 'Notification Title',
+        description:
+          'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+        onClick: () => {
+          console.log('Notification Clicked!');
+        },
+      });
+    }
   }
 
   render() {
     const { tags, inputVisible, inputValue } = this.state;
     const tagChild = tags.map(this.forMap);
+    
     return (
       <div className="content-wrapper min-height-page  ">
         <div className="create-title pd-all-30">Tạo truyện tranh mới</div>
         <div className="mg-0-auto pd-tb-10" style={{width:'900px'}}>
           <form className="form-inline">
             <label className="text-style font-700">Tên truyện</label>
-            <input onChange={this.name} type="text" className="form-control input-style float-right"  />
+            <input onChange={this.name} value={this.state.name} type="text" className="form-control input-style float-right"  />
           </form>
           <form className="form-inline mg-top-20">
             <label className="text-style font-700">Tên khác</label>
@@ -254,7 +273,7 @@ class CreateBookBody extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    bookData: state.createBook
+    response: state.createBook.createBook
   }
 }
 
