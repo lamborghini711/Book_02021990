@@ -18,7 +18,7 @@ class HotBook extends Component {
   }
 
   componentWillMount() {
-    this.props.listBookStore() // su dung reducer trong store, // dispatch 'LIST_BOOKS'
+    this.props.hotBookStore() // su dung reducer trong store, // dispatch 'LIST_BOOKS'
   }
   
   render() {
@@ -121,14 +121,12 @@ const mapStateToProps = (state, ownProps) => {
     bookData: state.listBooks.bookHotData.data
   }
 }
-// this.props.bookData
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    listBookStore: (book_hot) => {
+    hotBookStore: (book_hot) => {
       dispatch({ type : GET_LIST_BOOKS_HOT, book_hot:true })
     }
   }
 }
-// this.props.listBookStore()
 export default connect(mapStateToProps, mapDispatchToProps)(HotBook);

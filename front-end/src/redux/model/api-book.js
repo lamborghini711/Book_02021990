@@ -33,10 +33,30 @@ const booksModel = {
       })
     })
   },
-  uploadImg: (formData,config) => {
+  // uploadImg: (formData,config) => {
+  //   return new Promise((resole, reject) => {
+  //     let url= `${urlApi}/upload`;
+  //     BaseModel.get(url, formData, config, function(data) {
+  //       resole(data);
+  //     },function(err){
+  //       reject(err)
+  //     })
+  //   })
+  // },
+  createUser: (filter) => {
     return new Promise((resole, reject) => {
-      let url= `${urlApi}/upload`;
-      BaseModel.get(url, formData, config, function(data) {
+      let url= `${urlApi}/user-create`;
+      BaseModel.get(url, filter, function(data) {
+        resole(data);
+      },function(err){
+        reject(err)
+      })
+    })
+  },
+  logging: (filter) => {
+    return new Promise((resole, reject) => {
+      let url= `${urlApi}/logging`;
+      BaseModel.get(url, filter, function(data) {
         resole(data);
       },function(err){
         reject(err)

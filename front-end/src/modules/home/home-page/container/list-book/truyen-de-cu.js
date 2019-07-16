@@ -9,7 +9,7 @@ const { Meta } = Card;
 
 class TruyenDeCu extends Component {
   componentWillMount() {
-    this.props.listBookStore() // su dung reducer trong store, // dispatch 'LIST_BOOKS'
+    this.props.appenBookStore() // su dung reducer trong store, // dispatch 'LIST_BOOKS'
   }
   render() {
 
@@ -112,10 +112,10 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    listBookStore: (book_appoint) => {
+    appenBookStore: (book_appoint) => {
       dispatch({ type : GET_LIST_BOOKS_APPOINT, book_appoint:true })
     }
   }
 }
-// this.props.listBookStore()
+// this.props.appenBookStore()
 export default connect(mapStateToProps, mapDispatchToProps)(TruyenDeCu);

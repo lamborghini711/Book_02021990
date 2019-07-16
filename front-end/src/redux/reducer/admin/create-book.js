@@ -1,17 +1,17 @@
-import {UPLOAD_IMG_SUCCESS} from './../../action/admin/book-actions';
+// import {UPLOAD_IMG_SUCCESS} from './../../action/admin/book-actions';
 
-const bookInitialState = {
-  img : {}
-}
+// const bookInitialState = {
+//   img : {}
+// }
 
-const bookDetail = (state = bookInitialState, action) => {
-  switch (action.type) {
-    case UPLOAD_IMG_SUCCESS:
-      return {...state,img:action.image}
+// const createBook = (state = bookInitialState, action) => {
+//   switch (action.type) {
+//     case UPLOAD_IMG_SUCCESS:
+//       return {...state,img:action.image}
      
-    default:
-      return state
-  }
-}
+//     default:
+//       return state
+//   }
+// }
 
-export default bookDetail
+// export default createBook

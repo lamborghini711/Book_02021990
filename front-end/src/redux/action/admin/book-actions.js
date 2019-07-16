@@ -11,10 +11,6 @@ export const GET_BOOK_DETAIL = 'GET_BOOK_DETAIL';
 export const GET_BOOK_DETAIL_SUCCESS = 'GET_BOOK_DETAIL_SUCCESS';
 export const GET_CHAPTER = 'GET_CHAPTER';
 export const GET_CHAPTER_SUCCESS = 'GET_CHAPTER_SUCCESS';
-export const UPLOAD_IMG = 'UPLOAD_IMG';
-export const UPLOAD_IMG_SUCCESS = 'UPLOAD_IMG_SUCCESS';
-export const UPLOAD_IMG_ERROR = 'UPLOAD_IMG_ERROR';
-
 
 // watcher saga: watches for actions dispatched to the store, starts worker saga
 export default [
@@ -23,7 +19,6 @@ export default [
   watcherGetListBooksAppoint(),
   watcherGetBookDetail(),
   watcherGetChapter(),
-  watcherUploadImg(),
 ]
 
 function* watcherGetListBooks() {
@@ -88,15 +83,4 @@ function* workerGetChapter(filter) {
   }
 }
 
-function* watcherUploadImg() {
-  yield takeLatest(UPLOAD_IMG, workerUploadImg);
-}
-function* workerUploadImg(formData, config) {
-  try{
-    const res = yield call(booksModel.uploadImg, formData, config);
-    const image = res;
-    yield put({type : UPLOAD_IMG_SUCCESS, image})
-  } catch(err) {
-  }
-}
 

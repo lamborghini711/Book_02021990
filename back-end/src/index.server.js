@@ -3,6 +3,7 @@ let app = express()
 let customerRoute = require('./routes/customer')
 let bookRouter = require('./routes/list-book.server.router')
 let uploadImg = require('./routes/upload-img.sever.router')
+let usrerRouter = require('./routes/user.server.router')
 let path = require('path')
 let bodyParser = require('body-parser')
 let mongoose = require('mongoose')
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
 app.use(customerRoute)
 app.use(bookRouter)
 app.use(uploadImg)
+app.use(usrerRouter)
 app.use(express.static('public'))
 
 // Handler for 404 - Resource Not Found

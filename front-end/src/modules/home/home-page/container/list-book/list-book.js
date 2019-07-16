@@ -83,7 +83,6 @@ class ListBook extends Component {
     function onChange(pageNumber) {
       var filter = { 'Page': pageNumber};
       if (pageNumber) {
-        debugger
         this.props.listBookStore(filter)
       }
     }

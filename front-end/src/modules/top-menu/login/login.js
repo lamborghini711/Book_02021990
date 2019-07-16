@@ -5,10 +5,12 @@ import WrappedNormalLoginForm from './form-login'
 class Login extends Component {
   constructor(props){
     super(props)
-    this.state = {}
+    this.state = {
+      visible: false,
+      userLog: null
+    }
   }
 
-  state = { visible: false };
 
   showModal = () => {
     this.setState({
@@ -22,13 +24,31 @@ class Login extends Component {
       visible: false,
     });
   };
+  updateState = user => {
+    if (user) {
+      this.setState({
+        visible: false,
+        userLog: user
+      });
+    }
+  }
+
+  componentWillMount() {
+    var user = JSON.parse(localStorage.getItem('comic_user'));
+    this.setState({userLog:user})
+  }
 
   render() {
+    var name = "Đăng nhập";
+    var login = this.state.userLog;
+    if(login) {
+      name = login.username;
+    }
     return (
       <div className="login" >
          <div className="avatar-menu" type="primary" onClick={this.showModal}>
          <img src="/img/icon-web/user2-160x160.jpg" className="user-image" alt="User" />
-              <span className="hidden-xs">Đăng nhập</span>
+              <span className="hidden-xs">{name}</span>
         </div>
         <Modal
           title="Đăng nhập"
@@ -37,7 +57,7 @@ class Login extends Component {
           width={350}
           footer={null}
         >
-          <WrappedNormalLoginForm/>
+          <WrappedNormalLoginForm user={this.updateState} />
         </Modal>
         </div>
     );
