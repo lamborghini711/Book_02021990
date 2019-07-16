@@ -35,11 +35,11 @@ class LeftMenu extends Component {
                   <div className='col-md-2' style={{padding:'0px'}}>
                   <img src="/img/thumb/poster_01.jpg" className="img-reading" alt="User" />
                   </div>
-                  <div className='col-md-9' style={{padding:'0px 5px', top: '5px'}}>
+                  <div className='col-md-9' style={{padding:'0px 5px', top: '5px', width:'68%'}}>
                     <div style={{fontSize:'11px'}}>Hiệp khách giang hồ </div>
                     <div style={{fontSize:'10px', color:'gray'}}>Chương: 112</div>
                   </div>
-                  <div style={{paddingTop:'8px'}} ><Icon type="close" style={{fontSize:'10px'}} /></div>
+                  <div className='col-md-1' style={{paddingTop:'8px'}} ><Icon type="close" style={{fontSize:'10px'}} /></div>
                 </a>
               </li>
               <li>
@@ -47,11 +47,11 @@ class LeftMenu extends Component {
                   <div className='col-md-2' style={{padding:'0px'}}>
                   <img src="/img/thumb/poster_02.jpg" className="img-reading" alt="User" />
                   </div>
-                  <div className='col-md-9' style={{padding:'0px 5px', top: '5px'}}>
+                  <div className='col-md-9' style={{padding:'0px 5px', top: '5px', width:'68%'}}>
                     <div style={{fontSize:'11px'}}>Người trong giang hồ</div>
                     <div style={{fontSize:'10px', color:'gray'}}>Chương: 501</div>
                   </div>
-                  <div style={{paddingTop:'8px'}} ><Icon type="close" style={{fontSize:'10px'}} /></div>
+                  <div className='col-md-1' style={{paddingTop:'8px'}} ><Icon type="close" style={{fontSize:'10px'}} /></div>
                 </a>
               </li>
               <li className="header"></li>

@@ -11,7 +11,6 @@ class BookSelect extends Component {
         <AdminHeader/>
         <LeftMenu/>
         <BookSelectBody id = {id}/>
-        <div id="tuan"></div>
       </div>
     );
   }

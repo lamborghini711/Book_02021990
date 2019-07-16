@@ -11,7 +11,6 @@ class EditBook extends Component {
         <AdminHeader/>
         <LeftMenu/>
         <EditBookBody/>
-        <div id="tuan"></div>
       </div>
     );
   }

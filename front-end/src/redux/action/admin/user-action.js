@@ -4,11 +4,14 @@ import booksModel from '../../model/api-book';
 export const CREATE_USER = 'CREATE_USER';
 export const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS';
 export const CREATE_USER_ERROR = 'CREATE_USER_ERROR';
+export const HANDLE_MENU = 'HANDLE_MENU';
+export const HANDLE_MENU_SUCCESS = 'HANDLE_MENU_SUCCESS';
+
 
 
 export default [
   watcherCreateUser(),
- 
+  watchMenu(),
 ]
 
 function* watcherCreateUser() {
@@ -23,5 +26,15 @@ function* workerCreateUser(filter) {
     yield put({type : CREATE_USER_SUCCESS, user})
   } catch(err) {
     yield put({type : CREATE_USER_ERROR, err})
+  }
+}
+
+function* watchMenu() {
+  yield takeLatest(HANDLE_MENU, workerMenu);
+}
+function* workerMenu(data) {
+  try{
+    yield put({type : HANDLE_MENU_SUCCESS, data})
+  } catch(err) {
   }
 }

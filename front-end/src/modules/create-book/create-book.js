@@ -11,7 +11,6 @@ class CreateBook extends Component {
         <AdminHeader/>
         <LeftMenu/>
         <CreateBookBody/>
-        <div id="tuan"></div>
       </div>
     );
   }

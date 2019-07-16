@@ -3,7 +3,8 @@ import {GET_LIST_BOOKS_SUCCESS, GET_LIST_BOOKS_HOT_SUCCESS, GET_LIST_BOOKS_APPOI
 const bookInitialState = {
   bookData: {},
   bookHotData: {},
-  bookAppointData:{}
+  bookAppointData:{},
+
 }
 
 const listBooks = (state = bookInitialState, action) => {
@@ -14,6 +15,7 @@ const listBooks = (state = bookInitialState, action) => {
       return {...state, bookHotData: action.listBooksHot}
     case GET_LIST_BOOKS_APPOINT_SUCCESS:
       return {...state, bookAppointData: action.listBooksAppoint}
+    
     default:
       return state
   }

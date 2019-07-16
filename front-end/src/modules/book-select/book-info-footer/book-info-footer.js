@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Icon, Table } from 'antd';
 import {Link} from 'react-router-dom'
+import Chat from '../../book-detail/comment/comment';
 const moment = require('moment');
 
 class BookInfoFooter extends Component {
@@ -29,7 +30,7 @@ class BookInfoFooter extends Component {
     for(let i=0 ; i < item.length; i++) {
       var chapter = item[i].chapter_number;
       var name = item[i].chapter_name;
-      var date = moment(item[i].created_at).format('hh:mm DD-MM-YYYY');
+      var date = moment(item[i].created_at).format('DD-MM-YYYY');
       data.push(
         {
           key: i,
@@ -62,13 +63,16 @@ class BookInfoFooter extends Component {
         <h3 className="text-600 pd-bottom-10">
           <Icon type="security-scan" style={{paddingRight:'10px'}} />Danh sách chương
         </h3>
-        <div style={{backgroundColor:"#fff"}}>
+        <div style={{backgroundColor:"#fff", borderRadius:'5px', padding:'5px'}}>
           <Table
             columns={columns}
             dataSource={data}
             pagination={false}
             scroll={{ y: 350 }}
           />
+        </div>
+        <div style={{backgroundColor:"#fff", marginTop:'20px', borderRadius:'5px'}}>
+          <Chat/>
         </div>
       </div>
     );

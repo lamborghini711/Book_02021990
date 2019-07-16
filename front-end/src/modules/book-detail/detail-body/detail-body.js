@@ -35,32 +35,36 @@ class DetailBody extends Component {
   // or window.addEventListener("scroll"....
   window.addEventListener("scroll", function(){ 
     let st = window.pageYOffset || document.documentElement.scrollTop;
-    var element = document.getElementById("tuan");
-    if (st > lastScrollTop){
-      element.classList.add("scroll-down");
-      element.classList.remove("scroll-up");
-    } else {
-      element.classList.remove("scroll-down");
-      element.classList.add("scroll-up");
+    let a = document.documentElement.scrollTop
+    if(document.getElementById("tuan") && a > 215){
+      var element = document.getElementById("tuan");
+      if (st > lastScrollTop){
+        element.classList.add("scroll-down");
+        element.classList.remove("scroll-up");
+      } else {
+        element.classList.remove("scroll-down");
+        element.classList.add("scroll-up");
+      }
+      lastScrollTop = st <= 0 ? 0 : st;
     }
-    lastScrollTop = st <= 0 ? 0 : st;
+    
   }, false);
     
   return (
       <div className='width-720 mg-0-auto '>
-        <div style={{marginTop:'20px'}} id="tuan">
+        <div style={{marginTop:'20px'}} >
           <Affix offsetTop={50}>
-              <div className='text-center light scroll-to-fixed-fixed width-720'  >
-                <Link to="/">
-                <Icon className='mg-right-10 text-left' style={{fontSize:'20px', color:'#121212'}} type="home" theme="filled" />
-                </Link>
-                <Icon className='mg-right-10' style={{fontSize:'20px', color:'#121212'}} type="redo" />
-                <Button className='mg-right-10' shape="circle" icon="arrow-left" />
-                <Select size='default' defaultValue="a1" onChange={handleChange} style={{ width: 200, marginRight:'10px' }}>
-                  {children}
-                </Select>
-                <Button className='mg-right-10' shape="circle" icon="arrow-right" />
-              </div>
+            <div className='text-center light scroll-to-fixed-fixed width-720' id="tuan" >
+              <Link to="/">
+              <Icon className='mg-right-10 text-left' style={{fontSize:'20px', color:'#121212'}} type="home" theme="filled" />
+              </Link>
+              <Icon className='mg-right-10' style={{fontSize:'20px', color:'#121212'}} type="redo" />
+              <Button className='mg-right-10' shape="circle" icon="arrow-left" />
+              <Select size='default' defaultValue="a1" onChange={handleChange} style={{ width: 200, marginRight:'10px' }}>
+                {children}
+              </Select>
+              <Button className='mg-right-10' shape="circle" icon="arrow-right" />
+            </div>
           </Affix>
         </div>
         {listImg}

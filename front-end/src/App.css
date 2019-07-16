@@ -181,6 +181,7 @@ label {
 .col-card {
   display: inline-block;
   width: 175px;
+  height: 270px;
   margin-bottom: 30px;
   cursor: pointer;
   padding-right: 20px;
@@ -258,6 +259,9 @@ hr {
 }
 .skin-red .wrapper, .skin-red .main-sidebar, .skin-red .left-side {
   background-color: #122120!important;
+}
+.main-sidebar {
+  transition: transform 0.2s ease-in-out, width 0.2s ease-in-out!important;
 }
 .me1, .me2 {
   position: absolute;
@@ -437,7 +441,7 @@ hr {
   top: 75px!important;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3), 0 0 4px rgba(0, 0, 0, 0.2)!important;
   background-color: #272727!important;
-
+  z-index: 1!important;
 }
 .react-multi-carousel-dot button{
   width: 10px!important;
@@ -615,7 +619,7 @@ hr {
 }
 @media (max-width: 767px) {
   .content-header {
-    padding: 15px 0px 15px 0px;
+    padding: 15px 0px 0px 0px;
   }
 }
 @media (max-width: 767px) {
@@ -645,12 +649,14 @@ hr {
   .col-md-2 {
     display: inline-block;
     padding: 0px;
+    width: 15%;
   }
 }
 @media (max-width: 767px) {
   .col-md-8 {
     display: inline-block;
     padding: 0px;
+    width: 70%;
   }
 }
 @media (max-width: 767px) {
@@ -711,7 +717,7 @@ hr {
 }
 @media (max-width: 767px) {
   .react-multi-carousel-list {
-    height: 320px;
+    height: 250px;
   }
 }
 @media (max-width: 767px) {
@@ -729,6 +735,8 @@ hr {
 @media (max-width: 767px) {
   .info-left {
     width: 120px;
+    display: inline-block;
+    padding: 0px;
   }
 }
 @media (max-width: 767px){
@@ -748,14 +756,15 @@ hr {
 }
 @media (max-width: 767px){
   #response-search {
-    width: 25px;
+    /* width: 25px; */
   }
 }
 @media (max-width: 767px) {
   .avatar-menu {
     padding: 0px!important;
     height: 0px!important;
-    line-height: 43px
+    line-height: 43px;
+    margin-right: 10px
   }
 }
 @media (max-width: 767px) {
@@ -765,6 +774,16 @@ hr {
     line-height: 43px
   }
 }
+@media (min-width: 992px){
+  .col-md-9 {
+    /* width: auto!important; */
+}
+}
+@media (max-width: 767px) {
+  .col-md-1 {
+    display: inline-block
+  }
+}
 
 
 .avatar-menu {
@@ -772,10 +791,12 @@ hr {
   height: 51px;
 }
 .scroll-up {
-  visibility: visible;
+  /* visibility: visible; */
+  display: block;
 }
 .scroll-down {
-  visibility: hidden;
+  /* visibility: hidden; */
+  display: none
 }
 .scroll-to-fixed-fixed {
   margin-left: 0px;
@@ -796,12 +817,14 @@ hr {
   position: relative!important;
 } */
 
-
+.mg-left-30{
+  margin-left: 30px
+}
 .me .ant-input:hover {
   border-right-width: 0px!important;
 }
 .ant-input:focus {
-  border-right-width: 0px!important;
+  /* border-right-width: 0px!important; */
   -webkit-box-shadow: none!important;
   box-shadow: none!important;
   width: 100%!important;
@@ -910,7 +933,7 @@ hr {
   margin-bottom: 5px!important;
 }
 .column-date {
-  width: 150px
+  width: 110px
 }
 .column-chapter {
   width: 100px
@@ -972,3 +995,73 @@ form input[type='radio'], form input[type='checkbox'] {
 .pd-right-5 {
   padding-right: 10px;
 }
+
+/* menu icon */
+.my-styles{
+  background-color: transparent!important
+}
+.my-styles:focus{
+  background-color: transparent!important;
+}
+.iPxwRk{
+  transform: scale(0.5)!important;
+  width: 30px!important;
+}
+.faBthh{
+  padding: 13px!important;
+  height: 51px;
+}
+.main-header .logo {
+  float: right!important;
+  width: calc(100% - 70px)!important;
+}
+.jJWmkO::before {
+  -webkit-transform: translate3d(9px,0,0) rotate(45deg) scale(0.7,1)!important;
+  -ms-transform: translate3d(9px,0,0) rotate(45deg) scale(0.7,1)!important;
+  transform: translate3d(9px,0,0) rotate(45deg) scale(0.7,1)!important;
+}
+.jJWmkO::after {
+  -webkit-transform: translate3d(9px,0,0) rotate(135deg) scale(0.7,1)!important;
+  -ms-transform: translate3d(9px,0,0) rotate(135deg) scale(0.7,1)!important;
+  transform: translate3d(9px,0,0) rotate(135deg) scale(0.7,1)!important;
+}
+:focus {
+  outline: -webkit-focus-ring-color auto 0px!important;
+}
+.mg-lr-30{
+  margin: 0 30px
+}
+
+@media (max-width: 767px) {
+  .sidebar-mini.sidebar-collapse .main-sidebar {
+    transform: translate(0, 0);
+    width: 230px !important;
+    z-index: 850;
+  }
+}
+@media (max-width: 767px){
+  .main-sidebar {
+    padding-top: 50px!important;
+  }
+}
+@media (max-width: 767px){
+  .col-md-9 {
+    display: inline-block;
+    padding: 0px;
+    width: 68%;
+  }
+}
+@media (max-width: 767px){
+  .ant-breadcrumb {
+    padding: 0px 15px
+  }
+}
+@media (max-width: 767px){
+  .book-title {
+    font-size: 18px!important;
+    padding: 0 5px;
+  }
+}
+.ant-comment-content-detail .ant-form-item {
+  margin-bottom: 7px!important;
+  }

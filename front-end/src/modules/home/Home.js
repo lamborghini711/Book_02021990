@@ -10,7 +10,6 @@ class Home extends Component {
         <AdminHeader/>
         <LeftMenu/>
         <HomeBody/>
-        <div id="tuan"></div>
       </div>
     )
   }

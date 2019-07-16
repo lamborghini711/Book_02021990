@@ -65,28 +65,31 @@ router.get('/api/get-chapter', (req, res) => {
 // GET LIST
 router.get('/api/list-book', (req, res) => {
   let filter = {}
+  let limit = 32;
+  let page = 0;
+
   if(req.query.book_hot) {
     filter = {
-        $or:[
-          {book_appoint : true},
-          {book_hot : true}
-        ]
-      }
+      $or:[
+        {book_appoint : true},
+        {book_hot : true}
+      ]
+    }
+    limit = 15;
   }
   let select = {
     name : 1, cover: 1, read: 1, last_chapter: 1, folow: 1, book_id: 1, book_appoint: 1, book_hot: 1,
   }
-  let limit = 32;
-  let page = 0;
-  if(req.query.page) {
-    page = req.query.page
+  
+  if(req.query.filter) {
+    page = parseInt(req.query.filter) -1
   }
   let respon = {};
   ListBookModel.count()
       .then(count => {
         respon['total'] = count
       })
-  ListBookModel.find(filter,select).limit(limit).skip(page).sort({book_id : -1})
+  ListBookModel.find(filter,select).limit(limit).skip(limit*page).sort({book_id : -1})
     .then(doc => {
       respon['items'] = doc
       res.json(respon)

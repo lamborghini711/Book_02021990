@@ -21,7 +21,7 @@ class BookSelectBody extends Component {
     return (
       <div className="content-wrapper min-height-page ">
         <div className=" width-720 mg-0-auto">
-          <section className="content-header text-center pd-tb-20 mg-top-20">
+          <section className="content-header text-center pd-tb-20">
             <div className='book-title'>{name}</div>
             <div className="text-color-grey font-13">Cập nhật lúc: {update}</div>
           </section>

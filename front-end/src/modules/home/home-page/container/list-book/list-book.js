@@ -14,7 +14,11 @@ class ListBook extends Component {
     this.props.listBookStore() // su dung reducer trong store, // dispatch 'LIST_BOOKS'
   }
 
+  onChange = e => {
+    this.props.listBookStore(e)
+  }
   render() {
+    // console.log(this.state.page)
     var listBook = [];
     var total = 0;
     if (this.props.bookData) {
@@ -79,13 +83,6 @@ class ListBook extends Component {
         return str;
       }
     }
-
-    function onChange(pageNumber) {
-      var filter = { 'Page': pageNumber};
-      if (pageNumber) {
-        this.props.listBookStore(filter)
-      }
-    }
    
     return (
       <div>
@@ -110,7 +107,7 @@ class ListBook extends Component {
               // showTotal={total => `Tất cả ${total} items`}
               pageSize={32}
               defaultCurrent={1}
-              onChange = {onChange}
+              onChange = {this.onChange}
             />
           </div>
         </section>

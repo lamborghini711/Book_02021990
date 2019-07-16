@@ -16,6 +16,7 @@
     "query-string": "^6.7.0",
     "rc-tween-one": "^2.4.1",
     "react": "^16.8.6",
+    "react-animated-burgers": "^1.2.7",
     "react-dom": "^16.8.6",
     "react-facebook": "^8.0.4",
     "react-multi-carousel": "^1.4.6",
@@ -24,7 +25,8 @@
     "react-router-scroll-top": "^0.2.1",
     "react-scripts": "3.0.1",
     "redux": "^4.0.1",
-    "redux-saga": "^1.0.2"
+    "redux-saga": "^1.0.2",
+    "styled-components": "^4.3.2"
   },
   "scripts": {
     "start": "react-scripts start",

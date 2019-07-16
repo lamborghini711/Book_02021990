@@ -60,7 +60,6 @@ class DetailHeader extends Component {
             <Button type='default' className='mg-right-10'>Sever 1</Button>
             <Button type='default' className='mg-right-10'>Sever 2</Button>
             <Button type='default' className='mg-right-10'>Sever 3</Button>
-            <Button type='default' className='mg-right-10'>Sever 4</Button>
           </div>
           <div className="pd-top-10">
             Nếu vẫn không đọc được truyện, hoặc truyện chưa được dịch, up không đúng truyện, vui lòng 
