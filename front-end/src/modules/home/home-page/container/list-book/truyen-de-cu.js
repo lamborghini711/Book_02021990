@@ -8,11 +8,10 @@ import {connect} from 'react-redux';
 const { Meta } = Card;
 
 class TruyenDeCu extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.appenBookStore() // su dung reducer trong store, // dispatch 'LIST_BOOKS'
   }
   render() {
-
     var listDeCu = [];
     if (this.props.bookData) {
       var itemsDeCu = this.props.bookData.items;
@@ -23,7 +22,7 @@ class TruyenDeCu extends Component {
             <Link to="/select">
                 <Badge count={itemsDeCu[i].last_chapter}>
                   <Card
-                    cover={<img className="border-radius-10 thumb-cover" alt="example" src={itemsDeCu[i].thumb} />}
+                    cover={<img className="border-radius-10 thumb-cover" alt="example" src={itemsDeCu[i].cover} />}
                   >
                      <Meta title={itemsDeCu[i].name} />
                   </Card>
@@ -44,10 +43,7 @@ class TruyenDeCu extends Component {
           </div>
         )
     }
-
     }
-
-    
     const responsive = {
       desktop1080: {
         breakpoint: { max: 3000, min: 1600 },

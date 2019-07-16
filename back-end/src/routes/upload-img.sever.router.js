@@ -15,6 +15,9 @@ const upload = multer({
    storage: storage,
 }).single("bookImage");
 router.post("/api/upload", (req, res) => {
+  // if(!req.file.path) {
+  //   return res.status(400).send('Request body is missing')
+  // }
   upload(req, res, function(err){
     if(!err){
       return res.send(req.file.path).end()

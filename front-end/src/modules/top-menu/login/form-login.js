@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 const axios = require("axios");
 
-
 class NormalLoginForm extends Component {
   state = {
     login : null
@@ -43,9 +42,6 @@ class NormalLoginForm extends Component {
 
   render() {
     // this.props.user(this.state.login)
-
-    
-   
     var content = [];
     const { getFieldDecorator } = this.props.form;
     if(this.state.login) {
@@ -101,11 +97,9 @@ class NormalLoginForm extends Component {
       )
     }
     
-
     return (
       <div>
       {content}
-
       </div>
     );
   }

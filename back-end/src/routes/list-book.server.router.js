@@ -5,23 +5,23 @@ let router = express.Router()
 // Create a new customer
 // POST localhost:5000/api/create-book
 router.post('/api/create-book', (req, res) => {
-  if(!req.body) {
+  if(req.body.obj.name.length === 0) {
     return res.status(400).send('Request body is missing')
   }
-
-  if(!req.body.book_id) {
-    // ...
-  }
-  let model = new ListBookModel(req.body)
-  model.save()
-    .then(doc => {
-      if(!doc || doc.length === 0) {
-        return res.status(500).send(doc)
-      }
-      res.status(201).send(doc)
-    })
-    .catch(err => {
-      res.status(500).json(err)
+  ListBookModel.count()
+    .then(count => {
+      req.body.obj['book_id'] = 1000000000 + count + 1;
+      let model = new ListBookModel(req.body.obj)
+      model.save()
+        .then(doc => {
+          if(!doc || doc.length === 0) {
+            return res.status(500).send(doc)
+          }
+          res.status(201).send(doc)
+        })
+        .catch(err => {
+          res.status(500).json(err)
+        })
     })
 })
 
@@ -73,7 +73,7 @@ router.get('/api/list-book', (req, res) => {
     filter.book_appoint = true;
   }
   let select = {
-    name : 1, thumb: 1, read: 1, last_chapter: 1, folow: 1, book_id: 1
+    name : 1, cover: 1, read: 1, last_chapter: 1, folow: 1, book_id: 1
   }
   let limit = 32;
   let page = 0;
@@ -87,7 +87,7 @@ router.get('/api/list-book', (req, res) => {
         respon['total'] = count
       })
 
-  ListBookModel.find(filter,select).limit(limit).skip(page)
+  ListBookModel.find(filter,select).limit(limit).skip(page).sort({book_id : -1})
     .then(doc => {
       respon['items'] = doc
       res.json(respon)

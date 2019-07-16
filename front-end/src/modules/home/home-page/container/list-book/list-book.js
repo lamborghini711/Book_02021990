@@ -10,7 +10,7 @@ class ListBook extends Component {
   state = {
     page : 1
   }
-  componentWillMount() {
+  componentDidMount() {
     this.props.listBookStore() // su dung reducer trong store, // dispatch 'LIST_BOOKS'
   }
 
@@ -28,7 +28,7 @@ class ListBook extends Component {
               <Badge count={items[i].last_chapter}>
                 <Card
                   cover={
-                    <img className="border-radius-10 thumb-cover"  alt={items[i].name} src={items[i].thumb} />
+                    <img className="border-radius-10 thumb-cover"  alt={items[i].name} src={items[i].cover} />
                   }
                 >
                   <Meta title={items[i].name} />

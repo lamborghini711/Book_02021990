@@ -11,7 +11,7 @@ let ListBookSchema = new mongoose.Schema(
     book_hot: {type: Boolean, default: false},
     name: { type: String, default: null },
     another_name: { type: String, default: null },
-    thumb : { type: String, default: null },
+    created_at: { type: Date, default: null },
     cover : { type: String, default: null },
     read: { type: Number, default: 0 },
     rate: { type: Number, default: 0 },

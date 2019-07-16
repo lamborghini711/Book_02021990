@@ -17,7 +17,7 @@ class HotBook extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.hotBookStore() // su dung reducer trong store, // dispatch 'LIST_BOOKS'
   }
   
@@ -32,7 +32,7 @@ class HotBook extends Component {
             <Link to="/select">
                 <Badge count={itemsHot[i].last_chapter}>
                   <Card
-                    cover={<img className="border-radius-10 thumb-cover" alt="example" src={itemsHot[i].thumb} />}
+                    cover={<img className="border-radius-10 thumb-cover" alt="example" src={itemsHot[i].cover} />}
                   >
                      <Meta title={itemsHot[i].name} />
                   </Card>
@@ -53,11 +53,8 @@ class HotBook extends Component {
           </div>
         )
     }
-
     }
     
-
-   
     const responsive = {
       desktop1080: {
         breakpoint: { max: 3000, min: 1600 },

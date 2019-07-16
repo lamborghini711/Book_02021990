@@ -29,13 +29,6 @@ class ReactUploadImage extends React.Component {
             var urlImg = response.data.slice(17);
             this.state.fileUploads.push({src:urlImg})
             this.setState(this.state.fileUploads)
-            if(this.props.cover){
-              this.props.cover(urlImg)
-            }
-            if(this.props.data_SV1){
-              this.props.data_SV1(this.state.fileUploads)
-            }
-              
           }).catch((error) => {
       });
     }
@@ -51,7 +44,7 @@ class ReactUploadImage extends React.Component {
       const fileList = [];
       if(this.state.fileUploads){
         let file = this.state.fileUploads
-        
+        console.log(file)
         if(file.length === 0) {
           fileList.push(<Empty key={1} style={{marginTop: '15px'}} />)
         } else {

@@ -1,17 +1,16 @@
-// import {UPLOAD_IMG_SUCCESS} from './../../action/admin/book-actions';
+import {CREATE_BOOK_SUCCESS} from './../../action/admin/create-book-action';
 
-// const bookInitialState = {
-//   img : {}
-// }
+const bookInitialState = {
+  createBook : {}
+}
 
-// const createBook = (state = bookInitialState, action) => {
-//   switch (action.type) {
-//     case UPLOAD_IMG_SUCCESS:
-//       return {...state,img:action.image}
-     
-//     default:
-//       return state
-//   }
-// }
+const createBook = (state = bookInitialState, action) => {
+  switch (action.type) {
+    case CREATE_BOOK_SUCCESS:
+      return {...state,createBook:action.createBook}
+    default:
+      return state
+  }
+}
 
-// export default createBook
+export default createBook
