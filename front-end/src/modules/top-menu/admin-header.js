@@ -10,10 +10,10 @@ const { Search } = Input;
 
 class AdminHeader extends Component {
   state = {
-    isOff : false
+    isOff : false,
   }
   _onFocus(value) {
-    console.log(value)
+    // console.log(value)
     // var element = document.getElementById("tuan");
     // element.classList.add("scroll-down");
     // if (!this.state.focus) {
@@ -23,20 +23,18 @@ class AdminHeader extends Component {
     // }
   }
 
-  // handeMenu = e => {
-  //   if(this.state.isOff === false) {
-  //     this.props.handleMenuStore(true)
-  //     this.setState({isOff:true})
-  //   } else {
-  //     this.props.handleMenuStore(false)
-  //     this.setState({isOff:false})
-  //   }
-    
-  // }
+  componentDidMount(){
+    var w = window.innerWidth;
+    // var h = window.innerHeight;
+    if(this.props.id && w > 767) {
+      this.props.handleMenuStore(true)
+      this.setState({isOff:true})
+    } else {
+      this.props.handleMenuStore(false)
+      this.setState({isOff:false})
+    }
+  }
   toggleButton = () => {
-    // this.setState({
-    //   isOff: !this.state.isOff
-    // })
     if(this.state.isOff === false) {
       this.props.handleMenuStore(true)
       this.setState({isOff:true})
@@ -53,27 +51,16 @@ class AdminHeader extends Component {
              <div className="row">
                 <div className="col-md-4">
                 <HamburgerArrow className="my-styles" isActive={this.state.isOff} toggleButton={this.toggleButton} buttonColor="#FFBC67" barColor="white" />
-                  {/* <div onClick={this.handeMenu} className="sidebar-toggle" data-toggle="push-menu" role="button" style={{backgroundColor:'#272727'}}>
-                    <span className="sr-only">Toggle navigation</span>
-                    <span className="icon-bar" />
-                    <span className="icon-bar" />
-                    <span className="icon-bar" />
-                  </div> */}
                   <Link to="/" className="logo">
-                    {/* mini logo for sidebar mini 50x50 pixels */}
-                    {/* <span className="logo-mini"><b>A</b>LT</span> */}
-                    {/* logo for regular state and mobile devices */}
                     <span className=""><b>Truyện</b> COMIC</span>
                   </Link>
                 </div>
-                
                 <div className="col-md-4 text-center">
                   <span className="me" style={{ lineHeight: '51px' }}>
                     <Search
                       placeholder="Tìm kiếm"
                       onSearch={value => this._onFocus(value)}
                       id = "response-search"
-                     
                     />
                   </span>
                 </div>

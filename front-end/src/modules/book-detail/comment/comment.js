@@ -68,7 +68,7 @@ class Chat extends Component  {
 
   render() {
     const { comments, submitting, value } = this.state;
-    console.log(this.state.comments)
+    // console.log(this.state.comments)
     return (
       <div style={{textAlign:'left', margin:'0 20px 0 10px'}}>
         {comments.length > 0 && <CommentList comments={comments} />}

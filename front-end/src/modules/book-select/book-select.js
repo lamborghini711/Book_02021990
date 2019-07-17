@@ -8,7 +8,7 @@ class BookSelect extends Component {
     let id = this.props.match.params.id;
     return (
       <div>
-        <AdminHeader/>
+        <AdminHeader id = {id}/>
         <LeftMenu/>
         <BookSelectBody id = {id}/>
       </div>
