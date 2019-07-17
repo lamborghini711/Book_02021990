@@ -17,8 +17,8 @@ class HomeBody extends Component {
           <HotBook bookData={this.props.bookData}/>
         </section>
         <section className="content width-list-book mg-0-auto" style={{paddingTop: '0px'}}>
-            <TruyenDeCu bookData={this.props.bookData}/>
-            <ListBook/>
+          <TruyenDeCu bookData={this.props.bookData}/>
+          <ListBook/>
         </section>
         <div>
           <BackTop />

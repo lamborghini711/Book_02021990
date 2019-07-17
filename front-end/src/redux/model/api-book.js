@@ -63,6 +63,17 @@ const booksModel = {
       })
     })
   },
+  getListTopic: (filter) => {
+    return new Promise((resole, reject) => {
+      let url= `${urlApi}/list-topic`;
+      BaseModel.get(url, filter, function(data) {
+        resole(data);
+      },function(err){
+        reject(err)
+      })
+    })
+  },
+  
 }
 
 export default booksModel;

@@ -1,10 +1,10 @@
-import {GET_LIST_BOOKS_SUCCESS, GET_LIST_BOOKS_HOT_SUCCESS, GET_LIST_BOOKS_APPOINT_SUCCESS} from './../../action/admin/book-actions';
+import {GET_LIST_BOOKS_SUCCESS, GET_LIST_BOOKS_HOT_SUCCESS, GET_LIST_BOOKS_APPOINT_SUCCESS, GET_LIST_TOPIC_SUCCESS} from './../../action/admin/book-actions';
 
 const bookInitialState = {
   bookData: {},
   bookHotData: {},
   bookAppointData:{},
-
+  listTopic:{}
 }
 
 const listBooks = (state = bookInitialState, action) => {
@@ -15,7 +15,8 @@ const listBooks = (state = bookInitialState, action) => {
       return {...state, bookHotData: action.listBooksHot}
     case GET_LIST_BOOKS_APPOINT_SUCCESS:
       return {...state, bookAppointData: action.listBooksAppoint}
-    
+    case GET_LIST_TOPIC_SUCCESS:
+      return {...state, listTopic: action.listTopic}
     default:
       return state
   }

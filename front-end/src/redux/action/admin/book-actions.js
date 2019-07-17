@@ -11,6 +11,10 @@ export const GET_BOOK_DETAIL = 'GET_BOOK_DETAIL';
 export const GET_BOOK_DETAIL_SUCCESS = 'GET_BOOK_DETAIL_SUCCESS';
 export const GET_CHAPTER = 'GET_CHAPTER';
 export const GET_CHAPTER_SUCCESS = 'GET_CHAPTER_SUCCESS';
+export const GET_LIST_TOPIC = 'GET_LIST_TOPIC';
+export const GET_LIST_TOPIC_SUCCESS = 'GET_LIST_TOPIC_SUCCESS';
+
+
 
 // watcher saga: watches for actions dispatched to the store, starts worker saga
 export default [
@@ -19,6 +23,7 @@ export default [
   watcherGetListBooksAppoint(),
   watcherGetBookDetail(),
   watcherGetChapter(),
+  watcherListTopic(),
 ]
 
 function* watcherGetListBooks() {
@@ -28,7 +33,6 @@ function* workerGetListBooks(filter) {
   try{
     const res = yield call(booksModel.getListBooks, filter);
     const listBooks = res;
-    // dispatch a success action to the store with the new product
     yield put({type : GET_LIST_BOOKS_SUCCESS, listBooks})
   } catch(err) {
     // yield put({type : GET_LIST_BOOKS_ERROR, err})
@@ -83,4 +87,14 @@ function* workerGetChapter(filter) {
   }
 }
 
-
+function* watcherListTopic() {
+  yield takeLatest(GET_LIST_TOPIC, workerListTopic);
+}
+function* workerListTopic(filter) {
+  try{
+    const res = yield call(booksModel.getListTopic, filter);
+    const listTopic = res;
+    yield put({type : GET_LIST_TOPIC_SUCCESS, listTopic})
+  } catch(err) {
+  }
+}

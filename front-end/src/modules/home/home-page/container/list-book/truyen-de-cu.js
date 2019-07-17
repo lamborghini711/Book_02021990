@@ -85,8 +85,9 @@ class TruyenDeCu extends Component {
 
     return (
       <div className="response">
-        <h4 className="font-600 pd-top-10 pd-bottom-10 text-color-light">
-        <Icon type="rise" style={{ paddingRight: '3px', fontSize: '22px', fontWeight: 'bold' }} /> Truyện đề cử
+        <h4 className="font-600 pd-top-20 pd-bottom-20 text-color-light">
+          <i className="fa fa-thumbs-o-up" aria-hidden="true" style={{ paddingRight: '8px', fontSize: '22px' }}></i>Truyện đề cử
+          {/* <Icon type="like" style={{ paddingRight: '3px', fontSize: '22px', fontWeight: 'bold' }} /> Truyện đề cử */}
         </h4>
         <div className="row justify-content-md-center">
         <Carousel

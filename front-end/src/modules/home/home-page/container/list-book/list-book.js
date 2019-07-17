@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { Card, Badge, Icon, Pagination } from 'antd';
-import FilterHomePage from '../filter-home-page/filter-home-page';
 import {connect} from 'react-redux';
 import {GET_LIST_BOOKS} from '../../../../../redux/action/admin/book-actions'
 const { Meta } = Card;
@@ -96,20 +95,19 @@ class ListBook extends Component {
           <a href='123'>Xem tất cả</a>
           </div>
         </div>
-        <FilterHomePage/>
           <div className="row justify-content-md-center pd-top-10">
             {listBook}
           </div>
-          <section className="content-footer width-list-book mg-0-auto">
-          <div className="text-center" style={{padding:'10px 0 70px 0'}}>
-            <Pagination
-              total={total}
-              // showTotal={total => `Tất cả ${total} items`}
-              pageSize={32}
-              defaultCurrent={1}
-              onChange = {this.onChange}
-            />
-          </div>
+          <section className="content-footer">
+            <div className="text-center" style={{padding:'10px 0 70px 0'}}>
+              <Pagination
+                total={total}
+                // showTotal={total => `${total} truyện`}
+                pageSize={32}
+                defaultCurrent={1}
+                onChange = {this.onChange}
+              />
+            </div>
         </section>
       </div>
     );

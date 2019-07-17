@@ -28,8 +28,6 @@ router.post('/api/create-book', (req, res) => {
 // GET DETAILS
 router.get('/api/book-detail', (req, res) => {
   let select = {
-    // data_SV1 : 0,
-    // data_SV2 : 0,
     book_appoint: 0,
     book_hot: 0,
   }
@@ -67,7 +65,6 @@ router.get('/api/list-book', (req, res) => {
   let filter = {}
   let limit = 32;
   let page = 0;
-
   if(req.query.book_hot) {
     filter = {
       $or:[
@@ -80,7 +77,6 @@ router.get('/api/list-book', (req, res) => {
   let select = {
     name : 1, cover: 1, read: 1, last_chapter: 1, folow: 1, book_id: 1, book_appoint: 1, book_hot: 1,
   }
-  
   if(req.query.filter) {
     page = parseInt(req.query.filter) -1
   }
@@ -90,6 +86,70 @@ router.get('/api/list-book', (req, res) => {
         respon['total'] = count
       })
   ListBookModel.find(filter,select).limit(limit).skip(limit*page).sort({book_id : -1})
+    .then(doc => {
+      respon['items'] = doc
+      res.json(respon)
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
+})
+
+// GET LIST TOPIC
+router.get('/api/list-topic', (req, res) => {
+  let filter = {};
+  let sort = {};
+  let limit = 48;
+  let page = 0;
+  let today = new Date();
+  let now = new Date();
+
+  switch(req.query.filter){
+    case 'read':
+      sort = {read : -1};
+      break;
+    case 'top-thang':
+      let last_month = new Date(now.setMonth(now.getMonth() - 1));
+      sort = {read : -1};
+      filter = {
+        updated_at : {$gte:last_month, $lte:today}
+      }
+      break;
+    case 'top-tuan':
+      let last_Week = new Date(now.setDate(now.getDate() - 7))
+      sort = {read : -1};
+      filter = {
+        updated_at : {$gte:last_Week, $lte:today}
+      }
+      break;
+    case 'top-full':
+      sort = {read : -1};
+      filter = {
+        status : 2
+      }
+      break;
+    case 'top-yeu-thich':
+      sort = {folow : -1};
+      break;
+    case 'top-moi-cap-nhat':
+      sort = {updated_at : -1, read: -1};
+      break;
+    
+
+  }
+  
+  let select = {
+    name : 1, cover: 1, read: 1, last_chapter: 1, folow: 1, book_id: 1, book_appoint: 1, book_hot: 1,
+  }
+  if(req.query.filter) {
+    page = parseInt(req.query.filter) -1
+  }
+  let respon = {};
+  ListBookModel.count()
+      .then(count => {
+        respon['total'] = count
+      })
+  ListBookModel.find(filter,select).limit(limit).skip(limit*page).sort(sort)
     .then(doc => {
       respon['items'] = doc
       res.json(respon)
