@@ -7,9 +7,10 @@ import {GET_BOOK_DETAIL} from './../../../redux/action/admin/book-actions';
 const moment = require('moment');
 
 class BookSelectBody extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.bookDetailStore(this.props.id) // su dung reducer trong store, // dispatch 'LIST_BOOKS'
   }
+
   render() {
     let data = this.props.bookData
     let name = "";

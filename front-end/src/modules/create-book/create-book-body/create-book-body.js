@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import ReactUploadImage from './upload-image';
-import { Tag, Input, Icon, Button, notification } from 'antd';
-import { TweenOneGroup } from 'rc-tween-one';
+import { Input, Button, notification, Select } from 'antd';
 import {connect} from 'react-redux';
 import {CREATE_BOOK} from './../../../redux/action/admin/create-book-action';
 import _ from 'lodash'
+const { Option } = Select;
+
 
 const { TextArea } = Input;
 let origin_state = {}
 class CreateBookBody extends Component {
-  //=========================== start tag =================================//
   state = {
     tags: [],
     inputVisible: false,
@@ -18,64 +18,19 @@ class CreateBookBody extends Component {
     another_name: '',
     country:'',
     author: '',
-    book_hot: false,
     book_appoint: false,
     cover: '',
     data: [],
     chapter_name: '',
+    full_text_search: '',
+    translate: '',
+    year: '',
+    content: '',
   };
-
-  handleClose = removedTag => {
-    const tags = this.state.tags.filter(tag => tag !== removedTag);
-    this.setState({ tags });
-  };
-
-  showInput = () => {
-    this.setState({ inputVisible: true }, () => this.input.focus());
-  };
-
-  handleInputChange = e => {
-    this.setState({ inputValue: e.target.value });
-  };
-
-  handleInputConfirm = () => {
-    const { inputValue } = this.state;
-    let { tags } = this.state;
-    if (inputValue && tags.indexOf(inputValue) === -1) {
-      tags = [...tags, inputValue];
-    }
-    this.setState({
-      tags,
-      inputVisible: false,
-      inputValue: '',
-    });
-  };
-
-  saveInputRef = input => (this.input = input);
-
-  forMap = tag => {
-    const tagElem = (
-      <Tag
-        closable
-        onClose={e => {
-          e.preventDefault();
-          this.handleClose(tag);
-        }}
-      >
-        {tag}
-      </Tag>
-    );
-    return (
-      <span key={tag} style={{ display: 'inline-block' }}>
-        {tagElem}
-      </span>
-    );
-  };
-  //=========================== end tag =================================//
-
+  
   name = e => {
     const { value } = e.target;
-    this.setState({name : value})
+    this.setState({name : value,})
   }
   another_name = e => {
     const { value } = e.target;
@@ -92,10 +47,6 @@ class CreateBookBody extends Component {
   author = e => {
     const { value } = e.target;
     this.setState({author : value})
-  }
-  book_hot = e => {
-    const value  = e.target.checked;
-    this.setState({book_hot : value})
   }
   book_appoint = e => {
     const value = e.target.checked;
@@ -119,9 +70,17 @@ class CreateBookBody extends Component {
     const { value } = e.target;
     this.setState({chapter_name : value})
   }
+  tag = e => {
+    this.setState({tags : e})
+  }
+  translate = e => {
+    const { value } = e.target;
+    this.setState({translate : value})
+  }
   create = e => {
+    let fullText = this.state.name + ' ' + this.state.another_name + ' ' + this.state.tags + ' ' + this.state.author + ' ' + this.state.country;
     let obj = {
-      tags : this.state.tags,
+      tag : this.state.tags,
       name : this.state.name,
       another_name : this.state.another_name,
       country : this.state.country,
@@ -136,6 +95,31 @@ class CreateBookBody extends Component {
         image : this.state.data,
       }],
       created_at: new Date(),
+      updated_at: new Date(),
+      full_text_search: to_slug(fullText),
+      translate: this.state.translate,
+      content: this.state.content,
+    }
+
+  function to_slug(str){
+    // Chuyển hết sang chữ thường
+    str = str.toLowerCase();     
+    // xóa dấu
+    str = str.replace(/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/g, 'a');
+    str = str.replace(/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/g, 'e');
+    str = str.replace(/(ì|í|ị|ỉ|ĩ)/g, 'i');
+    str = str.replace(/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/g, 'o');
+    str = str.replace(/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/g, 'u');
+    str = str.replace(/(ỳ|ý|ỵ|ỷ|ỹ)/g, 'y');
+    str = str.replace(/(đ)/g, 'd');
+    // xóa phần dự - ở đầu
+    str = str.replace(/^-+/g, '');
+    // xoa dau ,
+    str = str.replace(/(,)/g, ' ');
+    // xóa phần dư - ở cuối
+    str = str.replace(/-+$/g, '');
+    // return
+    return str;
     }
     this.props.createBook(obj);
     this.setState(origin_state) 
@@ -144,103 +128,95 @@ class CreateBookBody extends Component {
   componentDidMount(){
     origin_state = _.cloneDeep(this.state)
   }
-  componentWillReceiveProps(){
-    debugger
-    if(this.props.response.status === 201) {
+
+  render() {
+    let disableBtn = true;
+    if(this.props.response.createBook.status) {
       notification.open({
-        message: 'Notification Title',
+        message: 'Tạo thành công',
         description:
-          'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+          `Chúc mừng bạn đã tạo truyện '${this.props.response.createBook.data.name}' thành công`,
         onClick: () => {
           console.log('Notification Clicked!');
         },
       });
     }
-  }
-
-  render() {
-    const { tags, inputVisible, inputValue } = this.state;
-    const tagChild = tags.map(this.forMap);
-    
+    if(this.state.name && this.state.cover && this.state.tags.length>0 ){
+      disableBtn = false
+    }
     return (
       <div className="content-wrapper min-height-page  ">
         <div className="create-title pd-all-30">Tạo truyện tranh mới</div>
         <div className="mg-0-auto pd-tb-10" style={{width:'900px'}}>
           <form className="form-inline">
-            <label className="text-style font-700">Tên truyện</label>
+            <label className="text-style font-700 text-color-primary">Tên truyện (*)</label>
             <input onChange={this.name} value={this.state.name} type="text" className="form-control input-style float-right"  />
           </form>
           <form className="form-inline mg-top-20">
             <label className="text-style font-700">Tên khác</label>
-            <input onChange={this.another_name} type="text" className="form-control input-style float-right"  />
+            <input onChange={this.another_name} value={this.state.another_name} type="text" className="form-control input-style float-right"  />
           </form>
           <form className="form-inline mg-top-20">
             <label className="text-style font-700">Country</label>
-            <input onChange={this.country} type="text" className="form-control input-style float-right"  />
+            <input onChange={this.country} value={this.state.country} type="text" className="form-control input-style float-right"  />
           </form>
           <form className="form-inline mg-top-20">
             <label className="text-style font-700">Năm</label>
-            <input onChange={this.year} type="number" className="form-control input-style float-right"  />
+            <input onChange={this.year} value={this.state.year} type="number" className="form-control input-style float-right"  />
           </form>
           <form className="form-inline mg-top-20">
             <label className="text-style font-700">Tác giả</label>
-            <input onChange={this.author} type="text" className="form-control input-style float-right"  />
+            <input onChange={this.author} value={this.state.author} type="text" className="form-control input-style float-right"  />
           </form>
           <form className="form-inline mg-top-20">
-            <label className="checkbox-inline text-style pd-all-0 font-700">Truyện hot</label>
-            <label className="container-create">
-              <input onChange={this.book_hot} type="checkbox" />
-              <span className="checkmark" />
-            </label>
+            <label className="text-style font-700">Nhóm dịch</label>
+            <input onChange={this.translate} value={this.state.translate} type="text" className="form-control input-style float-right"  />
           </form>
+          
           <form className="form-inline mg-top-20 ">
             <label className="checkbox-inline text-style pd-all-0 font-700">Truyện đề cử</label>
             <label className="container-create">
-              <input onChange={this.book_appoint} type="checkbox" />
+              <input onChange={this.book_appoint} value={this.state.book_appoint} type="checkbox" />
               <span className="checkmark" />
             </label>
           </form>
           {/* start tag */}
           <form className="form-inline mg-top-20 mg-bottom-20">
-            <label className="text-style font-700">Thể loại</label>
+            <label className="text-style font-700 text-color-primary">Thể loại (*)</label>
             <div className="inline" style={{ marginBottom: 16 }}>
-              <TweenOneGroup
-                enter={{
-                  scale: 0.8,
-                  opacity: 0,
-                  type: 'from',
-                  duration: 100,
-                  onComplete: e => {
-                    e.target.style = '';
-                  },
-                }}
-                leave={{ opacity: 0, width: 0, scale: 0, duration: 200 }}
-                appear={false}
-              >
-                {tagChild}
-              </TweenOneGroup>
+            <Select
+              mode="multiple"
+              style={{ width: '740px' }}
+              placeholder="Vui lòng chọn"
+              onChange={this.tag}
+              // defaultValue="Action"
+            >
+              <Option value="Action">Action</Option>
+              <Option value="Adventure">Adventure</Option>
+              <Option value="Aldult">Aldult</Option>
+              <Option value="Manhua">Manhua</Option>
+              <Option value="Anime">Anime</Option>
+              <Option value="Chuyển sinh">Chuyển sinh</Option>
+              <Option value="Comic">Comic</Option>
+              <Option value="Lịch sử">Lịch sử</Option>
+              <Option value="Fantasy">Fantasy</Option>
+              <Option value="Ngôn tình">Ngôn tình</Option>
+              <Option value="Romance">Romance</Option>
+              <Option value="School life">School life</Option>
+              <Option value="Trinh thám">Trinh thám</Option>
+              <Option value="Xuyên không">Xuyên không</Option>
+              <Option value="Ecchi">Ecchi</Option>
+              <Option value="Magic">Magic</Option>
+              <Option value="Drama">Drama</Option>
+              <Option value="18+">18+</Option>
+              <Option value="16+">16+</Option>
+
+            </Select>
             </div>
-            {inputVisible && (
-              <Input
-                ref={this.saveInputRef}
-                type="text"
-                size="small"
-                style={{ width: 100 }}
-                value={inputValue}
-                onChange={this.handleInputChange}
-                onBlur={this.handleInputConfirm}
-                onPressEnter={this.handleInputConfirm}
-              />
-            )}
-            {!inputVisible && (
-              <Tag onClick={this.showInput} style={{ background: '#272727', color:'#cdcdcd', border: '1px dashed #636363', cursor: 'pointer' }}>
-                <Icon type="plus" /> Tạo Tag
-              </Tag>
-            )}
           </form>
           {/* end tag */}
           <div className="row mg-top-20 mg-all-0" style={{borderTop: '1px solid #272727', borderBottom: '1px solid #272727', height:'260px', paddingTop:'20px'}}>
-            <div className="col-md-3 text-style pd-all-0 mg-top-10 font-700">Ảnh bìa</div>
+            <div className="col-md-3 text-style pd-all-0 mg-top-10 font-700 text-color-primary">Ảnh bìa (*)</div>
             <div className="col-md-9 inline content-upload">
               <ReactUploadImage cover={this.cover}/>
             </div>
@@ -248,11 +224,11 @@ class CreateBookBody extends Component {
           <br/>
           <form className="form-inline mg-bottom-20">
             <label className="text-style pd-all-0 font-700">Nội dung truyện</label>
-            <TextArea onChange={this.content} rows={4} />
+            <TextArea onChange={this.content} value={this.state.content} rows={4} />
           </form>
           <form className="form-inline mg-top-20">
             <label className="text-style font-700">Tên chương</label>
-            <input onChange={this.chapter_name} type="text" className="form-control input-style float-right"  />
+            <input onChange={this.chapter_name} value={this.state.chapter_name} type="text" className="form-control input-style float-right"  />
           </form>
           <div className="row mg-all-0 pd-top-20" style={{ minHeight:'260px'}}>
             <div className="col-md-3 text-style pd-all-0 mg-top-10 font-700">Chương 0</div>
@@ -261,7 +237,7 @@ class CreateBookBody extends Component {
             </div>
           </div>
           <div className="text-right">
-            <Button  style={{margin:'60px 0 50px 0'}} onClick={this.create}>
+            <Button  style={{margin:'60px 0 50px 0'}} onClick={this.create} disabled={disableBtn}>
               Tạo truyện
             </Button>
           </div>
@@ -273,7 +249,7 @@ class CreateBookBody extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    response: state.createBook.createBook
+    response: state.createBook
   }
 }
 

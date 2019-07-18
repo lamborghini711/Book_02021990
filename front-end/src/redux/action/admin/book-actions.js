@@ -13,6 +13,11 @@ export const GET_CHAPTER = 'GET_CHAPTER';
 export const GET_CHAPTER_SUCCESS = 'GET_CHAPTER_SUCCESS';
 export const GET_LIST_TOPIC = 'GET_LIST_TOPIC';
 export const GET_LIST_TOPIC_SUCCESS = 'GET_LIST_TOPIC_SUCCESS';
+export const GET_BOOK_SEARCH = 'GET_BOOK_SEARCH';
+export const GET_BOOK_SEARCH_SUCCESS = 'GET_BOOK_SEARCH_SUCCESS';
+export const GET_BOOK_DETAIL_CHAPTER_SELECT = 'GET_BOOK_DETAIL_CHAPTER_SELECT';
+export const GET_BOOK_DETAIL_CHAPTER_SELECT_SUCCESS = 'GET_BOOK_DETAIL_CHAPTER_SELECT_SUCCESS';
+
 
 
 
@@ -24,6 +29,8 @@ export default [
   watcherGetBookDetail(),
   watcherGetChapter(),
   watcherListTopic(),
+  watcherBookSearch(),
+  watcherGetChapterSelect(),
 ]
 
 function* watcherGetListBooks() {
@@ -95,6 +102,31 @@ function* workerListTopic(filter) {
     const res = yield call(booksModel.getListTopic, filter);
     const listTopic = res;
     yield put({type : GET_LIST_TOPIC_SUCCESS, listTopic})
+  } catch(err) {
+  }
+}
+
+function* watcherBookSearch() {
+  yield takeLatest(GET_BOOK_SEARCH, workerBookSearch);
+}
+function* workerBookSearch(filter) {
+  try{
+    const res = yield call(booksModel.getBookSearch, filter);
+    const bookSearch = res;
+    yield put({type : GET_BOOK_SEARCH_SUCCESS, bookSearch})
+  } catch(err) {
+  }
+}
+
+function* watcherGetChapterSelect() {
+  yield takeLatest(GET_BOOK_DETAIL_CHAPTER_SELECT, workerGetChapterSelect);
+}
+function* workerGetChapterSelect(filter) {
+  try{
+
+    const res = yield call(booksModel.getChapter, filter);
+    const chapter = res;
+    yield put({type : GET_BOOK_DETAIL_CHAPTER_SELECT_SUCCESS, chapter})
   } catch(err) {
   }
 }

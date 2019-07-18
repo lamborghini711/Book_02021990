@@ -14,7 +14,6 @@ class BodyTopic extends Component {
   }
 
   componentDidUpdate(){
-    
     let val = this.props.param.params.slug;
     if(this.state.oldTopic !== val) {
       let filter = ''
@@ -49,12 +48,10 @@ class BodyTopic extends Component {
       }
       this.props.listTopic(filter) // su dung reducer trong store
     }
-    
-    
   }
 
   onChange = e => {
-    this.props.listTopic(e)
+    // this.props.listTopic(e)
   }
   render() {
     var listBook = [];

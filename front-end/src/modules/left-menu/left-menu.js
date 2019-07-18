@@ -30,7 +30,7 @@ class LeftMenu extends Component {
             <ul className="sidebar-menu" data-widget="tree">
 
               <li className="header">Xếp hạng</li>
-              <li className="active"><Link to={"topic-top-all"} className='font-13'><i className="fa fa-calendar-o text-aqua" /> <span>Top all</span></Link></li>
+              <li className=""><Link to={"topic-top-all"} className='font-13'><i className="fa fa-calendar-o text-aqua" /> <span>Top all</span></Link></li>
               <li><Link to="topic-top-thang" className='font-13'><i className="fa fa-calendar-o" /> <span>Top tháng</span></Link></li>
               <li><Link to="topic-top-tuan" className='font-13'><i className="fa fa-calendar-o text-yellow" /> <span>Top tuần</span></Link></li>
               <li><Link to="topic-truyen-da-hoan-tat" className='font-13'><i className="fa fa-check" /> <span>Truyện đã hoàn tất</span></Link></li>

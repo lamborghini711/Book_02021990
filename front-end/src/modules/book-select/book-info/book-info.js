@@ -4,25 +4,30 @@ import { Link } from "react-router-dom";
 
 class BookInfo extends Component {
   render() {
-    let cover = "";
-    let alt = "";
-    let content = "";
-    let another_name = "";
-    let author = "";
-    let status = "";
+    let cover = "Đang cập nhật";
+    let alt = "Đang cập nhật";
+    let content = "Đang cập nhật";
+    let another_name = "Đang cập nhật";
+    let author = "Đang cập nhật";
+    let status = "Đang cập nhật";
     let view = 0;
     let folow = 0;
     let tag = [];
-    let name = "";
+    let name = "Đang cập nhật";
     let id = "";
+    let translate = 'Đang cập nhật';
     if (this.props.data) {
       let data = this.props.data;
       cover = this.props.data.cover;
+      translate = this.props.data.translate;
       alt = this.props.data.name;
       content = this.props.data.content;
       another_name = this.props.data.another_name;
       author = this.props.data.author;
-      status = this.props.data.status;
+      if (this.props.data.status) {
+        status = 'Hoàn tất'
+      }
+
       view = this.props.data.read;
       folow = this.props.data.folow;
       let _tag = this.props.data.tag;
@@ -82,7 +87,7 @@ class BookInfo extends Component {
             </div>
             <div className="row pd-tb-5">
               <div className="col-md-3 info-left"><Icon type="alipay" style={{paddingRight:'10px'}} />Nhóm dịch:</div>
-              <div className="col-md-9">Anime - Manga TV</div>
+              <div className="col-md-9">{translate}</div>
             </div>
             <div className="row pd-tb-5">
               <div className="col-md-3 info-left"><Icon type="tag" style={{paddingRight:'10px'}} />Thể loại:</div>

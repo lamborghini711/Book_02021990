@@ -1,20 +1,36 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+import styled from 'styled-components';
+import ItemsCarousel from 'react-items-carousel';
 import { Card, Badge, Icon } from 'antd';
+import {connect} from 'react-redux';
 const { Meta } = Card;
 
+const noOfItems = 15;
+const noOfCards = 8;
+// const autoPlayDelay = 2000;
+const chevronWidth = 40;
+const Wrapper = styled.div`
+  padding: 0px;
+  max-width: 1400px;
+  margin: 0 auto;
+`;
+
 class TruyenDeCu extends Component {
+  state={
+    activeItemIndex: 0,
+  }
+
+  tick = () => this.setState(prevState => ({
+    activeItemIndex: (prevState.activeItemIndex + 1) % (noOfItems-noOfCards + 1),
+  }));
+
+  onChange = value => this.setState({ activeItemIndex: value });
+  
   render() {
     var listDeCu = [];
     if (this.props.bookData) {
-      var itemsDeCu = []
-      for(let j in this.props.bookData.items){
-        if(this.props.bookData.items[j].book_appoint === true) {
-          itemsDeCu.push(this.props.bookData.items[j])
-        }
-      }
+      var itemsDeCu = this.props.bookData.items
       var limit = itemsDeCu.length;
       for(let i=0 ; i<limit; i++) {
         listDeCu.push(
@@ -44,29 +60,7 @@ class TruyenDeCu extends Component {
         )
       }
     }
-    const responsive = {
-      desktop1080: {
-        breakpoint: { max: 3000, min: 1600 },
-        items: 8,
-      },
-      desktophd1: {
-        breakpoint: { max: 1600, min: 1440 },
-        items: 7,
-      },
-      desktophd7: {
-        breakpoint: { max: 1440, min: 1200 },
-        items: 6,
-      },
-     
-      desktophd3: {
-        breakpoint: { max: 1200, min: 1024 },
-        items: 5,
-      },
-      tablet: {
-        breakpoint: { max: 1024, min: 0 },
-        items: 2,
-      },
-    };
+    
     function to_slug(str){
       str = str.toLowerCase();     
       str = str.replace(/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/g, 'a');
@@ -87,29 +81,21 @@ class TruyenDeCu extends Component {
       <div className="response">
         <h4 className="font-600 pd-top-20 pd-bottom-20 text-color-light">
           <i className="fa fa-thumbs-o-up" aria-hidden="true" style={{ paddingRight: '8px', fontSize: '22px' }}></i>Truyện đề cử
-          {/* <Icon type="like" style={{ paddingRight: '3px', fontSize: '22px', fontWeight: 'bold' }} /> Truyện đề cử */}
         </h4>
         <div className="row justify-content-md-center">
-        <Carousel
-          additionalTransfrom={0}
-          arrows
-          centerMode={false}
-          containerClass=""
-          deviceType={this.props.deviceType}
-          dotListClass=""
-          draggable
-          focusOnSelect={false}
-          infinite
-          itemClass=""
-          keyBoardControl
-          minimumTouchDrag={80}
-          sliderClass=""
-          slidesToSlide={1}
-          swipeable
-          responsive={responsive}
-        >
-            {listDeCu}
-        </Carousel>
+        <Wrapper>
+          <ItemsCarousel
+            gutter={12}
+            numberOfCards={noOfCards}
+            activeItemIndex={this.state.activeItemIndex}
+            requestToChangeActive={this.onChange}
+            rightChevron={<button className="react-multiple-carousel__arrow react-multiple-carousel__arrow--right"><i className="fa fa-chevron-right" aria-hidden="true"></i></button>}
+            leftChevron={<button className="react-multiple-carousel__arrow react-multiple-carousel__arrow--left"><i className="fa fa-chevron-left" aria-hidden="true"></i></button>}
+            chevronWidth={chevronWidth}
+            outsideChevron
+            children={listDeCu}
+          />
+        </Wrapper>
         </div>
         <hr/>
       </div>
@@ -117,4 +103,9 @@ class TruyenDeCu extends Component {
   }
 }
 
-export default TruyenDeCu;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    bookData: state.listBooks.bookAppointData.data
+  }
+}
+export default connect(mapStateToProps)(TruyenDeCu);

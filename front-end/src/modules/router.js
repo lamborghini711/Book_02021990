@@ -6,14 +6,14 @@ import BookDetail from './book-detail/book-detail';
 import CreateBook from './create-book/create-book';
 import EditBook from './edit-book/edit-book';
 import Topic from './topic/home-topic'
-import ScrollToTop from 'react-router-scroll-top'
-
+import ScrollToTop from 'react-router-scroll-top';
+import history from './history'
 
 class RouterUrl extends Component {
 
   render() {
     return (
-      <Router>
+      <Router history = {history}>
         <ScrollToTop>
           <Route exact path="/" component={Home} />
           <Route exact path="/truyen-:slug.:id" component={BookSelect} />

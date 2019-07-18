@@ -51,7 +51,36 @@ router.get('/api/get-chapter', (req, res) => {
   let filter = {
     book_id: parseInt(req.query.filter)
   }
+  
   ListBookModel.findOne(filter, select)
+    .then(doc => {
+      let response = [];
+      if (req.query.chapter){
+        let chapter = parseFloat(req.query.chapter)
+        for(let i = 0; i< doc.data_SV1.length; i++){
+          if (doc.data_SV1[i].chapter_number === chapter) {
+            response.push(doc.data_SV1[i])
+          }
+        }
+      } else {
+        response = doc
+      }
+      res.json(response)
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
+})
+
+// SEARCH
+router.get('/api/search', (req, res) => {
+  let select = {
+    name : 1, cover: 1, book_id: 1,
+  }
+  let filter = {
+    full_text_search: {$regex : req.query.filter}
+  }
+  ListBookModel.find(filter, select)
     .then(doc => {
       res.json(doc)
     })
@@ -62,20 +91,27 @@ router.get('/api/get-chapter', (req, res) => {
 
 // GET LIST
 router.get('/api/list-book', (req, res) => {
-  let filter = {}
+  let filter = {};
+  let sort = {updated_at : -1};
   let limit = 32;
   let page = 0;
   if(req.query.book_hot) {
-    filter = {
-      $or:[
-        {book_appoint : true},
-        {book_hot : true}
-      ]
-    }
+    let today = new Date();
+    let now = new Date();
+    let last_Week = new Date(now.setDate(now.getDate() - 7))
+      filter = {
+        updated_at : {$gte:last_Week, $lte:today}
+      }
     limit = 15;
+    sort = {read : -1};
+  }
+  if(req.query.book_appoint) {
+    filter = {book_appoint : true}
+    limit = 15;
+    sort = {read : -1};
   }
   let select = {
-    name : 1, cover: 1, read: 1, last_chapter: 1, folow: 1, book_id: 1, book_appoint: 1, book_hot: 1,
+    name : 1, cover: 1, read: 1, last_chapter: 1, folow: 1, book_id: 1,
   }
   if(req.query.filter) {
     page = parseInt(req.query.filter) -1
@@ -85,7 +121,7 @@ router.get('/api/list-book', (req, res) => {
       .then(count => {
         respon['total'] = count
       })
-  ListBookModel.find(filter,select).limit(limit).skip(limit*page).sort({book_id : -1})
+  ListBookModel.find(filter,select).limit(limit).skip(limit*page).sort(sort)
     .then(doc => {
       respon['items'] = doc
       res.json(respon)
@@ -103,7 +139,6 @@ router.get('/api/list-topic', (req, res) => {
   let page = 0;
   let today = new Date();
   let now = new Date();
-
   switch(req.query.filter){
     case 'read':
       sort = {read : -1};

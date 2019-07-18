@@ -35,7 +35,6 @@ class ReactUploadImage extends React.Component {
             if(this.props.data_SV1){
               this.props.data_SV1(this.state.fileUploads)
             }
-              
           }).catch((error) => {
       });
     }
@@ -44,14 +43,19 @@ class ReactUploadImage extends React.Component {
     }
 
     render() {
-      var fileName = 'Chưa chọn file';
+      let buttonUpload = [];
+      if(this.state.file){
+        buttonUpload.push(
+          <button key ={1} className="ant-btn ant-btn-primary float-right mg-left-10" type="submit"><Icon type="upload" className="pd-right-5" />Upload</button>
+        )
+      }
+      var fileName = 'Chọn file từ máy tính';
       if(this.state.file) {
         fileName = this.state.file.name
       }
       const fileList = [];
       if(this.state.fileUploads){
         let file = this.state.fileUploads
-        
         if(file.length === 0) {
           fileList.push(<Empty key={1} style={{marginTop: '15px'}} />)
         } else {
@@ -72,7 +76,6 @@ class ReactUploadImage extends React.Component {
             )
           }
         }
-        
       }
 
       return (
@@ -82,7 +85,7 @@ class ReactUploadImage extends React.Component {
                   <input type="file" name="bookImage" onChange= {this.onChange} accept="image/x-png,image/gif,image/jpeg" />
                 </label>
                {fileName}
-              <button className="ant-btn ant-btn-primary float-right mg-left-10" type="submit"><Icon type="upload" className="pd-right-5" />Upload</button>
+               {buttonUpload}
             </form>
             <br/>
             <div className='row mg-all-0'>

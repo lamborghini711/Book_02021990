@@ -33,7 +33,7 @@ class Login extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     var user = JSON.parse(localStorage.getItem('comic_user'));
     this.setState({userLog:user})
   }
@@ -46,6 +46,7 @@ class Login extends Component {
     }
     return (
       <div className="login" >
+          
          <div className="avatar-menu" type="primary" onClick={this.showModal}>
          <img src="/img/icon-web/user2-160x160.jpg" className="user-image" alt="User" />
               <span className="hidden-xs">{name}</span>

@@ -73,6 +73,16 @@ const booksModel = {
       })
     })
   },
+  getBookSearch: (filter) => {
+    return new Promise((resole, reject) => {
+      let url= `${urlApi}/search`;
+      BaseModel.get(url, filter, function(data) {
+        resole(data);
+      },function(err){
+        reject(err)
+      })
+    })
+  },
   
 }
 

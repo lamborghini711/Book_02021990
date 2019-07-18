@@ -6,7 +6,7 @@ class NormalLoginForm extends Component {
   state = {
     login : null
   }
-  componentWillMount() {
+  componentDidMount() {
     var user = JSON.parse(localStorage.getItem('comic_user'));
     this.setState({login:user})
   }

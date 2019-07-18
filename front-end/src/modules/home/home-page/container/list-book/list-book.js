@@ -2,19 +2,15 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { Card, Badge, Icon, Pagination } from 'antd';
 import {connect} from 'react-redux';
-import {GET_LIST_BOOKS} from '../../../../../redux/action/admin/book-actions'
 const { Meta } = Card;
 
 class ListBook extends Component {
   state = {
     page : 1
   }
-  componentDidMount() {
-    this.props.listBookStore() // su dung reducer trong store, // dispatch 'LIST_BOOKS'
-  }
 
   onChange = e => {
-    this.props.listBookStore(e)
+    this.props.paniga(e)
   }
   render() {
     // console.log(this.state.page)
@@ -120,12 +116,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    listBookStore: (filter) => {
-      dispatch({ type : GET_LIST_BOOKS, filter})
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ListBook);
+export default connect(mapStateToProps, null)(ListBook);

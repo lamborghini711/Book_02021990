@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 import {GET_BOOK_DETAIL} from './../../../redux/action/admin/book-actions';
 
 class BookDetailBody extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.bookDetailStore(this.props.param.id)
   }
   render() {

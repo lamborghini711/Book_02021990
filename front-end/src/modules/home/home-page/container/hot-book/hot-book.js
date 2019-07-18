@@ -1,29 +1,51 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+// import 'react-multi-carousel/lib/styles.css';
 import { Card, Badge, Icon } from 'antd';
-
+import {connect} from 'react-redux';
+import styled from 'styled-components';
+import ItemsCarousel from 'react-items-carousel';
 const { Meta } = Card;
+
+
+const noOfItems = 15;
+const noOfCards = 8;
+const autoPlayDelay = 2000;
+const chevronWidth = 40;
+
+const Wrapper = styled.div`
+  padding: 0px;
+  max-width: 1400px;
+  margin: 0 auto;
+`;
 
 class HotBook extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      book_appoint : true
+      book_appoint : true,
+      activeItemIndex: 0,
     }
   }
+
+  componentDidMount() {
+    this.interval = setInterval(this.tick, autoPlayDelay);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  tick = () => this.setState(prevState => ({
+    activeItemIndex: (prevState.activeItemIndex + 1) % (noOfItems-noOfCards + 1),
+  }));
+
+  onChange = value => this.setState({ activeItemIndex: value });
   
   render() {
     var listHot = [];
     if (this.props.bookData) {
-      var itemsHot = []
-      for(let j in this.props.bookData.items){
-        if(this.props.bookData.items[j].book_hot === true) {
-          itemsHot.push(this.props.bookData.items[j])
-        }
-      }
-     
+      var itemsHot = this.props.bookData.items;
       var limit = itemsHot.length;
       for(let i=0 ; i<limit; i++) {
         listHot.push(
@@ -54,28 +76,28 @@ class HotBook extends Component {
       }
     }
     
-    const responsive = {
-      desktop1080: {
-        breakpoint: { max: 3000, min: 1600 },
-        items: 8,
-      },
-      desktophd1: {
-        breakpoint: { max: 1600, min: 1440 },
-        items: 7,
-      },
-      desktophd7: {
-        breakpoint: { max: 1440, min: 1200 },
-        items: 6,
-      },
-      desktophd3: {
-        breakpoint: { max: 1200, min: 1024 },
-        items: 5,
-      },
-      tablet: {
-        breakpoint: { max: 1024, min: 0 },
-        items: 2,
-      },
-    };
+    // const responsive = {
+    //   desktop1080: {
+    //     breakpoint: { max: 3000, min: 1600 },
+    //     items: 8,
+    //   },
+    //   desktophd1: {
+    //     breakpoint: { max: 1600, min: 1440 },
+    //     items: 7,
+    //   },
+    //   desktophd7: {
+    //     breakpoint: { max: 1440, min: 1200 },
+    //     items: 6,
+    //   },
+    //   desktophd3: {
+    //     breakpoint: { max: 1200, min: 1024 },
+    //     items: 5,
+    //   },
+    //   tablet: {
+    //     breakpoint: { max: 1024, min: 0 },
+    //     items: 2,
+    //   },
+    // };
 
     function to_slug(str){
       str = str.toLowerCase();     
@@ -99,25 +121,19 @@ class HotBook extends Component {
         <Icon type="rise" style={{ paddingRight: '3px', fontSize: '22px', fontWeight: 'bold' }} /> Đang Hot 
         </h4>
         <div className="row justify-content-md-center mg-bottom-10">
-        <Carousel
-          ssr={true} // means to render carousel on server-side.
-          additionalTransfrom={0}
-          arrows
-          autoPlaySpeed={1500}
-          centerMode={false}
-          autoPlay={this.props.deviceType !== "mobile" ? true : false}
-          deviceType={this.props.deviceType}
-          draggable
-          focusOnSelect={false}
-          infinite
-          keyBoardControl
-          minimumTouchDrag={80}
-          slidesToSlide={1}
-          swipeable
-          responsive={responsive}
-        >
-            {listHot}
-        </Carousel>
+        <Wrapper>
+          <ItemsCarousel
+            gutter={12}
+            numberOfCards={noOfCards}
+            activeItemIndex={this.state.activeItemIndex}
+            requestToChangeActive={this.onChange}
+            rightChevron={<button className="react-multiple-carousel__arrow react-multiple-carousel__arrow--right"><i className="fa fa-chevron-right" aria-hidden="true"></i></button>}
+            leftChevron={<button className="react-multiple-carousel__arrow react-multiple-carousel__arrow--left"><i className="fa fa-chevron-left" aria-hidden="true"></i></button>}
+            chevronWidth={chevronWidth}
+            outsideChevron
+            children={listHot}
+          />
+        </Wrapper>
         </div>
         <hr className="mg-all-0"/>
       </div>
@@ -125,4 +141,9 @@ class HotBook extends Component {
   }
 }
 
-export default HotBook;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    bookData: state.listBooks.bookHotData.data
+  }
+}
+export default connect(mapStateToProps)(HotBook);
