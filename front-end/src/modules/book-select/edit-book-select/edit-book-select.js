@@ -121,6 +121,7 @@ class EditBookSelect extends Component {
       content: this.state.content,
       book_id: this.state.book_id,
       status: this.state.status,
+      year: this.state.year,
     }
     function to_slug(str){
       // Chuyển hết sang chữ thường
@@ -155,7 +156,7 @@ class EditBookSelect extends Component {
     let titleModal = 'Chỉnh sửa truyện: ' + this.state.name;
     return (
       <div  className="float-right">
-        <span><Button onClick={this.showModal} type='primary'><Icon type="setting" /> Chỉnh sửa</Button></span>
+        <span><Button onClick={this.showModal} ><Icon type="setting" /> Chỉnh sửa</Button></span>
         <Modal
           width={1000}
           title={titleModal}

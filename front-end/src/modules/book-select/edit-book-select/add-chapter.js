@@ -81,7 +81,8 @@ class AddChapter extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    bookData: state.bookDetail.bookData.data
+    bookData: state.bookDetail.bookData.data,
+    // response: state.createBook.updateBook
   }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {

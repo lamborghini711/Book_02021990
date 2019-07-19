@@ -21,8 +21,6 @@ function to_slug(str){
   str = str.replace(/(đ)/g, 'd');
   // Xóa ký tự đặc biệt
   str = str.replace(/([^0-9a-z-\s])/g, '');
-  // Xóa khoảng trắng thay bằng ký tự -
-  str = str.replace(/(\s+)/g, '-');
   // xóa phần dự - ở đầu
   str = str.replace(/^-+/g, '');
   // xóa phần dư - ở cuối

@@ -16,6 +16,7 @@ class BookInfo extends Component {
     let name = "Đang cập nhật";
     let id = "";
     let translate = 'Đang cập nhật';
+    let year = 2019;
     if (this.props.data) {
       let data = this.props.data;
       cover = this.props.data.cover;
@@ -26,8 +27,8 @@ class BookInfo extends Component {
       author = this.props.data.author;
       if (this.props.data.status) {
         status = 'Hoàn tất'
-      }
-
+      };
+      year = this.props.data.year;
       view = this.props.data.read;
       folow = this.props.data.folow;
       let _tag = this.props.data.tag;
@@ -90,10 +91,13 @@ class BookInfo extends Component {
               <div className="col-md-9">{translate}</div>
             </div>
             <div className="row pd-tb-5">
+              <div className="col-md-3 info-left"><Icon type="alipay" style={{paddingRight:'10px'}} />Năm:</div>
+              <div className="col-md-9">{year}</div>
+            </div>
+            <div className="row pd-tb-5">
               <div className="col-md-3 info-left"><Icon type="tag" style={{paddingRight:'10px'}} />Thể loại:</div>
               <div className="col-md-9">
                 {tag}
-               
               </div>
             </div>
             <div className="row pd-tb-5">

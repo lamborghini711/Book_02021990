@@ -101,7 +101,7 @@ class ReactUploadImage extends React.Component {
       return (
           <div>
             <form onSubmit={this.onFormSubmit} className="upload width-100" >
-                <label className="ant-btn ant-btn-default inline mg-right-10"><Icon type="plus" />
+                <label className="ant-btn  inline mg-right-10"><Icon type="plus" />
                   <input type="file" name="bookImage" onChange= {this.onChange} accept="image/x-png,image/gif,image/jpeg" />
                 </label>
                {fileName}

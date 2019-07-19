@@ -99,6 +99,8 @@ class CreateBookBody extends Component {
       full_text_search: to_slug(fullText),
       translate: this.state.translate,
       content: this.state.content,
+      year: this.state.year,
+
     }
 
     function to_slug(str){
