@@ -63,6 +63,16 @@ const booksModel = {
       })
     })
   },
+  updateBook: (obj) => {
+    return new Promise((resole, reject) => {
+      let url= `${urlApi}/update-book`;
+      BaseModel.put(url, obj, function(data) {
+        resole(data);
+      },function(err){
+        reject(err)
+      })
+    })
+  },
   getListTopic: (filter) => {
     return new Promise((resole, reject) => {
       let url= `${urlApi}/list-topic`;

@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
-import ReactUploadImage from './upload-image';
-import { Input, Button, notification, Select } from 'antd';
+import { Modal, Button, Icon, Select, Input } from 'antd';
+import ReactUploadImage from './../../create-book/create-book-body/upload-image';
 import {connect} from 'react-redux';
-import {CREATE_BOOK} from './../../../redux/action/admin/create-book-action';
-import _ from 'lodash'
+import {UPDATE_BOOK,} from './../../../redux/action/admin/create-book-action';
+import { GET_BOOK_DETAIL} from './../../../redux/action/admin/book-actions';
 const { Option } = Select;
-
-
 const { TextArea } = Input;
-let origin_state = {}
-class CreateBookBody extends Component {
-  state = {
-    tags: [],
+class EditBookSelect extends Component {
+  state = { 
+    visible: false,
+    tag: [],
     inputVisible: false,
     inputValue: '',
     name: '',
@@ -26,8 +24,10 @@ class CreateBookBody extends Component {
     translate: '',
     year: '',
     content: '',
+    book_id: 0,
+    status: false,
   };
-  
+
   name = e => {
     const { value } = e.target;
     this.setState({name : value,})
@@ -62,45 +62,66 @@ class CreateBookBody extends Component {
     const { value } = e.target;
     this.setState({content : value})
   }
-  data_SV1 = e => {
-    const value = e;
-    this.setState({data : value})
-  }
   chapter_name = e => {
     const { value } = e.target;
     this.setState({chapter_name : value})
   }
   tag = e => {
-    this.setState({tags : e})
+    this.setState({tag : e})
   }
   translate = e => {
     const { value } = e.target;
     this.setState({translate : value})
   }
-  create = e => {
-    let fullText = this.state.name + ' ' + this.state.another_name + ' ' + this.state.tags + ' ' + this.state.author + ' ' + this.state.country;
+  status = e => {
+    const value = e.target.checked;
+    this.setState({status : value})
+  }
+  showModal = () => {
+    this.props.bookDetailStore(this.props.id)
+    let e = this.props.bookData
+    let cover = []
+    cover.push({src:e.cover})
+    this.setState({
+      tag: e.tag,
+      name : e.name,
+      another_name : e.another_name,
+      country :e.country,
+      author : e.author,
+      book_appoint : e.book_appoint,
+      cover:cover,
+      translate :e.translate,
+      year : e.year,
+      content : e.content,
+      book_id: e.book_id,
+      status: e.status,
+      visible: true,
+    })
+  };
+
+  handleOk = e => {
+    this.setState({
+      visible: false,
+      book_id : this.state.book_id,
+    });
+    let fullText = this.state.name + ' ' + this.state.another_name + ' ' + this.state.tag + ' ' + this.state.author + ' ' + this.state.country;
     let obj = {
-      tag : this.state.tags,
+      tag : this.state.tag,
       name : this.state.name,
       another_name : this.state.another_name,
       country : this.state.country,
       author : this.state.author,
       book_hot : this.state.book_hot,
       book_appoint : this.state.book_appoint,
-      cover : this.state.cover,
-      data_SV1 : [{
-        created_at: new Date(),
-        chapter_number: 0,
-        chapter_name: this.state.chapter_name,
-        image : this.state.data,
-      }],
+      cover : this.state.cover[0].src,
       created_at: new Date(),
       updated_at: new Date(),
       full_text_search: to_slug(fullText),
       translate: this.state.translate,
       content: this.state.content,
+      book_id: this.state.book_id,
+      status: this.state.status,
     }
-
     function to_slug(str){
       // Chuyển hết sang chữ thường
       str = str.toLowerCase();     
@@ -121,75 +142,77 @@ class CreateBookBody extends Component {
       // return
       return str;
     }
-    this.props.createBook(obj);
-    this.setState(origin_state) 
-  }
+    this.props.updateBook(obj);
+  };
 
-  componentDidMount(){
-    origin_state = _.cloneDeep(this.state)
-  }
+  handleCancel = e => {
+    this.setState({
+      visible: false,
+    });
+  };
 
   render() {
-    let disableBtn = true;
-    if(this.props.response.createBook.status) {
-      notification.open({
-        message: 'Tạo thành công',
-        description:
-          `Chúc mừng bạn đã tạo truyện '${this.props.response.createBook.data.name}' thành công`,
-        onClick: () => {
-          console.log('Notification Clicked!');
-        },
-      });
-    }
-    if(this.state.name && this.state.cover && this.state.tags.length>0 ){
-      disableBtn = false
-    }
+    let titleModal = 'Chỉnh sửa truyện: ' + this.state.name;
     return (
-      <div className="content-wrapper min-height-page  ">
-        <div className="create-title pd-all-30">Tạo truyện tranh mới</div>
-        <div className="mg-0-auto pd-tb-10" style={{width:'900px'}}>
+      <div  className="float-right">
+        <span><Button onClick={this.showModal} type='primary'><Icon type="setting" /> Chỉnh sửa</Button></span>
+        <Modal
+          width={1000}
+          title={titleModal}
+          visible={this.state.visible}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+           <div className="mg-0-auto pd-tb-10" style={{width:'900px'}}>
           <form className="form-inline">
-            <label className="text-style font-700 text-color-primary">Tên truyện (*)</label>
-            <input onChange={this.name} value={this.state.name} type="text" className="form-control input-style float-right"  />
+            <label className="text-modal font-700 text-color-primary">Tên truyện (*)</label>
+            <input onChange={this.name} value={this.state.name} type="text" className="form-control input-modal float-right"  />
           </form>
           <form className="form-inline mg-top-20">
-            <label className="text-style font-700">Tên khác</label>
-            <input onChange={this.another_name} value={this.state.another_name} type="text" className="form-control input-style float-right"  />
+            <label className="text-modal font-700">Tên khác</label>
+            <input onChange={this.another_name} value={this.state.another_name} type="text" className="form-control input-modal float-right"  />
           </form>
           <form className="form-inline mg-top-20">
-            <label className="text-style font-700">Country</label>
-            <input onChange={this.country} value={this.state.country} type="text" className="form-control input-style float-right"  />
+            <label className="text-modal font-700">Country</label>
+            <input onChange={this.country} value={this.state.country} type="text" className="form-control input-modal float-right"  />
           </form>
           <form className="form-inline mg-top-20">
-            <label className="text-style font-700">Năm</label>
-            <input onChange={this.year} value={this.state.year} type="number" className="form-control input-style float-right"  />
+            <label className="text-modal font-700">Năm</label>
+            <input onChange={this.year} value={this.state.year} type="number" className="form-control input-modal float-right"  />
           </form>
           <form className="form-inline mg-top-20">
-            <label className="text-style font-700">Tác giả</label>
-            <input onChange={this.author} value={this.state.author} type="text" className="form-control input-style float-right"  />
+            <label className="text-modal font-700">Tác giả</label>
+            <input onChange={this.author} value={this.state.author} type="text" className="form-control input-modal float-right"  />
           </form>
           <form className="form-inline mg-top-20">
-            <label className="text-style font-700">Nhóm dịch</label>
-            <input onChange={this.translate} value={this.state.translate} type="text" className="form-control input-style float-right"  />
+            <label className="text-modal font-700">Nhóm dịch</label>
+            <input onChange={this.translate} value={this.state.translate} type="text" className="form-control input-modal float-right"  />
           </form>
-          
           <form className="form-inline mg-top-20 ">
-            <label className="checkbox-inline text-style pd-all-0 font-700">Truyện đề cử</label>
+            <label className="checkbox-inline text-modal pd-all-0 font-700">Truyện đề cử</label>
             <label className="container-create">
-              <input onChange={this.book_appoint} value={this.state.book_appoint} type="checkbox" />
+              <input onChange={this.book_appoint} checked={this.state.book_appoint} type="checkbox" />
+              <span className="checkmark" />
+            </label>
+          </form>
+          <form className="form-inline mg-top-20 ">
+            <label className="checkbox-inline text-modal pd-all-0 font-700">Trạng thái hoàn tất</label>
+            <label className="container-create">
+              <input onChange={this.status} checked={this.state.status} type="checkbox" />
               <span className="checkmark" />
             </label>
           </form>
           {/* start tag */}
           <form className="form-inline mg-top-20 mg-bottom-20">
-            <label className="text-style font-700 text-color-primary">Thể loại (*)</label>
-            <div className="inline" style={{ marginBottom: 16 }}>
+            <label className="text-modal font-700 text-color-primary">Thể loại (*)</label>
+            <div className="inline modal-select" style={{ marginBottom: 16 }}>
             <Select
               mode="multiple"
               style={{ width: '740px' }}
               placeholder="Vui lòng chọn"
               onChange={this.tag}
-              // defaultValue="Action"
+              // value={tags}
+              defaultValue={this.state.tag}
             >
               <Option value="Action">Action</Option>
               <Option value="Adventure">Adventure</Option>
@@ -210,38 +233,23 @@ class CreateBookBody extends Component {
               <Option value="Drama">Drama</Option>
               <Option value="18+">18+</Option>
               <Option value="16+">16+</Option>
-
             </Select>
             </div>
           </form>
           {/* end tag */}
-          <div className="row mg-top-20 mg-all-0" style={{borderTop: '1px solid #272727', borderBottom: '1px solid #272727', height:'260px', paddingTop:'20px'}}>
-            <div className="col-md-3 text-style pd-all-0 mg-top-10 font-700 text-color-primary">Ảnh bìa (*)</div>
+          <div className="row mg-top-20 mg-all-0" style={{borderTop: '1px solid #eee', borderBottom: '1px solid #eee', height:'260px', paddingTop:'20px'}}>
+            <div className="col-md-3 text-modal pd-all-0 mg-top-10 font-700 text-color-primary">Ảnh bìa (*)</div>
             <div className="col-md-9 inline content-upload">
-              <ReactUploadImage cover={this.cover}/>
+              <ReactUploadImage cover={this.cover} oldData={this.state.cover}/>
             </div>
           </div>
           <br/>
-          <form className="form-inline mg-bottom-20">
-            <label className="text-style pd-all-0 font-700">Nội dung truyện</label>
+          <form className="mg-bottom-20">
+            <label className="text-modal pd-all-0 font-700">Nội dung truyện</label>
             <TextArea onChange={this.content} value={this.state.content} rows={4} />
           </form>
-          <form className="form-inline mg-top-20">
-            <label className="text-style font-700">Tên chương</label>
-            <input onChange={this.chapter_name} value={this.state.chapter_name} type="text" className="form-control input-style float-right"  />
-          </form>
-          <div className="row mg-all-0 pd-top-20" style={{ minHeight:'260px'}}>
-            <div className="col-md-3 text-style pd-all-0 mg-top-10 font-700">Chương 0</div>
-            <div className="col-md-9 content-upload">
-              <ReactUploadImage data_SV1={this.data_SV1}/>
-            </div>
-          </div>
-          <div className="text-right">
-            <Button  style={{margin:'60px 0 50px 0'}} onClick={this.create} disabled={disableBtn}>
-              Tạo truyện
-            </Button>
-          </div>
         </div>
+        </Modal>
       </div>
     );
   }
@@ -249,16 +257,17 @@ class CreateBookBody extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    response: state.createBook
+    bookData: state.bookDetail.bookData.data
   }
 }
-
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    createBook: (obj) => {
-      dispatch({ type: CREATE_BOOK, obj })
+    updateBook: (obj) => {
+      dispatch({ type: UPDATE_BOOK, obj })
+    },
+    bookDetailStore: (filter) => {
+      dispatch({ type : GET_BOOK_DETAIL, filter})
     }
   }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreateBookBody);
+export default connect(mapStateToProps, mapDispatchToProps)(EditBookSelect);

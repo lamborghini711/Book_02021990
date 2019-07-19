@@ -13,8 +13,8 @@ class BookDetailBody extends Component {
   render() {
     let data = this.props.chapterData;
     return (
-      <div className="content-wrapper body-bg pd-tb-20 pd-lr-40" style={{ minHeight : '1300px'}}>
-        <section className="content-header">
+      <div className="content-wrapper body-bg pd-tb-20" style={{ minHeight : '100vh'}}>
+        <section className="content-header" style = {{padding: '15px 0 0 0'}}>
           <DeatailHeader data={data} param={this.props.param}/>
           <DetailBody  data={data} param={this.props.param}/>
           <DetailFooter/>

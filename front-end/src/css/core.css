@@ -2180,6 +2180,9 @@ a:focus {
 .btn.uppercase {
   text-transform: uppercase;
 }
+.uppercase {
+  text-transform: uppercase;
+}
 .btn.btn-flat {
   border-radius: 0;
   -webkit-box-shadow: none;

@@ -28,8 +28,6 @@ router.post('/api/create-book', (req, res) => {
 // GET DETAILS
 router.get('/api/book-detail', (req, res) => {
   let select = {
-    book_appoint: 0,
-    book_hot: 0,
   }
   let filter = {
     book_id: parseInt(req.query.filter)
@@ -196,12 +194,12 @@ router.get('/api/list-topic', (req, res) => {
 
 // UPDATE
 router.put('/api/update-book', (req, res) => {
-  if(!req.query.book_id) {
+  if(!req.body.obj.book_id) {
     return res.status(400).send('Missing URL parameter: book_id')
   }
   ListBookModel.findOneAndUpdate({
-    book_id: req.query.book_id
-  }, req.body, {
+    book_id: req.body.obj.book_id
+  }, req.body.obj, {
     new: true
   })
     .then(doc => {

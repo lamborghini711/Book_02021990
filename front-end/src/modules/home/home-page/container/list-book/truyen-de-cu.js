@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 const { Meta } = Card;
 
 const noOfItems = 15;
-const noOfCards = 8;
+var noOfCards = 8;
 // const autoPlayDelay = 2000;
 const chevronWidth = 40;
 const Wrapper = styled.div`
@@ -20,7 +20,21 @@ class TruyenDeCu extends Component {
   state={
     activeItemIndex: 0,
   }
-
+  componentDidMount() {
+    var w = window.innerWidth;
+    if(1440 < w && w < 1600){
+      noOfCards = 7;
+    }
+    if(1200 < w  && w < 1440){
+      noOfCards = 6;
+    }
+    if(1024 < w && w < 1200){
+      noOfCards = 5;
+    }
+    if(0 < w && w < 1024){
+      noOfCards = 2;
+    }
+  }
   tick = () => this.setState(prevState => ({
     activeItemIndex: (prevState.activeItemIndex + 1) % (noOfItems-noOfCards + 1),
   }));
@@ -82,7 +96,7 @@ class TruyenDeCu extends Component {
         <h4 className="font-600 pd-top-20 pd-bottom-20 text-color-light">
           <i className="fa fa-thumbs-o-up" aria-hidden="true" style={{ paddingRight: '8px', fontSize: '22px' }}></i>Truyện đề cử
         </h4>
-        <div className="row justify-content-md-center">
+        <div className="row justify-content-md-center response-mg-all-0">
         <Wrapper>
           <ItemsCarousel
             gutter={12}

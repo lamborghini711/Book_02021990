@@ -43,6 +43,7 @@ class ReactUploadImage extends React.Component {
     }
 
     render() {
+      
       let buttonUpload = [];
       if(this.state.file){
         buttonUpload.push(
@@ -54,6 +55,25 @@ class ReactUploadImage extends React.Component {
         fileName = this.state.file.name
       }
       const fileList = [];
+      if(this.props.oldData){
+        let file = this.props.oldData
+        for(let i=0; i< file.length; i++) {
+          fileList.push(
+            <div className='ant-upload-list ant-upload-list-picture' key={i}>
+              <div className="ant-upload-list-item ant-upload-list-item-done">
+                <div className="ant-upload-list-item-info">
+                  <span>
+                    <img className="thumb-upload" src={file[i].src} alt='a'/>
+                    <span className="pd-left-10">{file[i].src}</span>
+                  </span>
+                  <Icon type="edit" className=""/>
+                  <Icon type="close" className="antion antion-close"/>
+                </div>
+              </div>
+            </div>
+          )
+        }
+      }
       if(this.state.fileUploads){
         let file = this.state.fileUploads
         if(file.length === 0) {

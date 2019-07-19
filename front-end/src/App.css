@@ -221,10 +221,19 @@ label {
 }
 .book-title {
   font-size: 25px;
-  font-weight: 600
+  font-weight: 600;
 }
 .mg-0-auto {
   margin: 0 auto!important
+}
+.input-modal{
+  border-radius: 5px;
+  width: 740px!important;
+}
+.text-modal {
+  line-height: 30px;
+  width: 160px;
+  color: #272727;
 }
 .name-orther{
   color: yellow!important;
@@ -596,6 +605,28 @@ hr {
   }
 }
 @media (max-width: 767px) {
+  .response-none {
+    display: none!important
+  }
+}
+@media (max-width: 767px) {
+  .response-mg-all-0{
+    margin: 0px!important
+  }
+}
+@media (max-width: 767px) {
+  
+}
+@media (max-width: 767px) {
+  .thumb-cover {
+    width: 170px;
+    height: 240px;
+  }
+}
+
+
+
+@media (max-width: 767px) {
   .me .ant-input-search{
     width: 100%;
   }
@@ -889,6 +920,10 @@ hr {
 .me .ant-select .ant-select-selection {
   background-color: #121212!important;
   border-radius: 20px;
+}
+.modal-select .ant-select .ant-select-selection {
+  background-color: #fff!important;
+  border: 1px solid #d9d9d9!important;
 }
 .light .ant-select .ant-select-selection {
   background-color: #fff!important;

@@ -9,10 +9,32 @@ const { Meta } = Card;
 
 
 const noOfItems = 15;
-const noOfCards = 8;
+var noOfCards = 8;
 const autoPlayDelay = 2000;
 const chevronWidth = 40;
 
+    // const responsive = {
+    //   desktop1080: {
+    //     breakpoint: { max: 3000, min: 1600 },
+    //     items: 8,
+    //   },
+    //   desktophd1: {
+    //     breakpoint: { max: 1600, min: 1440 },
+    //     items: 7,
+    //   },
+    //   desktophd7: {
+    //     breakpoint: { max: 1440, min: 1200 },
+    //     items: 6,
+    //   },
+    //   desktophd3: {
+    //     breakpoint: { max: 1200, min: 1024 },
+    //     items: 5,
+    //   },
+    //   tablet: {
+    //     breakpoint: { max: 1024, min: 0 },
+    //     items: 2,
+    //   },
+    // };
 const Wrapper = styled.div`
   padding: 0px;
   max-width: 1400px;
@@ -30,6 +52,19 @@ class HotBook extends Component {
 
   componentDidMount() {
     this.interval = setInterval(this.tick, autoPlayDelay);
+    var w = window.innerWidth;
+    if(1440 < w && w < 1600){
+      noOfCards = 7;
+    }
+    if(1200 < w  && w < 1440){
+      noOfCards = 6;
+    }
+    if(1024 < w && w < 1200){
+      noOfCards = 5;
+    }
+    if(0 < w && w < 1024){
+      noOfCards = 2;
+    }
   }
 
   componentWillUnmount() {
@@ -76,28 +111,7 @@ class HotBook extends Component {
       }
     }
     
-    // const responsive = {
-    //   desktop1080: {
-    //     breakpoint: { max: 3000, min: 1600 },
-    //     items: 8,
-    //   },
-    //   desktophd1: {
-    //     breakpoint: { max: 1600, min: 1440 },
-    //     items: 7,
-    //   },
-    //   desktophd7: {
-    //     breakpoint: { max: 1440, min: 1200 },
-    //     items: 6,
-    //   },
-    //   desktophd3: {
-    //     breakpoint: { max: 1200, min: 1024 },
-    //     items: 5,
-    //   },
-    //   tablet: {
-    //     breakpoint: { max: 1024, min: 0 },
-    //     items: 2,
-    //   },
-    // };
+
 
     function to_slug(str){
       str = str.toLowerCase();     
@@ -120,7 +134,7 @@ class HotBook extends Component {
         <h4 className="font-600 pd-top-10 pd-bottom-10 text-color-light">
         <Icon type="rise" style={{ paddingRight: '3px', fontSize: '22px', fontWeight: 'bold' }} /> Đang Hot 
         </h4>
-        <div className="row justify-content-md-center mg-bottom-10">
+        <div className="row justify-content-md-center mg-bottom-10 response-mg-all-0">
         <Wrapper>
           <ItemsCarousel
             gutter={12}

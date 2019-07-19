@@ -68,7 +68,6 @@ class AdminHeader extends Component {
   render() {
     let dataSearch = []
     if(this.props.bookSearch.data){
-      console.log(this.props.bookSearch)
       let list = this.props.bookSearch.data;
       for (let i = 0; i < list.length; i++) {
         dataSearch.push(
@@ -109,14 +108,11 @@ class AdminHeader extends Component {
                     optionLabelProp='text' 
                     onSelect={this.handleSelect}
                   />
-                   
-                 
                   </span>
                   <span className="icon-search-me">
                   <i className="fa fa-search certain-category-icon" aria-hidden="true"></i>
                   </span>
                   </div>
-                  
                 </div>
                 <div className="col-md-4 text-right top-right">
                   <TopMenuRight/>

@@ -38,19 +38,18 @@ class DetailHeader extends Component {
     );
   }
     return (
-      <div className="resonse-content-header">
-       <div className="row">
-        <div className="col-md-9">
+      <div className="resonse-content-header width-720 mg-0-auto">
+       <div className="row" style={{padding: '0 25px'}}>
+        <div className="inline">
           <Breadcrumb itemRender={itemRender} routes={routes} />
         </div>
-        <div className="col-md-3">
+        <div className="inline float-right response-none">
           <span className="text-color-grey float-right">Cập nhật lúc: {time}</span>
         </div>
        </div>
        <hr/>
-        <div className="text-center">
-          <span className='book-title text-color-primary' >{name} | </span>
-          <span>Chương {chapter}</span>
+        <div className="text-center pd-tb-10">
+          <span className='book-title uppercase'>{name}</span>
         </div>
         <div className="text-center pd-top-10">
           <div>
@@ -59,7 +58,6 @@ class DetailHeader extends Component {
           <div className="pd-top-10">
             <Button type='default' className='mg-right-10'>Sever 1</Button>
             <Button type='default' className='mg-right-10'>Sever 2</Button>
-            <Button type='default' className='mg-right-10'>Sever 3</Button>
           </div>
           <div className="pd-top-10">
             Nếu vẫn không đọc được truyện, hoặc truyện chưa được dịch, up không đúng truyện, vui lòng 

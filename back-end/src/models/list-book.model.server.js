@@ -23,21 +23,19 @@ let ListBookSchema = new mongoose.Schema(
     year: { type: Number, default: 0 },
     last_chapter: { type: Number, default: 0 },
     updated_at: { type: Date, default: null },
+    user_update: { type: String, default: null },
     content: { type: String, default: null },
     author: { type: String, default: null },
-    status: { type: Number, default: 0 },
+    status: { type: Boolean, default: false },
     folow: { type: Number, default: 0 },
     data_SV1: [
       {
         created_at: {type: Date, default: null},
-        id_chapter: {type: Number, default: 0},
         chapter_number: {type: Number, default: 0},
         chapter_name: {type: String, default: null},
         image: [
           {
             src: {type: String, default: ""},
-            position: {type: Number, default: 0},
-            id_image: {type: Number, default: 0}
           }
         ]
       }
@@ -45,14 +43,11 @@ let ListBookSchema = new mongoose.Schema(
     data_SV2: [
       {
         created_at: {type: Date, default: null},
-        id_chapter: {type: Number, default: 0},
         chapter_number: {type: Number, default: 0},
         chapter_name: {type: String, default: null},
         image: [
           {
             src: {type: String, default: ""},
-            position: {type: Number, default: 0},
-            id_image: {type: Number, default: 0}
           }
         ]
       }

@@ -8,12 +8,14 @@ import history from './../../history'
 const { Option } = Select;
 
 class DetailBody extends Component {
+ 
   state={
     chapter : 0,
   }
   componentDidMount() {
     this.setState({chapter : parseInt(this.props.param.chapter)})
-    this.props.chapterSelect(this.props.param.id, this.props.param.chapter)
+    this.props.chapterSelect(this.props.param.id, this.props.param.chapter);
+    window.scrollTo(0, 0);
   }
 
   handleChange = e => {
@@ -21,19 +23,28 @@ class DetailBody extends Component {
     this.props.chapterSelect(this.props.param.id, e)
     this.setState({chapter: e})
     history.push("/chuong-" + val + '-' + this.props.param.slug + "." + this.props.param.id);
+    window.scrollTo(0, 0);
   }
+
+  handleRefresh = e => {
+    let val = parseInt(this.state.chapter)
+    this.props.chapterSelect(this.props.param.id, val)
+    window.scrollTo(0, 0);
+  }
+
   handlePre = e => {
     let val = parseInt(this.state.chapter) - 1;
     this.setState({chapter:val})
     this.props.chapterSelect(this.props.param.id, val)
     history.push("/chuong-" + val + '-' + this.props.param.slug + "." + this.props.param.id);
-
+    window.scrollTo(0, 0);
   }
   handleNext = e => {
     let val = parseInt(this.state.chapter) + 1;
     this.setState({chapter:val})
     this.props.chapterSelect(this.props.param.id, val)
     history.push("/chuong-" + val + '-' + this.props.param.slug + "." + this.props.param.id);
+    window.scrollTo(0, 0);
   }
 
   render() {
@@ -94,7 +105,7 @@ class DetailBody extends Component {
               <Link to="/">
                 <Icon className='mg-right-10 text-left' style={{fontSize:'20px', color:'#121212'}} type="home" theme="filled" />
               </Link>
-              {/* <Icon className='mg-right-10' style={{fontSize:'20px', color:'#121212'}} type="redo" /> */}
+              <Icon onClick={this.handleRefresh} className='mg-right-10' style={{fontSize:'20px', color:'#121212'}} type="redo" />
               <Button onClick={this.handlePre}  hidden={disPre} className='mg-right-10' shape="circle" icon="arrow-left" />
               <Select value={'Chương ' + this.state.chapter} size='default' defaultValue={'Chương ' + this.state.chapter} onChange={this.handleChange} style={{ width: 200, marginRight:'10px' }}>
                 {children}
