@@ -49,7 +49,6 @@ router.get('/api/get-chapter', (req, res) => {
   let filter = {
     book_id: parseInt(req.query.filter)
   }
-  
   ListBookModel.findOne(filter, select)
     .then(doc => {
       let response = [];
@@ -109,7 +108,7 @@ router.get('/api/list-book', (req, res) => {
     sort = {read : -1};
   }
   let select = {
-    name : 1, cover: 1, read: 1, last_chapter: 1, folow: 1, book_id: 1,
+    name : 1, cover: 1, read: 1, last_chapter: 1, folow: 1, book_id: 1, like: 1,
   }
   if(req.query.filter) {
     page = parseInt(req.query.filter) -1

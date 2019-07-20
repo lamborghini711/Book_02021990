@@ -26,6 +26,7 @@ class CreateBookBody extends Component {
     translate: '',
     year: '',
     content: '',
+    reset: false,
   };
   
   name = e => {
@@ -125,6 +126,24 @@ class CreateBookBody extends Component {
     }
     this.props.createBook(obj);
     this.setState(origin_state) 
+    this.setState({
+      reset: true,
+      tags: [],
+      inputVisible: false,
+      inputValue: '',
+      name: '',
+      another_name: '',
+      country:'',
+      author: '',
+      book_appoint: false,
+      cover: '',
+      data: [],
+      chapter_name: '',
+      full_text_search: '',
+      translate: '',
+      year: '',
+      content: '',
+    });
   }
 
   componentDidMount(){
@@ -174,7 +193,6 @@ class CreateBookBody extends Component {
             <label className="text-style font-700">Nhóm dịch</label>
             <input onChange={this.translate} value={this.state.translate} type="text" className="form-control input-style float-right"  />
           </form>
-          
           <form className="form-inline mg-top-20 ">
             <label className="checkbox-inline text-style pd-all-0 font-700">Truyện đề cử</label>
             <label className="container-create">
@@ -191,7 +209,7 @@ class CreateBookBody extends Component {
               style={{ width: '740px' }}
               placeholder="Vui lòng chọn"
               onChange={this.tag}
-              // defaultValue="Action"
+              value={this.state.tags}
             >
               <Option value="Action">Action</Option>
               <Option value="Adventure">Adventure</Option>
@@ -217,10 +235,10 @@ class CreateBookBody extends Component {
             </div>
           </form>
           {/* end tag */}
-          <div className="row mg-top-20 mg-all-0" style={{borderTop: '1px solid #272727', borderBottom: '1px solid #272727', height:'260px', paddingTop:'20px'}}>
+          <div className="row mg-top-20 mg-all-0" style={{borderTop: '1px solid #272727', borderBottom: '1px solid #272727', padding:'20px 0'}}>
             <div className="col-md-3 text-style pd-all-0 mg-top-10 font-700 text-color-primary">Ảnh bìa (*)</div>
             <div className="col-md-9 inline content-upload">
-              <ReactUploadImage cover={this.cover}/>
+              <ReactUploadImage cover={this.cover} reset={this.state.reset}/>
             </div>
           </div>
           <br/>
@@ -232,10 +250,10 @@ class CreateBookBody extends Component {
             <label className="text-style font-700">Tên chương</label>
             <input onChange={this.chapter_name} value={this.state.chapter_name} type="text" className="form-control input-style float-right"  />
           </form>
-          <div className="row mg-all-0 pd-top-20" style={{ minHeight:'260px'}}>
+          <div className="row mg-all-0" style={{ padding:'20px 0'}}>
             <div className="col-md-3 text-style pd-all-0 mg-top-10 font-700">Chương 0</div>
             <div className="col-md-9 content-upload">
-              <ReactUploadImage data_SV1={this.data_SV1}/>
+              <ReactUploadImage data_SV1={this.data_SV1} reset={this.state.reset}/>
             </div>
           </div>
           <div className="text-right">

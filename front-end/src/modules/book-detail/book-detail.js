@@ -6,7 +6,6 @@ import BookDetailBody from './detail/detail';
 class BookDetail extends Component {
 
   render() {
-   
     let param = this.props.match.params;
     let id = this.props.match.params.id;
     return (

@@ -113,7 +113,7 @@ class EditBookSelect extends Component {
       author : this.state.author,
       book_hot : this.state.book_hot,
       book_appoint : this.state.book_appoint,
-      cover : this.state.cover[0].src,
+      cover : this.state.cover,
       created_at: new Date(),
       updated_at: new Date(),
       full_text_search: to_slug(fullText),
@@ -238,10 +238,10 @@ class EditBookSelect extends Component {
             </div>
           </form>
           {/* end tag */}
-          <div className="row mg-top-20 mg-all-0" style={{borderTop: '1px solid #eee', borderBottom: '1px solid #eee', height:'260px', paddingTop:'20px'}}>
+          <div className="row mg-top-20 mg-all-0" style={{borderTop: '1px solid #eee', borderBottom: '1px solid #eee', padding:'20px 0'}}>
             <div className="col-md-3 text-modal pd-all-0 mg-top-10 font-700 text-color-primary">Ảnh bìa (*)</div>
             <div className="col-md-9 inline content-upload">
-              <ReactUploadImage cover={this.cover} oldData={this.state.cover}/>
+              <ReactUploadImage cover={this.cover}/>
             </div>
           </div>
           <br/>

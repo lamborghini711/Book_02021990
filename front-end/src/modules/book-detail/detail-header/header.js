@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { Button, Breadcrumb, Icon } from 'antd';
-import moment from 'moment'
+import moment from 'moment';
+import {connect} from 'react-redux';
+import {UPDATE_BOOK} from './../../../redux/action/admin/create-book-action';
+
 
 class DetailHeader extends Component {
   render() {
@@ -12,6 +15,11 @@ class DetailHeader extends Component {
   var name = "";
   var time = ""
   if(item) {
+    let obj = {
+      book_id : item.book_id,
+      read : item.read + 1
+    };
+    this.props.updateBook(obj)
     routes = [
       {
         path: '/',
@@ -71,4 +79,12 @@ class DetailHeader extends Component {
   }
 }
 
-export default DetailHeader;
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    updateBook: (obj) => {
+      dispatch({ type: UPDATE_BOOK, obj })
+    },
+  }
+}
+
+export default connect(null, mapDispatchToProps)(DetailHeader);

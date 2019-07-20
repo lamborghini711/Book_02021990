@@ -2,15 +2,23 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { Card, Badge, Icon, Pagination } from 'antd';
 import {connect} from 'react-redux';
+import {UPDATE_BOOK} from './../../../../../redux/action/admin/create-book-action';
 const { Meta } = Card;
 
 class ListBook extends Component {
   state = {
-    page : 1
+    page : 1,
   }
 
   onChange = e => {
     this.props.paniga(e)
+  }
+  like = e => {
+    let obj = {
+      book_id : e.book_id,
+      like : e.like + 1
+    };
+    this.props.updateBook(obj)
   }
   render() {
     // console.log(this.state.page)
@@ -35,15 +43,16 @@ class ListBook extends Component {
               </Badge>
             </Link>
             <div className="row response mg-all-0">
-              <div className="col-md-2 text-color-primary pd-all-0">
-                <Icon type="heart" theme="filled" />
+              <div className="col-md-4 text-color-primary pd-all-0">
+                <Icon type="heart" theme="filled" onClick={this.like.bind(null, items[i])}/>
+                <span className="font-11 pd-left-5">{items[i].like}</span>
               </div>
-              <div className="col-md-2 text-color-grey pd-all-0" >
+              {/* <div className="col-md-2 text-color-grey pd-all-0" >
                 <Icon type="star" theme="filled" />
-              </div>
+              </div> */}
               <div className="col-md-8 text-right text-color-grey pd-all-0" >
                 <Icon type="eye" theme="filled" />
-              <span className="font-11 pd-left-5">{items[i].read}</span>
+                <span className="font-11 pd-left-5">{items[i].read}</span>
               </div>
             </div>
           </div>
@@ -116,4 +125,13 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, null)(ListBook);
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    updateBook: (obj) => {
+      dispatch({ type: UPDATE_BOOK, obj })
+    },
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListBook);

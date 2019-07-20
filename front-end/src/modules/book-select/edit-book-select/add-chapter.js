@@ -3,7 +3,8 @@ import {Button, Icon, Modal} from 'antd';
 import {connect} from 'react-redux';
 import {UPDATE_BOOK,} from './../../../redux/action/admin/create-book-action';
 import { GET_BOOK_DETAIL} from './../../../redux/action/admin/book-actions';
-import ReactUploadImage from './../../create-book/create-book-body/upload-image'
+import ReactUploadImage from './../../create-book/create-book-body/upload-image';
+import _ from 'lodash'
 
 class AddChapter extends Component {
   state = { visible: false, data_SV1:[], name:'' };
@@ -16,7 +17,8 @@ class AddChapter extends Component {
       name: this.props.bookData.name,
       chapter_name: '',
       newChapter: {},
-      book_id: this.props.bookData.book_id
+      book_id: this.props.bookData.book_id,
+      reset : false,
     });
   };
   data_SV1 = e => {
@@ -34,16 +36,22 @@ class AddChapter extends Component {
   }
 
   handleOk = e => {
-    let _data = this.state.data_SV1
-    _data.push(this.state.newChapter)
-    let obj = {
-      book_id : this.state.book_id,
-      data_SV1 : _data
-    }
-    this.props.updateBook(obj)
-    this.setState({
-      visible: false,
-    });
+    if(!_.isEmpty(this.state.newChapter)) {
+      let _data = this.state.data_SV1
+      _data.push(this.state.newChapter)
+      let obj = {
+        book_id : this.state.book_id,
+        updated_at: new Date(),
+        last_chapter: this.state.data_SV1.length - 1,
+        data_SV1 : _data
+      }
+      this.props.updateBook(obj)
+      this.setState({
+        visible: false,
+        reset: true
+      });
+    } 
+    
   };
 
   handleCancel = e => {
@@ -67,10 +75,10 @@ class AddChapter extends Component {
             <label className="text-modal font-700">Tên chương</label>
             <input onChange={this.chapter_name} value={this.state.chapter_name} type="text" className="form-control input-modal float-right"  />
           </form>
-          <div className="row mg-all-0 pd-top-20" style={{ minHeight:'260px'}}>
-            <div className="col-md-3 text-modal pd-all-0 mg-top-10 font-700">Chương 0</div>
+          <div className="row mg-all-0 pd-top-20">
+            <div className="col-md-3 text-modal pd-all-0 mg-top-10 font-700">Chương {this.state.data_SV1.length}</div>
             <div className="col-md-9 content-upload">
-              <ReactUploadImage data_SV1={this.data_SV1}/>
+              <ReactUploadImage data_SV1={this.data_SV1} reset={this.state.reset}/>
             </div>
           </div>
         </Modal>
@@ -82,7 +90,6 @@ class AddChapter extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     bookData: state.bookDetail.bookData.data,
-    // response: state.createBook.updateBook
   }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {

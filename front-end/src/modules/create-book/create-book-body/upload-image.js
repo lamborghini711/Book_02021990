@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, Empty } from 'antd';
+import { Icon } from 'antd';
 const axios = require("axios");
 
 class ReactUploadImage extends React.Component {
@@ -8,9 +8,19 @@ class ReactUploadImage extends React.Component {
         this.state ={
             file: null,
             fileUploads: [],
+            height: 100,
         };
         this.onFormSubmit = this.onFormSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
+    }
+
+    componentWillReceiveProps(){
+      if(this.props.reset){
+        this.setState({ 
+          file: null,
+          fileUploads: [],
+        })
+      }
     }
     
     //================== upload ================================//
@@ -42,8 +52,13 @@ class ReactUploadImage extends React.Component {
         this.setState({file:e.target.files[0]});
     }
 
+    remove = e => {
+      let _arr = this.state.fileUploads
+      _arr.splice(e,1)
+      this.setState({fileUploads:_arr})
+    }
+
     render() {
-      
       let buttonUpload = [];
       if(this.state.file){
         buttonUpload.push(
@@ -55,8 +70,8 @@ class ReactUploadImage extends React.Component {
         fileName = this.state.file.name
       }
       const fileList = [];
-      if(this.props.oldData){
-        let file = this.props.oldData
+      if(this.state.fileUploads){
+        let file = this.state.fileUploads
         for(let i=0; i< file.length; i++) {
           fileList.push(
             <div className='ant-upload-list ant-upload-list-picture' key={i}>
@@ -66,53 +81,29 @@ class ReactUploadImage extends React.Component {
                     <img className="thumb-upload" src={file[i].src} alt='a'/>
                     <span className="pd-left-10">{file[i].src}</span>
                   </span>
-                  <Icon type="edit" className=""/>
-                  <Icon type="close" className="antion antion-close"/>
+                  {/* <Icon type="edit" className=""/> */}
+                  <Icon type="close" className="antion antion-close" onClick={this.remove.bind(null, i)}/>
                 </div>
               </div>
             </div>
           )
         }
       }
-      if(this.state.fileUploads){
-        let file = this.state.fileUploads
-        if(file.length === 0) {
-          fileList.push(<Empty key={1} style={{marginTop: '15px'}} />)
-        } else {
-          for(let i=0; i< file.length; i++) {
-            fileList.push(
-              <div className='ant-upload-list ant-upload-list-picture' key={i}>
-                <div className="ant-upload-list-item ant-upload-list-item-done">
-                  <div className="ant-upload-list-item-info">
-                    <span>
-                      <img className="thumb-upload" src={file[i].src} alt='a'/>
-                      <span className="pd-left-10">{file[i].src}</span>
-                    </span>
-                    <Icon type="edit" className=""/>
-                    <Icon type="close" className="antion antion-close"/>
-                  </div>
-                </div>
-              </div>
-            )
-          }
-        }
-      }
-
+      
       return (
-          <div>
-            <form onSubmit={this.onFormSubmit} className="upload width-100" >
-                <label className="ant-btn  inline mg-right-10"><Icon type="plus" />
-                  <input type="file" name="bookImage" onChange= {this.onChange} accept="image/x-png,image/gif,image/jpeg" />
-                </label>
-               {fileName}
-               {buttonUpload}
-            </form>
-            <br/>
-            <div className='row mg-all-0'>
-              {fileList}
-            </div>
-          </div>
-        
+        <div>
+          <form onSubmit={this.onFormSubmit} className="upload width-100" >
+              <label className="ant-btn  inline mg-right-10"><Icon type="plus" />
+                <input type="file" name="bookImage" onChange= {this.onChange} accept="image/x-png,image/gif,image/jpeg" />
+              </label>
+              {fileName}
+              {buttonUpload}
+              <br/>
+              <div className='row mg-all-0'>
+                {fileList}
+              </div>
+          </form>
+        </div>
       )
     }
 }

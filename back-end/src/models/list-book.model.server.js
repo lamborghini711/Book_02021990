@@ -27,7 +27,8 @@ let ListBookSchema = new mongoose.Schema(
     content: { type: String, default: null },
     author: { type: String, default: null },
     status: { type: Boolean, default: false },
-    folow: { type: Number, default: 0 },
+    folow: { type: Boolean, default: false },
+    like: { type: Number, default: 0 },
     data_SV1: [
       {
         created_at: {type: Date, default: null},

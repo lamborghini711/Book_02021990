@@ -253,9 +253,9 @@ hr {
 }
 .content-upload{
   width: 740px;
-  height: 60px;
+  /* height: 60px; */
   padding: 12px;
-  border: 1px dashed #ccc;
+  border: 1px dashed #272727;
   border-radius: 5px;
 }
 .mg-left-10{
@@ -1018,14 +1018,13 @@ hr {
 .ant-upload-list-picture .ant-upload-list-item, .ant-upload-list-picture-card .ant-upload-list-item {
   height: 120px;
   border: 0px dashed #907373;
-  background-color: #272727;
+  background-color: #fafafa;
   margin-bottom: 10px;
-  color: #cdcdcd;
   /* width: 700px; */
     /* position: absolute; */
 }
 .ant-upload-list-picture .ant-upload-list-item:hover, .ant-upload-list-picture-card .ant-upload-list-item:hover {
-  background: #272727!important;
+  background: #fafafa!important;
 }
 form input[type='radio'], form input[type='checkbox'] {
   height: 0;

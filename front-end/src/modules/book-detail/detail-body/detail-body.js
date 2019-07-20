@@ -3,6 +3,7 @@ import { Affix, Button, Icon, Select } from 'antd';
 import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
 import {GET_BOOK_DETAIL_CHAPTER_SELECT} from './../../../redux/action/admin/book-actions';
+import {UPDATE_BOOK} from './../../../redux/action/admin/create-book-action';
 import history from './../../history'
 
 const { Option } = Select;
@@ -11,6 +12,7 @@ class DetailBody extends Component {
  
   state={
     chapter : 0,
+    like: 0
   }
   componentDidMount() {
     this.setState({chapter : parseInt(this.props.param.chapter)})
@@ -45,6 +47,14 @@ class DetailBody extends Component {
     this.props.chapterSelect(this.props.param.id, val)
     history.push("/chuong-" + val + '-' + this.props.param.slug + "." + this.props.param.id);
     window.scrollTo(0, 0);
+  }
+  like = e => {
+    let obj = {
+      book_id : e.book_id,
+      like : e.like + 1
+    };
+    debugger
+    this.props.updateBook(obj)
   }
 
   render() {
@@ -100,17 +110,18 @@ class DetailBody extends Component {
   return (
       <div className='width-720 mg-0-auto '>
         <div style={{marginTop:'20px'}} >
-          <Affix offsetTop={50}>
+          <Affix offsetTop={50} style={{lineHeight:'45px'}}>
             <div className='text-center light scroll-to-fixed-fixed width-720' id="tuan" >
               <Link to="/">
                 <Icon className='mg-right-10 text-left' style={{fontSize:'20px', color:'#121212'}} type="home" theme="filled" />
               </Link>
               <Icon onClick={this.handleRefresh} className='mg-right-10' style={{fontSize:'20px', color:'#121212'}} type="redo" />
               <Button onClick={this.handlePre}  hidden={disPre} className='mg-right-10' shape="circle" icon="arrow-left" />
-              <Select value={'Chương ' + this.state.chapter} size='default' defaultValue={'Chương ' + this.state.chapter} onChange={this.handleChange} style={{ width: 200, marginRight:'10px' }}>
+              <Select value={'Chương ' + this.state.chapter} size='default' defaultValue={'Chương ' + this.state.chapter} onChange={this.handleChange} style={{ width: 150, marginRight:'10px' }}>
                 {children}
               </Select>
               <Button hidden={disNext} onClick={this.handleNext} className='mg-right-10' shape="circle" icon="arrow-right" />
+              <Icon  type="heart" style={{fontSize:'20px', color: 'red'}} theme="filled" onClick={this.like.bind(null, this.props.data)} />
             </div>
           </Affix>
         </div>
@@ -122,12 +133,15 @@ class DetailBody extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    chapterSelectData: state.bookDetail.chapterSelect
+    chapterSelectData: state.bookDetail.chapterSelect,
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    updateBook: (obj) => {
+      dispatch({ type: UPDATE_BOOK, obj })
+    },
     chapterSelect: (filter, chapter) => {
       dispatch({ type : GET_BOOK_DETAIL_CHAPTER_SELECT, filter, chapter })
     }
