@@ -166,10 +166,8 @@ router.get('/api/list-topic', (req, res) => {
     case 'top-moi-cap-nhat':
       sort = {updated_at : -1, read: -1};
       break;
-    
 
   }
-  
   let select = {
     name : 1, cover: 1, read: 1, last_chapter: 1, folow: 1, book_id: 1, book_appoint: 1, book_hot: 1,
   }
@@ -195,6 +193,20 @@ router.get('/api/list-topic', (req, res) => {
 router.put('/api/update-book', (req, res) => {
   if(!req.body.obj.book_id) {
     return res.status(400).send('Missing URL parameter: book_id')
+  }
+  if(req.body.obj.update_read){
+    let select = {
+      read: 1
+    }
+    let filter = {
+      book_id: parseInt(req.body.obj.book_id)
+    }
+    ListBookModel.findOne(filter,select)
+    .then(doc => {
+      
+      req.body.obj["read"] = doc.read + 1
+      console.log(req.body.obj)
+    })
   }
   ListBookModel.findOneAndUpdate({
     book_id: req.body.obj.book_id

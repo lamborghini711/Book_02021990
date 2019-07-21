@@ -53,7 +53,6 @@ class DetailBody extends Component {
       book_id : e.book_id,
       like : e.like + 1
     };
-    debugger
     this.props.updateBook(obj)
   }
 

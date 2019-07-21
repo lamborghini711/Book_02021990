@@ -7,6 +7,14 @@ import {UPDATE_BOOK} from './../../../redux/action/admin/create-book-action';
 
 
 class DetailHeader extends Component {
+  componentDidMount(){
+    let obj = {
+      book_id : this.props.param.id,
+      update_read : true
+    };
+    this.props.updateBook(obj)
+
+  }
   render() {
   var item = this.props.data
   var chapter = this.props.param.chapter;
@@ -15,11 +23,7 @@ class DetailHeader extends Component {
   var name = "";
   var time = ""
   if(item) {
-    let obj = {
-      book_id : item.book_id,
-      read : item.read + 1
-    };
-    this.props.updateBook(obj)
+    
     routes = [
       {
         path: '/',
